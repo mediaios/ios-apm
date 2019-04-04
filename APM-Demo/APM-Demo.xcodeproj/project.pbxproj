@@ -15,6 +15,9 @@
 		AA0F5D042254B75000473CED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D032254B75000473CED /* main.m */; };
 		AA0F5D0E2254B75000473CED /* APM_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D0D2254B75000473CED /* APM_DemoTests.m */; };
 		AA0F5D192254B75000473CED /* APM_DemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D182254B75000473CED /* APM_DemoUITests.m */; };
+		AA0F5D292254BA2900473CED /* NSURLConnection+MI.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D282254BA2900473CED /* NSURLConnection+MI.m */; };
+		AA0F5D2C2254BA4200473CED /* NSURLSession+MI.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D2B2254BA4200473CED /* NSURLSession+MI.m */; };
+		AA0F5D2F2254BAFD00473CED /* MIHook.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D2E2254BAFD00473CED /* MIHook.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,12 @@
 		AA0F5D142254B75000473CED /* APM-DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "APM-DemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0F5D182254B75000473CED /* APM_DemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APM_DemoUITests.m; sourceTree = "<group>"; };
 		AA0F5D1A2254B75000473CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA0F5D272254BA2900473CED /* NSURLConnection+MI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLConnection+MI.h"; sourceTree = "<group>"; };
+		AA0F5D282254BA2900473CED /* NSURLConnection+MI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLConnection+MI.m"; sourceTree = "<group>"; };
+		AA0F5D2A2254BA4200473CED /* NSURLSession+MI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+MI.h"; sourceTree = "<group>"; };
+		AA0F5D2B2254BA4200473CED /* NSURLSession+MI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+MI.m"; sourceTree = "<group>"; };
+		AA0F5D2D2254BAFD00473CED /* MIHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIHook.h; sourceTree = "<group>"; };
+		AA0F5D2E2254BAFD00473CED /* MIHook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIHook.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +110,7 @@
 		AA0F5CF32254B74E00473CED /* APM-Demo */ = {
 			isa = PBXGroup;
 			children = (
+				AA0F5D262254B7A600473CED /* AOP */,
 				AA0F5CF42254B74E00473CED /* AppDelegate.h */,
 				AA0F5CF52254B74E00473CED /* AppDelegate.m */,
 				AA0F5CF72254B74E00473CED /* ViewController.h */,
@@ -130,6 +140,19 @@
 				AA0F5D1A2254B75000473CED /* Info.plist */,
 			);
 			path = "APM-DemoUITests";
+			sourceTree = "<group>";
+		};
+		AA0F5D262254B7A600473CED /* AOP */ = {
+			isa = PBXGroup;
+			children = (
+				AA0F5D272254BA2900473CED /* NSURLConnection+MI.h */,
+				AA0F5D282254BA2900473CED /* NSURLConnection+MI.m */,
+				AA0F5D2A2254BA4200473CED /* NSURLSession+MI.h */,
+				AA0F5D2B2254BA4200473CED /* NSURLSession+MI.m */,
+				AA0F5D2D2254BAFD00473CED /* MIHook.h */,
+				AA0F5D2E2254BAFD00473CED /* MIHook.m */,
+			);
+			path = AOP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +285,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0F5D2F2254BAFD00473CED /* MIHook.m in Sources */,
+				AA0F5D292254BA2900473CED /* NSURLConnection+MI.m in Sources */,
 				AA0F5CF92254B74E00473CED /* ViewController.m in Sources */,
 				AA0F5D042254B75000473CED /* main.m in Sources */,
+				AA0F5D2C2254BA4200473CED /* NSURLSession+MI.m in Sources */,
 				AA0F5CF62254B74E00473CED /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,6 +464,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CFP9KY4MGC;
 				INFOPLIST_FILE = "APM-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,6 +482,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CFP9KY4MGC;
 				INFOPLIST_FILE = "APM-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
