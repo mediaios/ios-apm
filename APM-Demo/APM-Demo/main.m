@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "NSURLConnection+MI.h"
+#import "NSURLSession+MI.h"
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
+        
+        [NSURLConnection hook];
+        [NSURLSession hook];
+        
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }

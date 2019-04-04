@@ -8,6 +8,9 @@
 
 #import "NSURLConnection+MI.h"
 #import "MIHook.h"
+#import "MIObjectDelegate.h"
+#import "MIProxy.h"
+#import <objc/runtime.h>
 
 typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError);
 @implementation NSURLConnection (MI)
@@ -60,13 +63,13 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
 - (nullable instancetype)mi_initWithRequest:(NSURLRequest *)request delegate:(nullable id)delegate startImmediately:(BOOL)startImmediately
 {
     NSLog(@"%s----",__func__);
-    return [self mi_initWithRequest:request delegate:delegate startImmediately:startImmediately];
+    return [self mi_initWithRequest:request delegate:[self processDelegate:delegate] startImmediately:startImmediately];
 }
 
 - (nullable instancetype)mi_initWithRequest:(NSURLRequest *)request delegate:(nullable id)delegate
 {
     NSLog(@"%s----",__func__);
-    return [self mi_initWithRequest:request delegate:delegate];
+    return [self mi_initWithRequest:request delegate:[self processDelegate:delegate]];
 }
 
 - (void)mi_start
@@ -114,6 +117,56 @@ static CFAbsoluteTime endTime = 0;
                 break;
         }
         //        [[NMCache sharedNMCache] cacheValue:[NSString stringWithFormat:@"%lu", (unsigned long)httpResponse.description.length + data.length] key:NMDATA_KEY_RESPONSESIZE traceId:traceId];
+    }
+}
+
+
+- (id)processDelegate:(id)delegate
+{
+    MIObjectDelegate *objectDelegate = [[MIObjectDelegate alloc] init];
+    if (delegate) {
+        [self registerDelegateMethod:@"connection:didFailWithError:" oriDelegate:delegate assistDelegate:objectDelegate flag:"v@:@@"];
+        [self registerDelegateMethod:@"connection:didReceiveResponse:" oriDelegate:delegate assistDelegate:objectDelegate flag:"v@:@@"];
+        [self registerDelegateMethod:@"connection:didReceiveData:" oriDelegate:delegate assistDelegate:objectDelegate flag:"v@:@@"];
+        [self registerDelegateMethod:@"connection:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:" oriDelegate:delegate assistDelegate:objectDelegate flag:"v@:@@@@"];
+        [self registerDelegateMethod:@"connectionDidFinishLoading:" oriDelegate:delegate assistDelegate:objectDelegate flag:"v@:@"];
+        [self registerDelegateMethod:@"connection:willSendRequest:redirectResponse:" oriDelegate:delegate assistDelegate:objectDelegate flag:"@@:@@"];
+        
+        
+        [self registerDownloadDelegateMethod:@"connection:didWriteData:totalBytesWritten:expectedTotalBytes:" oriDelegate:delegate assistDelegate:objectDelegate];
+        [self registerDownloadDelegateMethod:@"connectionDidResumeDownloading:totalBytesWritten:expectedTotalBytes:" oriDelegate:delegate assistDelegate:objectDelegate];
+        [self registerDownloadDelegateMethod:@"connectionDidFinishDownloading:destinationURL:" oriDelegate:delegate assistDelegate:objectDelegate];
+        
+        delegate = [MIProxy proxyForObject:delegate delegate:objectDelegate];
+        
+    }else{
+        delegate = objectDelegate;
+    }
+    return delegate;
+}
+
+- (void)registerDelegateMethod:(NSString *)method
+                   oriDelegate:(id)oriDel
+                assistDelegate:(MIObjectDelegate *)assiDel
+                          flag:(const char *)flag
+{
+    if ([oriDel respondsToSelector:NSSelectorFromString(method)]) {
+        IMP imp1 = class_getMethodImplementation([MIObjectDelegate class], NSSelectorFromString(method));
+        IMP imp2 = class_getMethodImplementation([oriDel class], NSSelectorFromString(method));
+        if (imp1 != imp2) {
+            [assiDel registerSel:method];
+        }
+    }else{
+        class_addMethod([oriDel class], NSSelectorFromString(method), class_getMethodImplementation([MIObjectDelegate class], NSSelectorFromString(method)), flag);
+    }
+}
+
+- (void)registerDownloadDelegateMethod:(NSString *)method
+                           oriDelegate:(id)oriDel
+                        assistDelegate:(MIObjectDelegate *)assiDel
+{
+    if([oriDel respondsToSelector:NSSelectorFromString(method)]){
+        [assiDel registerSel:method];
     }
 }
 

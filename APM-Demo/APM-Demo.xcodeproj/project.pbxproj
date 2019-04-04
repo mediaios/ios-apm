@@ -18,6 +18,8 @@
 		AA0F5D292254BA2900473CED /* NSURLConnection+MI.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D282254BA2900473CED /* NSURLConnection+MI.m */; };
 		AA0F5D2C2254BA4200473CED /* NSURLSession+MI.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D2B2254BA4200473CED /* NSURLSession+MI.m */; };
 		AA0F5D2F2254BAFD00473CED /* MIHook.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D2E2254BAFD00473CED /* MIHook.m */; };
+		AA0F5D322255B91600473CED /* MIObjectDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D312255B91600473CED /* MIObjectDelegate.m */; };
+		AA0F5D352255D74200473CED /* MIProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D342255D74200473CED /* MIProxy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,10 @@
 		AA0F5D2B2254BA4200473CED /* NSURLSession+MI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+MI.m"; sourceTree = "<group>"; };
 		AA0F5D2D2254BAFD00473CED /* MIHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIHook.h; sourceTree = "<group>"; };
 		AA0F5D2E2254BAFD00473CED /* MIHook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIHook.m; sourceTree = "<group>"; };
+		AA0F5D302255B91600473CED /* MIObjectDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIObjectDelegate.h; sourceTree = "<group>"; };
+		AA0F5D312255B91600473CED /* MIObjectDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIObjectDelegate.m; sourceTree = "<group>"; };
+		AA0F5D332255D74200473CED /* MIProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIProxy.h; sourceTree = "<group>"; };
+		AA0F5D342255D74200473CED /* MIProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIProxy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,10 +153,14 @@
 			children = (
 				AA0F5D272254BA2900473CED /* NSURLConnection+MI.h */,
 				AA0F5D282254BA2900473CED /* NSURLConnection+MI.m */,
+				AA0F5D302255B91600473CED /* MIObjectDelegate.h */,
+				AA0F5D312255B91600473CED /* MIObjectDelegate.m */,
 				AA0F5D2A2254BA4200473CED /* NSURLSession+MI.h */,
 				AA0F5D2B2254BA4200473CED /* NSURLSession+MI.m */,
 				AA0F5D2D2254BAFD00473CED /* MIHook.h */,
 				AA0F5D2E2254BAFD00473CED /* MIHook.m */,
+				AA0F5D332255D74200473CED /* MIProxy.h */,
+				AA0F5D342255D74200473CED /* MIProxy.m */,
 			);
 			path = AOP;
 			sourceTree = "<group>";
@@ -288,6 +298,8 @@
 				AA0F5D2F2254BAFD00473CED /* MIHook.m in Sources */,
 				AA0F5D292254BA2900473CED /* NSURLConnection+MI.m in Sources */,
 				AA0F5CF92254B74E00473CED /* ViewController.m in Sources */,
+				AA0F5D322255B91600473CED /* MIObjectDelegate.m in Sources */,
+				AA0F5D352255D74200473CED /* MIProxy.m in Sources */,
 				AA0F5D042254B75000473CED /* main.m in Sources */,
 				AA0F5D2C2254BA4200473CED /* NSURLSession+MI.m in Sources */,
 				AA0F5CF62254B74E00473CED /* AppDelegate.m in Sources */,

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSURLSession (MI)
-
++ (void)hook;
 @end
 
 NS_ASSUME_NONNULL_END
