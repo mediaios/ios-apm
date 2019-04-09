@@ -7,6 +7,8 @@
 //
 
 #import "MIObjectDelegate.h"
+#import "MIApmHelper.h"
+#import "MINetModel.h"
 
 @interface MIObjectDelegate()
 @property (nonatomic,strong) NSMutableArray *selList;
@@ -55,32 +57,49 @@
 
 
 #pragma mark -NSURLConnectionDataDelegate
+static NSInteger req_tim = 0;
+static CFAbsoluteTime begin_tim = 0;
+static NSInteger statusCode = 0;
+static NSString *url_str = nil;
 - (nullable NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(nullable NSURLResponse *)response
 {
-    NSLog(@"%s----",__func__);
+
+    req_tim = [MIApmHelper currentTimestamp];
+    begin_tim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
+    url_str = request.URL.absoluteString;
     return request;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    NSLog(@"%s----",__func__);
+    statusCode = ((NSHTTPURLResponse *)response).statusCode;
+
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    NSLog(@"%s----",__func__);
+
 }
 
 - (void)connection:(NSURLConnection *)connection   didSendBodyData:(NSInteger)bytesWritten
  totalBytesWritten:(NSInteger)totalBytesWritten
 totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
-    NSLog(@"%s----",__func__);
+
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-     NSLog(@"%s----",__func__);
+    CFAbsoluteTime end_tim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
+    NSUInteger totalTim = end_tim - begin_tim;
+    MINetModel *netModel = [MINetModel instanceWith:url_str reqTim:req_tim totalTim:totalTim statusCode:statusCode];
+    NSLog(@"%@",netModel);
+    
+    req_tim = 0;
+    begin_tim = 0;
+    statusCode = 0;
+    url_str = nil;
+    
 }
 
 
@@ -114,7 +133,19 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
         NSTimeInterval tttiming = [metrics.taskInterval duration] * 1000;   // 网络请求总时间
         NSTimeInterval firsttiming = [metric.responseStartDate timeIntervalSinceDate:metric.requestEndDate] * 1000;
         
-        NSLog(@"\n tcptiming：%.f \n dnstime:%.f \n clientwasttiming:%.f \n sslTime:%.f \n firsttiming:%.f \n tttiming:%.f", tcptiming,dnstiming ,clientwasttiming,ssltiming, firsttiming,tttiming);
+        NSString *url_str = metric.request.URL.absoluteString;
+        NSUInteger req_tim = [MIApmHelper currentTimestamp];
+        NSInteger statusCode  = ((NSHTTPURLResponse *)metric.response).statusCode;
+        MINetModel *netModel = [MINetModel instanceWith:url_str
+                                                 reqTim:req_tim
+                                          clientWastTim:clientwasttiming
+                                               totalTim:tttiming
+                                                 dnsTim:dnstiming
+                                                 sslTim:ssltiming
+                                                 tcpTim:tcptiming
+                                         firstPacketTim:firsttiming
+                                             statusCode:statusCode];
+        NSLog(@"%@",netModel);
     }
 }
 

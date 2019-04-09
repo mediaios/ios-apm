@@ -7,10 +7,12 @@
 //
 
 #import "NSURLConnection+MI.h"
+#import "MIApmHelper.h"
 #import "MIHook.h"
 #import "MIObjectDelegate.h"
 #import "MIProxy.h"
 #import <objc/runtime.h>
+#import "MINetModel.h"
 
 typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError);
 @implementation NSURLConnection (MI)
@@ -26,32 +28,32 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
     
     [MIHook hookInstance:@"NSURLConnection" sel:@"start" withClass:@"NSURLConnection" sel:@"hook_start"];
     [MIHook hookInstance:@"NSURLConnection" sel:@"cancel" withClass:@"NSURLConnection" sel:@"hook_cancel"];
-    
 }
 
 
 #pragma mark -swizzed method
 + (nullable NSData *)mi_sendSynchronousRequest:(NSURLRequest *)request returningResponse:(NSURLResponse * _Nullable * _Nullable)response error:(NSError **)error
 {
-    NSLog(@"%s----",__func__);
     NSMutableURLRequest *mutaReq  = (NSMutableURLRequest *)request;
-    [[self class] monitorRequest:mutaReq];
+    NSString *url_str = mutaReq.URL.absoluteString;
+    NSUInteger req_tim = [MIApmHelper currentTimestamp];
+    CFAbsoluteTime begintime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
     // 发送请求
     NSData *data  = [[self class] mi_sendSynchronousRequest:request returningResponse:response error:error];
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)(*response);
-    [[self class] monitorResponse:httpResponse data:data error:*error];
-    
+    [[self class] monitorResponse:httpResponse data:data error:*error reqDst:url_str reqTim:req_tim beginTim:begintime];
     return [[self class] mi_sendSynchronousRequest:request returningResponse:response error:error];
 }
 
 + (void)mi_sendAsynchronousRequest:(NSURLRequest*)request queue:(NSOperationQueue*)queue completionHandler:(void (^)(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError)) handler
 {
-    NSLog(@"%s----",__func__);
     NSMutableURLRequest *mutaReq = (NSMutableURLRequest *)request;
-    [[self class] monitorRequest:mutaReq];
+    NSString *url_str = mutaReq.URL.absoluteString;
+    NSUInteger req_tim = [MIApmHelper currentTimestamp];
+    CFAbsoluteTime begintime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
     CompletionHandler hook_handler = ^(NSURLResponse * _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError){
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-        [self monitorResponse:httpResponse data:data error:connectionError];
+        [[self class] monitorResponse:httpResponse data:data error:connectionError reqDst:url_str reqTim:req_tim beginTim:begintime];
         if (handler) {
             handler(httpResponse,data,connectionError);
         }
@@ -62,62 +64,36 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
 
 - (nullable instancetype)mi_initWithRequest:(NSURLRequest *)request delegate:(nullable id)delegate startImmediately:(BOOL)startImmediately
 {
-    NSLog(@"%s----",__func__);
     return [self mi_initWithRequest:request delegate:[self processDelegate:delegate] startImmediately:startImmediately];
 }
 
 - (nullable instancetype)mi_initWithRequest:(NSURLRequest *)request delegate:(nullable id)delegate
 {
-    NSLog(@"%s----",__func__);
     return [self mi_initWithRequest:request delegate:[self processDelegate:delegate]];
 }
 
 - (void)mi_start
 {
-    NSLog(@"%s----",__func__);
     [self mi_start];
 }
 
 - (void)mi_cancel
 {
-    NSLog(@"%s----",__func__);
     [self mi_cancel];
 }
 
-static CFAbsoluteTime beginTime = 0;
-static CFAbsoluteTime endTime = 0;
-
-+ (void)monitorRequest:(NSURLRequest *)req
++ (void)monitorResponse:(NSHTTPURLResponse *)httpResponse
+                   data:(NSData *)data
+                  error:(NSError *)error
+                 reqDst:(NSString *)reqDst
+                 reqTim:(NSUInteger)reqTim
+               beginTim:(NSUInteger)beginTim
 {
-    CFAbsoluteTime time = CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970;
-    beginTime = time*1000;
-    NSLog(@"begin time: %.f",time * 1000);
-}
-
-+ (void)monitorResponse:(NSHTTPURLResponse *)httpResponse data:(NSData *)data error:(NSError *)error
-{
-    CFAbsoluteTime time = CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970;
-    endTime = time*1000;
-    NSLog(@"end time: %.f",time * 1000);
-    NSLog(@"时长: %.f",endTime-beginTime);
-    
-    NSUInteger bodySize = data.length;
-    //响应相关监控
+    CFAbsoluteTime endtime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
+    NSUInteger totalTim = endtime - beginTim;
     NSInteger statusCode = httpResponse.statusCode;
-    if (error) {
-
-    } else {
-        switch (statusCode) {
-            case 200:
-            case 304:
-                NSLog(@"请求成功,body size: %ld KB",bodySize/1024);
-                break;
-            default:
-                NSLog(@"请求失败");
-                break;
-        }
-        //        [[NMCache sharedNMCache] cacheValue:[NSString stringWithFormat:@"%lu", (unsigned long)httpResponse.description.length + data.length] key:NMDATA_KEY_RESPONSESIZE traceId:traceId];
-    }
+    MINetModel *netModel = [MINetModel instanceWith:reqDst reqTim:reqTim totalTim:totalTim statusCode:statusCode];
+    NSLog(@"%@",netModel);
 }
 
 

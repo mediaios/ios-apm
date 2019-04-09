@@ -86,12 +86,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="317.60000000000002" y="-27.436281859070466"/>
+            <point key="canvasLocation" x="236" y="-41"/>
         </scene>
         <!--NSURLSession-->
         <scene sceneID="UzK-4b-H6v">
             <objects>
-                <viewController id="8Ho-jY-2Fq" sceneMemberID="viewController">
+                <viewController id="8Ho-jY-2Fq" customClass="MISessionVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eOh-Io-bFx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,6 +109,9 @@
                                         <state key="normal" title="dataTask">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnClickDataTask:" destination="8Ho-jY-2Fq" eventType="touchUpInside" id="Hrz-b6-O9w"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDU-ID-tqs">
                                         <rect key="frame" x="4" y="68" width="327" height="38"/>
@@ -120,6 +123,9 @@
                                         <state key="normal" title="delegate">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnClickDelegate:" destination="8Ho-jY-2Fq" eventType="touchUpInside" id="lGL-ik-vXb"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jlf-gw-Bym">
                                         <rect key="frame" x="4" y="121" width="327" height="38"/>
@@ -131,6 +137,9 @@
                                         <state key="normal" title="upload">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnClickUpload:" destination="8Ho-jY-2Fq" eventType="touchUpInside" id="YYm-fv-TXa"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOd-TW-5Zt">
                                         <rect key="frame" x="4" y="174" width="327" height="38"/>
@@ -142,16 +151,28 @@
                                         <state key="normal" title="download">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnClickDownload:" destination="8Ho-jY-2Fq" eventType="touchUpInside" id="WQA-sA-NhD"/>
+                                        </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x33-K5-xmv">
+                                        <rect key="frame" x="47.5" y="242" width="240" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="aY6-36-jJs"/>
+                                            <constraint firstAttribute="height" constant="128" id="zqc-1i-2zq"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Mpg-Ht-eC0" firstAttribute="top" secondItem="l0X-d8-Ooj" secondAttribute="top" constant="15" id="3yh-9I-qM4"/>
                                     <constraint firstItem="Mpg-Ht-eC0" firstAttribute="centerX" secondItem="l0X-d8-Ooj" secondAttribute="centerX" id="5xR-4X-TQa"/>
+                                    <constraint firstItem="x33-K5-xmv" firstAttribute="centerX" secondItem="l0X-d8-Ooj" secondAttribute="centerX" id="60y-ar-uPx"/>
                                     <constraint firstItem="ZOd-TW-5Zt" firstAttribute="centerX" secondItem="l0X-d8-Ooj" secondAttribute="centerX" id="8SE-WE-C10"/>
                                     <constraint firstItem="Jlf-gw-Bym" firstAttribute="centerX" secondItem="l0X-d8-Ooj" secondAttribute="centerX" id="DLc-Pm-U3J"/>
                                     <constraint firstItem="FDU-ID-tqs" firstAttribute="centerX" secondItem="l0X-d8-Ooj" secondAttribute="centerX" id="Dxw-bD-NOJ"/>
                                     <constraint firstItem="Jlf-gw-Bym" firstAttribute="top" secondItem="FDU-ID-tqs" secondAttribute="bottom" constant="15" id="LZy-KE-Qa8"/>
+                                    <constraint firstItem="x33-K5-xmv" firstAttribute="top" secondItem="ZOd-TW-5Zt" secondAttribute="bottom" constant="30" id="V0B-ic-c4c"/>
                                     <constraint firstItem="FDU-ID-tqs" firstAttribute="top" secondItem="Mpg-Ht-eC0" secondAttribute="bottom" constant="15" id="ckz-Ve-GR5"/>
                                     <constraint firstItem="ZOd-TW-5Zt" firstAttribute="top" secondItem="Jlf-gw-Bym" secondAttribute="bottom" constant="15" id="rKB-2a-mOM"/>
                                     <constraint firstAttribute="height" constant="400" id="vNr-aU-A2c"/>
@@ -167,15 +188,18 @@
                         <viewLayoutGuide key="safeArea" id="e9b-Uo-hKs"/>
                     </view>
                     <navigationItem key="navigationItem" title="NSURLSession" id="e6B-cq-gBM"/>
+                    <connections>
+                        <outlet property="imageView" destination="x33-K5-xmv" id="Rrd-50-Kiv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thD-jh-5N9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972" y="-280"/>
+            <point key="canvasLocation" x="1910" y="-304"/>
         </scene>
         <!--NSURLConnection-->
         <scene sceneID="dir-a7-gAq">
             <objects>
-                <viewController id="Ztr-t7-fAm" sceneMemberID="viewController">
+                <viewController id="Ztr-t7-fAm" customClass="MIConnectionVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0hh-kZ-J51">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -193,6 +217,9 @@
                                         <state key="normal" title="sendSynchronousRequest">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnClickSendSync:" destination="Ztr-t7-fAm" eventType="touchUpInside" id="hsw-BX-IJ1"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibn-Oy-NZa">
                                         <rect key="frame" x="4" y="68" width="327" height="38"/>
@@ -204,6 +231,9 @@
                                         <state key="normal" title="sendAsynchronousRequest">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnClickSendAsync:" destination="Ztr-t7-fAm" eventType="touchUpInside" id="js4-Rl-HRA"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOg-M6-6IR">
                                         <rect key="frame" x="4" y="121" width="327" height="38"/>
@@ -215,6 +245,9 @@
                                         <state key="normal" title="upload">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnClickUpload:" destination="Ztr-t7-fAm" eventType="touchUpInside" id="3j1-lv-FRa"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOQ-n7-8GE">
                                         <rect key="frame" x="4" y="174" width="327" height="38"/>
@@ -226,19 +259,47 @@
                                         <state key="normal" title="download">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnClickDownload:" destination="Ztr-t7-fAm" eventType="touchUpInside" id="iEX-Dd-bTa"/>
+                                        </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORg-tS-5Mo">
+                                        <rect key="frame" x="4" y="227" width="327" height="38"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="327" id="AAV-FQ-ik4"/>
+                                            <constraint firstAttribute="height" constant="38" id="TWX-or-QgJ"/>
+                                        </constraints>
+                                        <state key="normal" title="delegate">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnClickDelegate:" destination="Ztr-t7-fAm" eventType="touchUpInside" id="xcc-dN-gYA"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oh5-OM-izL">
+                                        <rect key="frame" x="47.5" y="295" width="240" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="i6P-bE-iMm"/>
+                                            <constraint firstAttribute="height" constant="128" id="vbz-oA-FNf"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="oh5-OM-izL" firstAttribute="centerX" secondItem="SM1-EB-wCL" secondAttribute="centerX" id="9ml-Yk-zwp"/>
                                     <constraint firstItem="TOQ-n7-8GE" firstAttribute="top" secondItem="gOg-M6-6IR" secondAttribute="bottom" constant="15" id="BDF-5t-pgJ"/>
                                     <constraint firstAttribute="height" constant="500" id="Bvi-cY-mqZ"/>
                                     <constraint firstItem="TOQ-n7-8GE" firstAttribute="centerX" secondItem="SM1-EB-wCL" secondAttribute="centerX" id="EMh-EG-H8B"/>
+                                    <constraint firstItem="oh5-OM-izL" firstAttribute="top" secondItem="ORg-tS-5Mo" secondAttribute="bottom" constant="30" id="KE6-Dg-yvw"/>
+                                    <constraint firstItem="ORg-tS-5Mo" firstAttribute="centerX" secondItem="SM1-EB-wCL" secondAttribute="centerX" id="aJW-3b-4Ro"/>
                                     <constraint firstItem="Ibn-Oy-NZa" firstAttribute="centerX" secondItem="SM1-EB-wCL" secondAttribute="centerX" id="aTf-mm-hfU"/>
                                     <constraint firstItem="gOg-M6-6IR" firstAttribute="centerX" secondItem="SM1-EB-wCL" secondAttribute="centerX" id="c5n-Ib-0er"/>
                                     <constraint firstItem="UVG-Th-ad7" firstAttribute="centerX" secondItem="SM1-EB-wCL" secondAttribute="centerX" id="hMN-0a-rwv"/>
                                     <constraint firstItem="Ibn-Oy-NZa" firstAttribute="top" secondItem="UVG-Th-ad7" secondAttribute="bottom" constant="15" id="jsM-Bw-U2Z"/>
                                     <constraint firstItem="UVG-Th-ad7" firstAttribute="top" secondItem="SM1-EB-wCL" secondAttribute="top" constant="15" id="lzY-2f-yYQ"/>
                                     <constraint firstItem="gOg-M6-6IR" firstAttribute="top" secondItem="Ibn-Oy-NZa" secondAttribute="bottom" constant="15" id="s7z-UZ-8Dj"/>
+                                    <constraint firstItem="ORg-tS-5Mo" firstAttribute="top" secondItem="TOQ-n7-8GE" secondAttribute="bottom" constant="15" id="vde-ik-537"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -251,10 +312,13 @@
                         <viewLayoutGuide key="safeArea" id="fAt-m5-az3"/>
                     </view>
                     <navigationItem key="navigationItem" title="NSURLConnection" id="MBw-pV-S9L"/>
+                    <connections>
+                        <outlet property="imageView" destination="oh5-OM-izL" id="iIz-Nq-71M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcw-dL-42g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1593" y="-180"/>
+            <point key="canvasLocation" x="1263" y="-408"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aF9-6k-Xoq">
