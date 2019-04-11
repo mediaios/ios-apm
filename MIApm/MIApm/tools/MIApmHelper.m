@@ -1,9 +1,9 @@
 //
 //  MIApmHelper.m
-//  APM-Demo
+//  MIApm
 //
-//  Created by ethan on 2019/4/10.
-//  Copyright © 2019 ucloud. All rights reserved.
+//  Created by mediaios on 2019/4/10.
+//  Copyright © 2019 mediaios. All rights reserved.
 //
 
 #import "MIApmHelper.h"

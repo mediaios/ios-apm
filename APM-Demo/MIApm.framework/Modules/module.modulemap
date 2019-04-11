@@ -1,0 +1,6 @@
+framework module MIApm {
+  umbrella header "MIApm.h"
+
+  export *
+  module * { export * }
+}

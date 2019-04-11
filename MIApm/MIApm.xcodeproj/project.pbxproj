@@ -1,0 +1,549 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA21FD56225F3103006416B9 /* MIApm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA21FD4C225F3103006416B9 /* MIApm.framework */; };
+		AA21FD5B225F3103006416B9 /* MIApmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD5A225F3103006416B9 /* MIApmTests.m */; };
+		AA21FD5D225F3103006416B9 /* MIApm.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD4F225F3103006416B9 /* MIApm.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA21FD71225F3209006416B9 /* MIProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD67225F3209006416B9 /* MIProxy.m */; };
+		AA21FD72225F3209006416B9 /* MIObjectDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD68225F3209006416B9 /* MIObjectDelegate.m */; };
+		AA21FD73225F3209006416B9 /* MIHook.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD69225F3209006416B9 /* MIHook.h */; };
+		AA21FD74225F3209006416B9 /* NSURLConnection+MI.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD6A225F3209006416B9 /* NSURLConnection+MI.m */; };
+		AA21FD75225F3209006416B9 /* NSURLSession+MI.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD6B225F3209006416B9 /* NSURLSession+MI.m */; };
+		AA21FD76225F3209006416B9 /* MIObjectDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD6C225F3209006416B9 /* MIObjectDelegate.h */; };
+		AA21FD77225F3209006416B9 /* MIProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD6D225F3209006416B9 /* MIProxy.h */; };
+		AA21FD78225F3209006416B9 /* MIHook.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD6E225F3209006416B9 /* MIHook.m */; };
+		AA21FD79225F3209006416B9 /* NSURLConnection+MI.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD6F225F3209006416B9 /* NSURLConnection+MI.h */; };
+		AA21FD7A225F3209006416B9 /* NSURLSession+MI.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD70225F3209006416B9 /* NSURLSession+MI.h */; };
+		AA21FD7F225F324A006416B9 /* MIRequestMonitorRes.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD7D225F324A006416B9 /* MIRequestMonitorRes.m */; };
+		AA21FD80225F324A006416B9 /* MIRequestMonitorRes.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD7E225F324A006416B9 /* MIRequestMonitorRes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA21FD83225F3267006416B9 /* MIApmHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD81225F3267006416B9 /* MIApmHelper.h */; };
+		AA21FD84225F3267006416B9 /* MIApmHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD82225F3267006416B9 /* MIApmHelper.m */; };
+		AA21FD88225F32BA006416B9 /* MIApmClient.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD86225F32BA006416B9 /* MIApmClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA21FD89225F32BA006416B9 /* MIApmClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD87225F32BA006416B9 /* MIApmClient.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA21FD57225F3103006416B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA21FD43225F3103006416B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA21FD4B225F3103006416B9;
+			remoteInfo = MIApm;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AA21FD4C225F3103006416B9 /* MIApm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MIApm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA21FD4F225F3103006416B9 /* MIApm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIApm.h; sourceTree = "<group>"; };
+		AA21FD50225F3103006416B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA21FD55225F3103006416B9 /* MIApmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MIApmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA21FD5A225F3103006416B9 /* MIApmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIApmTests.m; sourceTree = "<group>"; };
+		AA21FD5C225F3103006416B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA21FD67225F3209006416B9 /* MIProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIProxy.m; sourceTree = "<group>"; };
+		AA21FD68225F3209006416B9 /* MIObjectDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIObjectDelegate.m; sourceTree = "<group>"; };
+		AA21FD69225F3209006416B9 /* MIHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIHook.h; sourceTree = "<group>"; };
+		AA21FD6A225F3209006416B9 /* NSURLConnection+MI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLConnection+MI.m"; sourceTree = "<group>"; };
+		AA21FD6B225F3209006416B9 /* NSURLSession+MI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+MI.m"; sourceTree = "<group>"; };
+		AA21FD6C225F3209006416B9 /* MIObjectDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIObjectDelegate.h; sourceTree = "<group>"; };
+		AA21FD6D225F3209006416B9 /* MIProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIProxy.h; sourceTree = "<group>"; };
+		AA21FD6E225F3209006416B9 /* MIHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIHook.m; sourceTree = "<group>"; };
+		AA21FD6F225F3209006416B9 /* NSURLConnection+MI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLConnection+MI.h"; sourceTree = "<group>"; };
+		AA21FD70225F3209006416B9 /* NSURLSession+MI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+MI.h"; sourceTree = "<group>"; };
+		AA21FD7D225F324A006416B9 /* MIRequestMonitorRes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIRequestMonitorRes.m; sourceTree = "<group>"; };
+		AA21FD7E225F324A006416B9 /* MIRequestMonitorRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIRequestMonitorRes.h; sourceTree = "<group>"; };
+		AA21FD81225F3267006416B9 /* MIApmHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIApmHelper.h; sourceTree = "<group>"; };
+		AA21FD82225F3267006416B9 /* MIApmHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIApmHelper.m; sourceTree = "<group>"; };
+		AA21FD86225F32BA006416B9 /* MIApmClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIApmClient.h; sourceTree = "<group>"; };
+		AA21FD87225F32BA006416B9 /* MIApmClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIApmClient.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA21FD49225F3103006416B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA21FD52225F3103006416B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA21FD56225F3103006416B9 /* MIApm.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA21FD42225F3103006416B9 = {
+			isa = PBXGroup;
+			children = (
+				AA21FD4E225F3103006416B9 /* MIApm */,
+				AA21FD59225F3103006416B9 /* MIApmTests */,
+				AA21FD4D225F3103006416B9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA21FD4D225F3103006416B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA21FD4C225F3103006416B9 /* MIApm.framework */,
+				AA21FD55225F3103006416B9 /* MIApmTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA21FD4E225F3103006416B9 /* MIApm */ = {
+			isa = PBXGroup;
+			children = (
+				AA21FD85225F32A0006416B9 /* public */,
+				AA21FD7C225F3235006416B9 /* model */,
+				AA21FD7B225F322E006416B9 /* tools */,
+				AA21FD66225F31CF006416B9 /* aop */,
+				AA21FD4F225F3103006416B9 /* MIApm.h */,
+				AA21FD50225F3103006416B9 /* Info.plist */,
+			);
+			path = MIApm;
+			sourceTree = "<group>";
+		};
+		AA21FD59225F3103006416B9 /* MIApmTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA21FD5A225F3103006416B9 /* MIApmTests.m */,
+				AA21FD5C225F3103006416B9 /* Info.plist */,
+			);
+			path = MIApmTests;
+			sourceTree = "<group>";
+		};
+		AA21FD66225F31CF006416B9 /* aop */ = {
+			isa = PBXGroup;
+			children = (
+				AA21FD69225F3209006416B9 /* MIHook.h */,
+				AA21FD6E225F3209006416B9 /* MIHook.m */,
+				AA21FD6C225F3209006416B9 /* MIObjectDelegate.h */,
+				AA21FD68225F3209006416B9 /* MIObjectDelegate.m */,
+				AA21FD6D225F3209006416B9 /* MIProxy.h */,
+				AA21FD67225F3209006416B9 /* MIProxy.m */,
+				AA21FD6F225F3209006416B9 /* NSURLConnection+MI.h */,
+				AA21FD6A225F3209006416B9 /* NSURLConnection+MI.m */,
+				AA21FD70225F3209006416B9 /* NSURLSession+MI.h */,
+				AA21FD6B225F3209006416B9 /* NSURLSession+MI.m */,
+			);
+			path = aop;
+			sourceTree = "<group>";
+		};
+		AA21FD7B225F322E006416B9 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				AA21FD81225F3267006416B9 /* MIApmHelper.h */,
+				AA21FD82225F3267006416B9 /* MIApmHelper.m */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		AA21FD7C225F3235006416B9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				AA21FD7E225F324A006416B9 /* MIRequestMonitorRes.h */,
+				AA21FD7D225F324A006416B9 /* MIRequestMonitorRes.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		AA21FD85225F32A0006416B9 /* public */ = {
+			isa = PBXGroup;
+			children = (
+				AA21FD86225F32BA006416B9 /* MIApmClient.h */,
+				AA21FD87225F32BA006416B9 /* MIApmClient.m */,
+			);
+			path = public;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		AA21FD47225F3103006416B9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA21FD80225F324A006416B9 /* MIRequestMonitorRes.h in Headers */,
+				AA21FD76225F3209006416B9 /* MIObjectDelegate.h in Headers */,
+				AA21FD88225F32BA006416B9 /* MIApmClient.h in Headers */,
+				AA21FD79225F3209006416B9 /* NSURLConnection+MI.h in Headers */,
+				AA21FD7A225F3209006416B9 /* NSURLSession+MI.h in Headers */,
+				AA21FD5D225F3103006416B9 /* MIApm.h in Headers */,
+				AA21FD73225F3209006416B9 /* MIHook.h in Headers */,
+				AA21FD77225F3209006416B9 /* MIProxy.h in Headers */,
+				AA21FD83225F3267006416B9 /* MIApmHelper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		AA21FD4B225F3103006416B9 /* MIApm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA21FD60225F3103006416B9 /* Build configuration list for PBXNativeTarget "MIApm" */;
+			buildPhases = (
+				AA21FD47225F3103006416B9 /* Headers */,
+				AA21FD48225F3103006416B9 /* Sources */,
+				AA21FD49225F3103006416B9 /* Frameworks */,
+				AA21FD4A225F3103006416B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MIApm;
+			productName = MIApm;
+			productReference = AA21FD4C225F3103006416B9 /* MIApm.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		AA21FD54225F3103006416B9 /* MIApmTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA21FD63225F3103006416B9 /* Build configuration list for PBXNativeTarget "MIApmTests" */;
+			buildPhases = (
+				AA21FD51225F3103006416B9 /* Sources */,
+				AA21FD52225F3103006416B9 /* Frameworks */,
+				AA21FD53225F3103006416B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA21FD58225F3103006416B9 /* PBXTargetDependency */,
+			);
+			name = MIApmTests;
+			productName = MIApmTests;
+			productReference = AA21FD55225F3103006416B9 /* MIApmTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA21FD43225F3103006416B9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = ucloud;
+				TargetAttributes = {
+					AA21FD4B225F3103006416B9 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					AA21FD54225F3103006416B9 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+				};
+			};
+			buildConfigurationList = AA21FD46225F3103006416B9 /* Build configuration list for PBXProject "MIApm" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AA21FD42225F3103006416B9;
+			productRefGroup = AA21FD4D225F3103006416B9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA21FD4B225F3103006416B9 /* MIApm */,
+				AA21FD54225F3103006416B9 /* MIApmTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA21FD4A225F3103006416B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA21FD53225F3103006416B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA21FD48225F3103006416B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA21FD71225F3209006416B9 /* MIProxy.m in Sources */,
+				AA21FD7F225F324A006416B9 /* MIRequestMonitorRes.m in Sources */,
+				AA21FD75225F3209006416B9 /* NSURLSession+MI.m in Sources */,
+				AA21FD89225F32BA006416B9 /* MIApmClient.m in Sources */,
+				AA21FD72225F3209006416B9 /* MIObjectDelegate.m in Sources */,
+				AA21FD84225F3267006416B9 /* MIApmHelper.m in Sources */,
+				AA21FD78225F3209006416B9 /* MIHook.m in Sources */,
+				AA21FD74225F3209006416B9 /* NSURLConnection+MI.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA21FD51225F3103006416B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA21FD5B225F3103006416B9 /* MIApmTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA21FD58225F3103006416B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA21FD4B225F3103006416B9 /* MIApm */;
+			targetProxy = AA21FD57225F3103006416B9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AA21FD5E225F3103006416B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AA21FD5F225F3103006416B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		AA21FD61225F3103006416B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = CFP9KY4MGC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MIApm/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.ucloud.MIApm;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA21FD62225F3103006416B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = CFP9KY4MGC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MIApm/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.ucloud.MIApm;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AA21FD64225F3103006416B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CFP9KY4MGC;
+				INFOPLIST_FILE = MIApmTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.ucloud.MIApmTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA21FD65225F3103006416B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CFP9KY4MGC;
+				INFOPLIST_FILE = MIApmTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.ucloud.MIApmTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA21FD46225F3103006416B9 /* Build configuration list for PBXProject "MIApm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA21FD5E225F3103006416B9 /* Debug */,
+				AA21FD5F225F3103006416B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA21FD60225F3103006416B9 /* Build configuration list for PBXNativeTarget "MIApm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA21FD61225F3103006416B9 /* Debug */,
+				AA21FD62225F3103006416B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA21FD63225F3103006416B9 /* Build configuration list for PBXNativeTarget "MIApmTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA21FD64225F3103006416B9 /* Debug */,
+				AA21FD65225F3103006416B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA21FD43225F3103006416B9 /* Project object */;
+}

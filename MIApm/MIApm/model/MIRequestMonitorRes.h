@@ -1,16 +1,16 @@
 //
-//  MINetModel.h
-//  APM-Demo
+//  MIRequestMonitorRes.h
+//  MIApm
 //
-//  Created by ethan on 2019/4/10.
-//  Copyright © 2019 ucloud. All rights reserved.
+//  Created by mediaios on 2019/4/10.
+//  Copyright © 2019 mediaios. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MINetModel : NSObject
+@interface MIRequestMonitorRes : NSObject
 
 /**
  记录产生的时间
@@ -21,6 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
  请求地址
  */
 @property (nonatomic,readonly) NSString *reqDst;
+
+
+/**
+ 请求方式
+ */
+@property (nonatomic,readonly) NSString *reqMethod;
 
 /**
  客户端耗时
@@ -62,6 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
  实例化网络请求分析结果，针对于`NSURLConnection`(内部使用)
  */
 + (instancetype)instanceWith:(NSString *)reqDst
+                   reqMethod:(NSString *)reqMethod
                       reqTim:(NSUInteger)reqTim
                     totalTim:(NSUInteger)totalTim
                   statusCode:(NSInteger)statusCode;
@@ -70,6 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
  实例化网络请求分析结果，针对于`NSURLSession`(内部使用)
  */
 + (instancetype)instanceWith:(NSString *)reqDst
+                   reqMethod:(NSString *)reqMethod
                       reqTim:(NSUInteger)reqTim
                clientWastTim:(NSUInteger)clientWastTim
                     totalTim:(NSUInteger)totalTim

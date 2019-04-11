@@ -15,17 +15,10 @@
 		AA0F5D042254B75000473CED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D032254B75000473CED /* main.m */; };
 		AA0F5D0E2254B75000473CED /* APM_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D0D2254B75000473CED /* APM_DemoTests.m */; };
 		AA0F5D192254B75000473CED /* APM_DemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D182254B75000473CED /* APM_DemoUITests.m */; };
-		AA0F5D292254BA2900473CED /* NSURLConnection+MI.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D282254BA2900473CED /* NSURLConnection+MI.m */; };
-		AA0F5D2C2254BA4200473CED /* NSURLSession+MI.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D2B2254BA4200473CED /* NSURLSession+MI.m */; };
-		AA0F5D2F2254BAFD00473CED /* MIHook.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D2E2254BAFD00473CED /* MIHook.m */; };
-		AA0F5D322255B91600473CED /* MIObjectDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D312255B91600473CED /* MIObjectDelegate.m */; };
-		AA0F5D352255D74200473CED /* MIProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F5D342255D74200473CED /* MIProxy.m */; };
 		AA21FD17225C6900006416B9 /* MIConnectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD16225C6900006416B9 /* MIConnectionVC.m */; };
 		AA21FD1D225C9D34006416B9 /* MISessionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD1C225C9D34006416B9 /* MISessionVC.m */; };
-		AA21FD27225DA258006416B9 /* MIApm.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD26225DA258006416B9 /* MIApm.m */; };
-		AA21FD2B225DA8E7006416B9 /* MINetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD2A225DA8E7006416B9 /* MINetModel.m */; };
-		AA21FD2E225DCD63006416B9 /* MIApmHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD2D225DCD63006416B9 /* MIApmHelper.m */; };
 		AA21FD31225EE50B006416B9 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AA21FD30225EE50B006416B9 /* test.jpg */; };
+		AA21FD8B225F3611006416B9 /* MIApm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA21FD8A225F3611006416B9 /* MIApm.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,27 +55,12 @@
 		AA0F5D142254B75000473CED /* APM-DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "APM-DemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0F5D182254B75000473CED /* APM_DemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APM_DemoUITests.m; sourceTree = "<group>"; };
 		AA0F5D1A2254B75000473CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA0F5D272254BA2900473CED /* NSURLConnection+MI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLConnection+MI.h"; sourceTree = "<group>"; };
-		AA0F5D282254BA2900473CED /* NSURLConnection+MI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLConnection+MI.m"; sourceTree = "<group>"; };
-		AA0F5D2A2254BA4200473CED /* NSURLSession+MI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+MI.h"; sourceTree = "<group>"; };
-		AA0F5D2B2254BA4200473CED /* NSURLSession+MI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+MI.m"; sourceTree = "<group>"; };
-		AA0F5D2D2254BAFD00473CED /* MIHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIHook.h; sourceTree = "<group>"; };
-		AA0F5D2E2254BAFD00473CED /* MIHook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIHook.m; sourceTree = "<group>"; };
-		AA0F5D302255B91600473CED /* MIObjectDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIObjectDelegate.h; sourceTree = "<group>"; };
-		AA0F5D312255B91600473CED /* MIObjectDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIObjectDelegate.m; sourceTree = "<group>"; };
-		AA0F5D332255D74200473CED /* MIProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIProxy.h; sourceTree = "<group>"; };
-		AA0F5D342255D74200473CED /* MIProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIProxy.m; sourceTree = "<group>"; };
 		AA21FD15225C6900006416B9 /* MIConnectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIConnectionVC.h; sourceTree = "<group>"; };
 		AA21FD16225C6900006416B9 /* MIConnectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIConnectionVC.m; sourceTree = "<group>"; };
 		AA21FD1B225C9D34006416B9 /* MISessionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MISessionVC.h; sourceTree = "<group>"; };
 		AA21FD1C225C9D34006416B9 /* MISessionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MISessionVC.m; sourceTree = "<group>"; };
-		AA21FD25225DA258006416B9 /* MIApm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIApm.h; sourceTree = "<group>"; };
-		AA21FD26225DA258006416B9 /* MIApm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIApm.m; sourceTree = "<group>"; };
-		AA21FD29225DA8E7006416B9 /* MINetModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MINetModel.h; sourceTree = "<group>"; };
-		AA21FD2A225DA8E7006416B9 /* MINetModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MINetModel.m; sourceTree = "<group>"; };
-		AA21FD2C225DCD63006416B9 /* MIApmHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIApmHelper.h; sourceTree = "<group>"; };
-		AA21FD2D225DCD63006416B9 /* MIApmHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIApmHelper.m; sourceTree = "<group>"; };
 		AA21FD30225EE50B006416B9 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
+		AA21FD8A225F3611006416B9 /* MIApm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MIApm.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA21FD8B225F3611006416B9 /* MIApm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +92,7 @@
 		AA0F5CE82254B74E00473CED = {
 			isa = PBXGroup;
 			children = (
+				AA21FD8A225F3611006416B9 /* MIApm.framework */,
 				AA21FD2F225EE4FF006416B9 /* images */,
 				AA0F5CF32254B74E00473CED /* APM-Demo */,
 				AA0F5D0C2254B75000473CED /* APM-DemoTests */,
@@ -134,7 +114,6 @@
 		AA0F5CF32254B74E00473CED /* APM-Demo */ = {
 			isa = PBXGroup;
 			children = (
-				AA0F5D262254B7A600473CED /* AOP */,
 				AA0F5CF42254B74E00473CED /* AppDelegate.h */,
 				AA0F5CF52254B74E00473CED /* AppDelegate.m */,
 				AA21FD15225C6900006416B9 /* MIConnectionVC.h */,
@@ -168,37 +147,6 @@
 				AA0F5D1A2254B75000473CED /* Info.plist */,
 			);
 			path = "APM-DemoUITests";
-			sourceTree = "<group>";
-		};
-		AA0F5D262254B7A600473CED /* AOP */ = {
-			isa = PBXGroup;
-			children = (
-				AA21FD28225DA8B4006416B9 /* model */,
-				AA0F5D302255B91600473CED /* MIObjectDelegate.h */,
-				AA0F5D312255B91600473CED /* MIObjectDelegate.m */,
-				AA0F5D2A2254BA4200473CED /* NSURLSession+MI.h */,
-				AA0F5D2B2254BA4200473CED /* NSURLSession+MI.m */,
-				AA0F5D272254BA2900473CED /* NSURLConnection+MI.h */,
-				AA0F5D282254BA2900473CED /* NSURLConnection+MI.m */,
-				AA21FD2C225DCD63006416B9 /* MIApmHelper.h */,
-				AA21FD2D225DCD63006416B9 /* MIApmHelper.m */,
-				AA0F5D2D2254BAFD00473CED /* MIHook.h */,
-				AA0F5D2E2254BAFD00473CED /* MIHook.m */,
-				AA0F5D332255D74200473CED /* MIProxy.h */,
-				AA0F5D342255D74200473CED /* MIProxy.m */,
-				AA21FD25225DA258006416B9 /* MIApm.h */,
-				AA21FD26225DA258006416B9 /* MIApm.m */,
-			);
-			path = AOP;
-			sourceTree = "<group>";
-		};
-		AA21FD28225DA8B4006416B9 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				AA21FD29225DA8E7006416B9 /* MINetModel.h */,
-				AA21FD2A225DA8E7006416B9 /* MINetModel.m */,
-			);
-			path = model;
 			sourceTree = "<group>";
 		};
 		AA21FD2F225EE4FF006416B9 /* images */ = {
@@ -340,18 +288,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA0F5D2F2254BAFD00473CED /* MIHook.m in Sources */,
-				AA21FD2B225DA8E7006416B9 /* MINetModel.m in Sources */,
 				AA21FD1D225C9D34006416B9 /* MISessionVC.m in Sources */,
-				AA0F5D292254BA2900473CED /* NSURLConnection+MI.m in Sources */,
-				AA21FD2E225DCD63006416B9 /* MIApmHelper.m in Sources */,
 				AA0F5CF92254B74E00473CED /* ViewController.m in Sources */,
-				AA0F5D322255B91600473CED /* MIObjectDelegate.m in Sources */,
-				AA0F5D352255D74200473CED /* MIProxy.m in Sources */,
 				AA0F5D042254B75000473CED /* main.m in Sources */,
-				AA21FD27225DA258006416B9 /* MIApm.m in Sources */,
 				AA21FD17225C6900006416B9 /* MIConnectionVC.m in Sources */,
-				AA0F5D2C2254BA4200473CED /* NSURLSession+MI.m in Sources */,
 				AA0F5CF62254B74E00473CED /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,12 +465,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CFP9KY4MGC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "APM-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.ucloud.APM-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -543,12 +488,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CFP9KY4MGC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "APM-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.ucloud.APM-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -1,22 +1,24 @@
 //
-//  MINetModel.m
-//  APM-Demo
+//  MIRequestMonitorRes.m
+//  MIApm
 //
-//  Created by ethan on 2019/4/10.
-//  Copyright © 2019 ucloud. All rights reserved.
+//  Created by mediaios on 2019/4/10.
+//  Copyright © 2019 mediaios. All rights reserved.
 //
 
-#import "MINetModel.h"
+#import "MIRequestMonitorRes.h"
 
-@implementation MINetModel
+@implementation MIRequestMonitorRes
 
 - (instancetype)initWith:(NSString *)reqDst
+               reqMethod:(NSString *)reqMethod
                   reqTim:(NSUInteger)reqTim
                 totalTim:(NSUInteger)totalTim
               statusCode:(NSInteger)statusCode
 {
     if (self = [super init]) {
         _reqDst = reqDst;
+        _reqMethod = reqMethod;
         _reqTim = reqTim;
         _totalTim = totalTim;
         _statusCode = statusCode;
@@ -25,6 +27,7 @@
 }
 
 - (instancetype)initWith:(NSString *)reqDst
+               reqMethod:(NSString *)reqMethod
                   reqTim:(NSUInteger)reqTim
            clientWastTim:(NSUInteger)clientWastTim
                 totalTim:(NSUInteger)totalTim
@@ -35,6 +38,7 @@
               statusCode:(NSInteger)statusCode;
 {
     if (self = [self initWith:reqDst
+                    reqMethod:reqMethod
                        reqTim:reqTim
                      totalTim:totalTim
                    statusCode:statusCode]) {
@@ -49,17 +53,20 @@
 }
 
 + (instancetype)instanceWith:(NSString *)reqDst
+                   reqMethod:(NSString *)reqMethod
                       reqTim:(NSUInteger)reqTim
                     totalTim:(NSUInteger)totalTim
                   statusCode:(NSInteger)statusCode
 {
     return [[self alloc] initWith:reqDst
+                        reqMethod:reqMethod
                            reqTim:reqTim
                          totalTim:totalTim
                        statusCode:statusCode];
 }
 
 + (instancetype)instanceWith:(NSString *)reqDst
+                   reqMethod:(NSString *)reqMethod
                       reqTim:(NSUInteger)reqTim
                clientWastTim:(NSUInteger)clientWastTim
                     totalTim:(NSUInteger)totalTim
@@ -70,6 +77,7 @@
                   statusCode:(NSInteger)statusCode
 {
     return [[self alloc] initWith:reqDst
+                        reqMethod:reqMethod
                            reqTim:reqTim
                     clientWastTim:clientWastTim
                          totalTim:totalTim
@@ -82,7 +90,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"reqTime: %ld, reqDst:%@, clientWastTim:%ld, totalTim:%ld, dnsTim:%ld, sslTim:%ld, tcpTim:%ld, firstPacketTim:%ld, statusCode:%ld",self.reqTim,self.reqDst,self.clientWastTim,self.totalTim,self.dnsTim,self.sslTim,self.tcpTim,self.firstPacketTim,self.statusCode];
+    return [NSString stringWithFormat:@"reqTime: %ld, reqDst:%@, reqMethod:%@, clientWastTim:%ld, totalTim:%ld, dnsTim:%ld, sslTim:%ld, tcpTim:%ld, firstPacketTim:%ld, statusCode:%ld",self.reqTim,self.reqDst,self.reqMethod,self.clientWastTim,self.totalTim,self.dnsTim,self.sslTim,self.tcpTim,self.firstPacketTim,self.statusCode];
 }
 
 @end

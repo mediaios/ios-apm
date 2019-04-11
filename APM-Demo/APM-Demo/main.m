@@ -8,15 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import "NSURLConnection+MI.h"
-#import "NSURLSession+MI.h"
+#import <MIApm/MIApm.h>
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
         
-        [NSURLConnection hook];
-        [NSURLSession hook];
-        
+        [MIApmClient apmClient];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }

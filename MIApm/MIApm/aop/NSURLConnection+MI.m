@@ -1,9 +1,9 @@
 //
 //  NSURLConnection+MI.m
-//  APM-Demo
+//  MIApm
 //
-//  Created by ethan on 2019/4/3.
-//  Copyright © 2019 ucloud. All rights reserved.
+//  Created by mediaios on 2019/4/3.
+//  Copyright © 2019 mediaios. All rights reserved.
 //
 
 #import "NSURLConnection+MI.h"
@@ -12,7 +12,8 @@
 #import "MIObjectDelegate.h"
 #import "MIProxy.h"
 #import <objc/runtime.h>
-#import "MINetModel.h"
+#import "MIRequestMonitorRes.h"
+#import "MIApmClient.h"
 
 typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError);
 @implementation NSURLConnection (MI)
@@ -36,12 +37,19 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
 {
     NSMutableURLRequest *mutaReq  = (NSMutableURLRequest *)request;
     NSString *url_str = mutaReq.URL.absoluteString;
+    NSString *req_method = mutaReq.HTTPMethod;
     NSUInteger req_tim = [MIApmHelper currentTimestamp];
     CFAbsoluteTime begintime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
     // 发送请求
     NSData *data  = [[self class] mi_sendSynchronousRequest:request returningResponse:response error:error];
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)(*response);
-    [[self class] monitorResponse:httpResponse data:data error:*error reqDst:url_str reqTim:req_tim beginTim:begintime];
+    [[self class] monitorResponse:httpResponse
+                             data:data
+                            error:*error
+                           reqDst:url_str
+                        reqMethod:req_method
+                           reqTim:req_tim
+                         beginTim:begintime];
     return [[self class] mi_sendSynchronousRequest:request returningResponse:response error:error];
 }
 
@@ -49,11 +57,18 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
 {
     NSMutableURLRequest *mutaReq = (NSMutableURLRequest *)request;
     NSString *url_str = mutaReq.URL.absoluteString;
+    NSString *req_method = mutaReq.HTTPMethod;
     NSUInteger req_tim = [MIApmHelper currentTimestamp];
     CFAbsoluteTime begintime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
     CompletionHandler hook_handler = ^(NSURLResponse * _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError){
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-        [[self class] monitorResponse:httpResponse data:data error:connectionError reqDst:url_str reqTim:req_tim beginTim:begintime];
+        [[self class] monitorResponse:httpResponse
+                                 data:data
+                                error:connectionError
+                               reqDst:url_str
+                            reqMethod:req_method
+                               reqTim:req_tim
+                             beginTim:begintime];
         if (handler) {
             handler(httpResponse,data,connectionError);
         }
@@ -86,14 +101,20 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
                    data:(NSData *)data
                   error:(NSError *)error
                  reqDst:(NSString *)reqDst
+              reqMethod:(NSString *)reqMethod
                  reqTim:(NSUInteger)reqTim
                beginTim:(NSUInteger)beginTim
 {
     CFAbsoluteTime endtime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
     NSUInteger totalTim = endtime - beginTim;
     NSInteger statusCode = httpResponse.statusCode;
-    MINetModel *netModel = [MINetModel instanceWith:reqDst reqTim:reqTim totalTim:totalTim statusCode:statusCode];
-    NSLog(@"%@",netModel);
+    MIRequestMonitorRes *netModel = [MIRequestMonitorRes instanceWith:reqDst
+                                                            reqMethod:reqMethod
+                                                               reqTim:reqTim
+                                                             totalTim:totalTim
+                                                           statusCode:statusCode];
+//    NSLog(@"%@",netModel);
+    [[MIApmClient apmClient] netRequestMonitor:netModel];
 }
 
 
