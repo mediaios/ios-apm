@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MIRequestMonitorRes : NSObject
 
 /**
- 记录产生的时间
+ 记录产生的时间(单位是秒)
  */
 @property (nonatomic,readonly) NSUInteger reqTim;
 
@@ -29,32 +29,32 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,readonly) NSString *reqMethod;
 
 /**
- 客户端耗时
+ 客户端耗时(单位是毫秒)
  */
 @property (nonatomic,readonly) NSUInteger clientWastTim;
 
 /**
- 网络请求总时间
+ 网络请求总时间(单位是毫秒)
  */
 @property (nonatomic,readonly) NSUInteger totalTim;
 
 /**
- DNS解析时间
+ DNS解析时间(单位是毫秒)
  */
 @property (nonatomic,readonly) NSUInteger dnsTim;
 
 /**
- ssl时间
+ ssl时间(单位是毫秒)
  */
 @property (nonatomic,readonly) NSUInteger sslTim;
 
 /**
- tcp时间
+ tcp时间(单位是毫秒)
  */
 @property (nonatomic,readonly) NSUInteger tcpTim;
 
 /**
- 首包时间
+ 首包时间(单位是毫秒)
  */
 @property (nonatomic,readonly) NSUInteger firstPacketTim;
 

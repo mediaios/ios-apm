@@ -184,7 +184,7 @@ didCompleteWithError:(nullable NSError *)error {
         switch (statusCode) {
             case 200:
             case 304:
-                NSLog(@"请求成功");
+//                NSLog(@"请求成功");
                 break;
             default:
                 break;
@@ -194,32 +194,32 @@ didCompleteWithError:(nullable NSError *)error {
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
     didReceiveData:(NSData *)data {
-    NSLog(@"%s----",__func__);
+//    NSLog(@"%s----",__func__);
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
 didFinishDownloadingToURL:(NSURL *)location {
-    NSLog(@"%s----",__func__);
+//    NSLog(@"%s----",__func__);
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
       didWriteData:(int64_t)bytesWritten
  totalBytesWritten:(int64_t)totalBytesWritten
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
-   NSLog(@"%s----",__func__);
+//   NSLog(@"%s----",__func__);
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
 willPerformHTTPRedirection:(NSHTTPURLResponse *)response
         newRequest:(NSURLRequest *)request
  completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler {
-    NSLog(@"%s----",__func__);
+//    NSLog(@"%s----",__func__);
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
    didSendBodyData:(int64_t)bytesSent
     totalBytesSent:(int64_t)totalBytesSent
 totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
-    NSLog(@"%s----",__func__);
+//    NSLog(@"%s----",__func__);
 }
 @end
