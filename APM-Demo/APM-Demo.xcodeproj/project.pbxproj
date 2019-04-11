@@ -19,6 +19,7 @@
 		AA21FD1D225C9D34006416B9 /* MISessionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD1C225C9D34006416B9 /* MISessionVC.m */; };
 		AA21FD31225EE50B006416B9 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AA21FD30225EE50B006416B9 /* test.jpg */; };
 		AA21FD8B225F3611006416B9 /* MIApm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA21FD8A225F3611006416B9 /* MIApm.framework */; };
+		AA21FD90225F5516006416B9 /* MIWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD8E225F5512006416B9 /* MIWebVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		AA21FD1C225C9D34006416B9 /* MISessionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MISessionVC.m; sourceTree = "<group>"; };
 		AA21FD30225EE50B006416B9 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		AA21FD8A225F3611006416B9 /* MIApm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MIApm.framework; sourceTree = "<group>"; };
+		AA21FD8E225F5512006416B9 /* MIWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIWebVC.m; sourceTree = "<group>"; };
+		AA21FD8F225F5516006416B9 /* MIWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIWebVC.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				AA21FD1C225C9D34006416B9 /* MISessionVC.m */,
 				AA0F5CF72254B74E00473CED /* ViewController.h */,
 				AA0F5CF82254B74E00473CED /* ViewController.m */,
+				AA21FD8F225F5516006416B9 /* MIWebVC.h */,
+				AA21FD8E225F5512006416B9 /* MIWebVC.m */,
 				AA0F5CFA2254B74E00473CED /* Main.storyboard */,
 				AA0F5CFD2254B75000473CED /* Assets.xcassets */,
 				AA0F5CFF2254B75000473CED /* LaunchScreen.storyboard */,
@@ -289,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA21FD1D225C9D34006416B9 /* MISessionVC.m in Sources */,
+				AA21FD90225F5516006416B9 /* MIWebVC.m in Sources */,
 				AA0F5CF92254B74E00473CED /* ViewController.m in Sources */,
 				AA0F5D042254B75000473CED /* main.m in Sources */,
 				AA21FD17225C6900006416B9 /* MIConnectionVC.m in Sources */,

@@ -50,6 +50,9 @@
                                             <constraint firstAttribute="height" constant="30" id="wFi-L9-62z"/>
                                         </constraints>
                                         <state key="normal" title="UIWebView"/>
+                                        <connections>
+                                            <segue destination="QNH-dE-URl" kind="push" id="Bib-fK-ybN"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6E-di-yd3">
                                         <rect key="frame" x="56" y="225" width="128" height="30"/>
@@ -195,6 +198,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thD-jh-5N9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1910" y="-304"/>
+        </scene>
+        <!--WebVC-->
+        <scene sceneID="xH7-pN-RZx">
+            <objects>
+                <viewController id="QNH-dE-URl" customClass="MIWebVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Kw-Yi-Cgm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZsV-2q-N7U">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZsV-2q-N7U" firstAttribute="top" secondItem="e6x-fZ-JaH" secondAttribute="top" id="RfB-T7-c9W"/>
+                            <constraint firstItem="ZsV-2q-N7U" firstAttribute="leading" secondItem="e6x-fZ-JaH" secondAttribute="leading" id="Rv0-Um-A9E"/>
+                            <constraint firstItem="e6x-fZ-JaH" firstAttribute="trailing" secondItem="ZsV-2q-N7U" secondAttribute="trailing" id="UHD-Ig-jOL"/>
+                            <constraint firstItem="e6x-fZ-JaH" firstAttribute="bottom" secondItem="ZsV-2q-N7U" secondAttribute="bottom" id="WGx-xw-EXy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="e6x-fZ-JaH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XPR-uA-6XI"/>
+                    <connections>
+                        <outlet property="webView" destination="ZsV-2q-N7U" id="vbS-dP-ylP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RhC-yM-5h5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1065" y="178"/>
         </scene>
         <!--NSURLConnection-->
         <scene sceneID="dir-a7-gAq">
