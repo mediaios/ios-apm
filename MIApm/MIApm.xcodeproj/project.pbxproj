@@ -26,6 +26,10 @@
 		AA21FD84225F3267006416B9 /* MIApmHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD82225F3267006416B9 /* MIApmHelper.m */; };
 		AA21FD88225F32BA006416B9 /* MIApmClient.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD86225F32BA006416B9 /* MIApmClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA21FD89225F32BA006416B9 /* MIApmClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD87225F32BA006416B9 /* MIApmClient.m */; };
+		AA21FD93226066DA006416B9 /* MIWebViewRequestMonitorRes.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD91226066DA006416B9 /* MIWebViewRequestMonitorRes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA21FD94226066DA006416B9 /* MIWebViewRequestMonitorRes.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD92226066DA006416B9 /* MIWebViewRequestMonitorRes.m */; };
+		AA21FD9722606D16006416B9 /* UIWebView+MI.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD9522606D16006416B9 /* UIWebView+MI.h */; };
+		AA21FD9822606D16006416B9 /* UIWebView+MI.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD9622606D16006416B9 /* UIWebView+MI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,10 @@
 		AA21FD82225F3267006416B9 /* MIApmHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIApmHelper.m; sourceTree = "<group>"; };
 		AA21FD86225F32BA006416B9 /* MIApmClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIApmClient.h; sourceTree = "<group>"; };
 		AA21FD87225F32BA006416B9 /* MIApmClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIApmClient.m; sourceTree = "<group>"; };
+		AA21FD91226066DA006416B9 /* MIWebViewRequestMonitorRes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIWebViewRequestMonitorRes.h; sourceTree = "<group>"; };
+		AA21FD92226066DA006416B9 /* MIWebViewRequestMonitorRes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIWebViewRequestMonitorRes.m; sourceTree = "<group>"; };
+		AA21FD9522606D16006416B9 /* UIWebView+MI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWebView+MI.h"; sourceTree = "<group>"; };
+		AA21FD9622606D16006416B9 /* UIWebView+MI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+MI.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +141,8 @@
 				AA21FD67225F3209006416B9 /* MIProxy.m */,
 				AA21FD6F225F3209006416B9 /* NSURLConnection+MI.h */,
 				AA21FD6A225F3209006416B9 /* NSURLConnection+MI.m */,
+				AA21FD9522606D16006416B9 /* UIWebView+MI.h */,
+				AA21FD9622606D16006416B9 /* UIWebView+MI.m */,
 				AA21FD70225F3209006416B9 /* NSURLSession+MI.h */,
 				AA21FD6B225F3209006416B9 /* NSURLSession+MI.m */,
 			);
@@ -153,6 +163,8 @@
 			children = (
 				AA21FD7E225F324A006416B9 /* MIRequestMonitorRes.h */,
 				AA21FD7D225F324A006416B9 /* MIRequestMonitorRes.m */,
+				AA21FD91226066DA006416B9 /* MIWebViewRequestMonitorRes.h */,
+				AA21FD92226066DA006416B9 /* MIWebViewRequestMonitorRes.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -175,9 +187,11 @@
 			files = (
 				AA21FD80225F324A006416B9 /* MIRequestMonitorRes.h in Headers */,
 				AA21FD76225F3209006416B9 /* MIObjectDelegate.h in Headers */,
+				AA21FD93226066DA006416B9 /* MIWebViewRequestMonitorRes.h in Headers */,
 				AA21FD88225F32BA006416B9 /* MIApmClient.h in Headers */,
 				AA21FD79225F3209006416B9 /* NSURLConnection+MI.h in Headers */,
 				AA21FD7A225F3209006416B9 /* NSURLSession+MI.h in Headers */,
+				AA21FD9722606D16006416B9 /* UIWebView+MI.h in Headers */,
 				AA21FD5D225F3103006416B9 /* MIApm.h in Headers */,
 				AA21FD73225F3209006416B9 /* MIHook.h in Headers */,
 				AA21FD77225F3209006416B9 /* MIProxy.h in Headers */,
@@ -286,6 +300,8 @@
 				AA21FD75225F3209006416B9 /* NSURLSession+MI.m in Sources */,
 				AA21FD89225F32BA006416B9 /* MIApmClient.m in Sources */,
 				AA21FD72225F3209006416B9 /* MIObjectDelegate.m in Sources */,
+				AA21FD9822606D16006416B9 /* UIWebView+MI.m in Sources */,
+				AA21FD94226066DA006416B9 /* MIWebViewRequestMonitorRes.m in Sources */,
 				AA21FD84225F3267006416B9 /* MIApmHelper.m in Sources */,
 				AA21FD78225F3209006416B9 /* MIHook.m in Sources */,
 				AA21FD74225F3209006416B9 /* NSURLConnection+MI.m in Sources */,

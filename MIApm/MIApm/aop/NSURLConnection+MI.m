@@ -27,8 +27,8 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
     [MIHook hookInstance:@"NSURLConnection" sel:@"initWithRequest:delegate:startImmediately:" withClass:@"NSURLConnection" sel:@"mi_initWithRequest:delegate:startImmediately:"];
     [MIHook hookInstance:@"NSURLConnection" sel:@"initWithRequest:delegate:" withClass:@"NSURLConnection" sel:@"mi_initWithRequest:delegate:"];
     
-    [MIHook hookInstance:@"NSURLConnection" sel:@"start" withClass:@"NSURLConnection" sel:@"hook_start"];
-    [MIHook hookInstance:@"NSURLConnection" sel:@"cancel" withClass:@"NSURLConnection" sel:@"hook_cancel"];
+    [MIHook hookInstance:@"NSURLConnection" sel:@"start" withClass:@"NSURLConnection" sel:@"mi_start"];
+    [MIHook hookInstance:@"NSURLConnection" sel:@"cancel" withClass:@"NSURLConnection" sel:@"mi_cancel"];
 }
 
 
@@ -114,7 +114,7 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
                                                              totalTim:totalTim
                                                            statusCode:statusCode];
 //    NSLog(@"%@",netModel);
-    [[MIApmClient apmClient] netRequestMonitor:netModel];
+    [[MIApmClient apmClient] miMonitorRes:netModel];
 }
 
 

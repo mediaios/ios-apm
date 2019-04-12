@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MIObjectDelegate : NSObject<NSURLSessionDelegate,NSURLConnectionDelegate>
+@interface MIObjectDelegate : NSObject<NSURLSessionDelegate,NSURLConnectionDelegate,UIWebViewDelegate>
 
 
 - (void)invoke:(NSInvocation *)invocation;

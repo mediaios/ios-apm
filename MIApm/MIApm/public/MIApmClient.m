@@ -9,6 +9,7 @@
 #import "MIApmClient.h"
 #import "NSURLConnection+MI.h"
 #import "NSURLSession+MI.h"
+#import "UIWebView+MI.h"
 
 @implementation MIApmClient
 
@@ -17,6 +18,7 @@
     if (self = [super init]) {
         [NSURLConnection hook];
         [NSURLSession hook];
+        [UIWebView hook];
     }
     return self;
 }
@@ -31,9 +33,16 @@ static MIApmClient *apm_instance = nil;
     return apm_instance;
 }
 
-- (void)netRequestMonitor:(MIRequestMonitorRes *)netModel
+- (void)miMonitorRes:(id)monitorModel
 {
-    [self.delegate apm:self monitorNetworkRequest:netModel];
+    if ([monitorModel isKindOfClass:[MIRequestMonitorRes class]])
+    {
+        [self.delegate apm:self monitorNetworkRequest:monitorModel];
+    }
+    else if([monitorModel isKindOfClass:[MIWebViewRequestMonitorRes class]])
+    {
+        [self.delegate apm:self monitorUIWebView:monitorModel];
+    }
 }
 
 @end

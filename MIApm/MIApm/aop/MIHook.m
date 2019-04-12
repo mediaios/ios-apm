@@ -8,6 +8,7 @@
 
 #import "MIHook.h"
 #import <objc/runtime.h>
+#import <UIKit/UIKit.h>
 
 @implementation MIHook
 + (void)hookInstance:(NSString *)oriClass

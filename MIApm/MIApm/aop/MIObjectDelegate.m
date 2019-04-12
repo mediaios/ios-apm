@@ -60,7 +60,7 @@
                                                                reqTim:req_tim
                                                              totalTim:totalTim statusCode:statusCode];
     //    NSLog(@"%@",netModel);
-    [[MIApmClient apmClient] netRequestMonitor:netModel];
+    [[MIApmClient apmClient] miMonitorRes:netModel];
     
     req_tim = 0;
     begin_tim = 0;
@@ -113,7 +113,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
                                                                reqTim:req_tim
                                                              totalTim:totalTim statusCode:statusCode];
 //    NSLog(@"%@",netModel);
-    [[MIApmClient apmClient] netRequestMonitor:netModel];
+    [[MIApmClient apmClient] miMonitorRes:netModel];
     
     req_tim = 0;
     begin_tim = 0;
@@ -168,7 +168,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
                                                            firstPacketTim:firsttiming
                                                                statusCode:statusCode];
         
-        [[MIApmClient apmClient] netRequestMonitor:netModel];
+        [[MIApmClient apmClient] miMonitorRes:netModel];
     }
 }
 
@@ -222,4 +222,8 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response
 totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
 //    NSLog(@"%s----",__func__);
 }
+
+
+
+
 @end
