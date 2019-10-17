@@ -334,6 +334,9 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
          NSMutableString *debug_str = [NSMutableString stringWithString:self.debugView.text];
          [debug_str appendString:[NSString stringWithFormat:@"\n\n%@",debugInfo]];
          self.debugView.text = debug_str;
+        
+        [self.debugView scrollRangeToVisible:NSMakeRange(self.debugView.text.length, 1)];
+        self.debugView.layoutManager.allowsNonContiguousLayout = NO;
     });
 }
 
