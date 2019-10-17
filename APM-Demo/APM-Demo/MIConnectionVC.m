@@ -7,9 +7,10 @@
 //
 
 #import "MIConnectionVC.h"
-
-@interface MIConnectionVC ()<NSURLConnectionDelegate>
+#import <MIApm/MIApm.h>
+@interface MIConnectionVC ()<NSURLConnectionDelegate,MIApmClientDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UITextView *debugView;
 
 @end
 
@@ -18,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [MIApmClient apmClient].delegate = self;
 }
 
 - (IBAction)btnClickSendSync:(id)sender {
@@ -156,9 +158,12 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (error) {
         NSLog(@"error,error info:%@",error.description);
+        NSString *errorInfo = [NSString stringWithFormat:@"网络请求出错,error info:%@",error.description];
+        [self showDebugInfo:errorInfo];
     }else{
         NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
+        [self showDebugInfo:resStr];
     }
 }
 
@@ -173,8 +178,18 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
     NSURLResponse *response = nil;
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
-    NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"res: %@",resStr);
+    if (error) {
+        NSString *errorInfo = [NSString stringWithFormat:@"网络请求出错,error info:%@",error.description];
+        [self showDebugInfo:errorInfo];
+    }else{
+        NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"res: %@",resStr);
+        [self showDebugInfo:resStr];
+    }
+   
+    
+
+    
 }
 
 - (void)sendAsync_get
@@ -185,9 +200,12 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         if (connectionError) {
             NSLog(@"网络请求出错,error info: %@",connectionError.description);
+            NSString *errorInfo = [NSString stringWithFormat:@"网络请求出错,error info:%@",connectionError.description];
+            [self showDebugInfo:errorInfo];
         }else{
             NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
+            [self showDebugInfo:resStr];
         }
     }];
 }
@@ -203,9 +221,13 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         if (connectionError) {
             NSLog(@"网络请求出错,error info: %@",connectionError.description);
+            NSString *errorInfo = [NSString stringWithFormat:@"网络请求出错,error info:%@",connectionError.description];
+            [self showDebugInfo:errorInfo];
+            
         }else{
             NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
+            [self showDebugInfo:resStr];
         }
     }];
 }
@@ -280,8 +302,10 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+    
+    
     NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
+    [self showDebugInfo:resStr];
 }
 
 - (void)connection:(NSURLConnection *)connection   didSendBodyData:(NSInteger)bytesWritten
@@ -295,6 +319,22 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     
+}
+
+#pragma mark - MIApmClientDelegate
+- (void)apm:(MIApmClient *)apm monitorNetworkRequest:(MIRequestMonitorRes *)netModel
+{
+    [self showDebugInfo:netModel.description];
+}
+
+
+- (void)showDebugInfo:(NSString *)debugInfo
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+         NSMutableString *debug_str = [NSMutableString stringWithString:self.debugView.text];
+         [debug_str appendString:[NSString stringWithFormat:@"\n\n%@",debugInfo]];
+         self.debugView.text = debug_str;
+    });
 }
 
 @end
