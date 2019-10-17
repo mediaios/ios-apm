@@ -2,8 +2,8 @@
 //  ViewController.m
 //  APM-Demo
 //
-//  Created by ethan on 2019/4/3.
-//  Copyright © 2019 ucloud. All rights reserved.
+//  Created by mediaios on 2019/4/3.
+//  Copyright © 2019 mediaios. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -19,13 +19,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-//    [MIApmClient apmClient].delegate = self;
+    [MIApmClient apmClient].delegate = self;
 }
 
 - (void)apm:(MIApmClient *)apm monitorNetworkRequest:(MIRequestMonitorRes *)netModel
 {
     NSLog(@"%@",netModel);
 }
+
+- (void)apm:(MIApmClient *)apm monitorUIWebView:(MIWebViewRequestMonitorRes *)webViewMonitorRes
+{
+    NSLog(@"%@",webViewMonitorRes);
+}
+
+
 
 
 @end

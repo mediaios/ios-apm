@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MIRequestMonitorRes.h"
+#import "MIWebViewRequestMonitorRes.h"
 
 @class MIApmClient;
 @protocol MIApmClientDelegate <NSObject>
@@ -15,9 +16,21 @@
 @optional
 
 /**
- @brief 对网络请求监控结果的反馈
+  @brief 对网络请求监控结果的反馈
+
+ @param apm `MIApmClient`实例
+ @param netModel 网络请求监控结果
  */
 - (void)apm:(MIApmClient *)apm monitorNetworkRequest:(MIRequestMonitorRes *)netModel;
+
+
+/**
+ @brief 对`UIWebView`监控的结果反馈
+
+ @param apm `MIApmClient`实例
+ @param webViewMonitorRes `UIWebView`监控结果
+ */
+- (void)apm:(MIApmClient *)apm monitorUIWebView:(MIWebViewRequestMonitorRes *)webViewMonitorRes;
 
 @end
 
@@ -41,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  内部使用
  */
-- (void)netRequestMonitor:(MIRequestMonitorRes *)netModel;
+- (void)miMonitorRes:(id)monitorModel;
 
 @end
 

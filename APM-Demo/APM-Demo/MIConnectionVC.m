@@ -2,13 +2,13 @@
 //  MIConnectionVC.m
 //  APM-Demo
 //
-//  Created by ethan on 2019/4/9.
-//  Copyright © 2019 ucloud. All rights reserved.
+//  Created by mediaios on 2019/4/9.
+//  Copyright © 2019 mediaios. All rights reserved.
 //
 
 #import "MIConnectionVC.h"
 
-@interface MIConnectionVC ()
+@interface MIConnectionVC ()<NSURLConnectionDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
@@ -68,7 +68,7 @@
 
 
 - (IBAction)btnClickDownload:(id)sender {
-    NSURL *url = [NSURL URLWithString:@"http://localhost/~ethan/file_operate/uploads/test.jpg"];
+    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/mediaios/OpenGL-iOS/master/images/20190916_opengl_10.png"];
     
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         self.imageView.image = [UIImage imageWithData:data];
@@ -148,27 +148,27 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
 
 - (void)sendSynch_get
 {
-    NSURL * url = [NSURL URLWithString:@"http://www.baidu.com"];
+    NSURL *url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query?city=%E4%B8%8A%E6%B5%B7&key=5be112d55b4fe1fc620b4a662904b4d8"];
     //1.创建请求对象
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     NSURLResponse *response = nil;
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (error) {
+        NSLog(@"error,error info:%@",error.description);
+    }else{
+        NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
+    }
 }
 
 - (void)sendSynch_post
 {
-    NSURL *url = [NSURL URLWithString:@"http://192.168.187.74:8000/usrLossDistribution"];
+    NSURL *url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query"];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     [req setHTTPMethod:@"POST"];
-    NSString *params = @{@"dst_ip":@"23.236.126.69",
-                         @"ucloud_top":@"5",
-                         @"usr_country":@"巴西",
-                         @"time_period":@"timestamp_period_1553616000~1553702399",
-                         @"app_id":@"com.minitech.miniworld,com.playmini.miniworld"
-                         };
-    NSString *dataJson = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:params options:0 error:nil] encoding:NSUTF8StringEncoding];
-    NSData *dataParam = [dataJson dataUsingEncoding:NSUTF8StringEncoding];
+    NSString  *params = @"city=上海&key=5be112d55b4fe1fc620b4a662904b4d8";
+    NSData *dataParam = [params dataUsingEncoding:NSUTF8StringEncoding];
     [req setHTTPBody:dataParam];
     NSURLResponse *response = nil;
     NSError *error = nil;
@@ -179,45 +179,40 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
 
 - (void)sendAsync_get
 {
-    NSURL * url = [NSURL URLWithString:@"http://www.baidu.com"];
+    NSURL *url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query?city=%E4%B8%8A%E6%B5%B7&key=5be112d55b4fe1fc620b4a662904b4d8"];
     //1.创建请求对象
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         if (connectionError) {
-            NSLog(@"网络请求出错..");
+            NSLog(@"网络请求出错,error info: %@",connectionError.description);
         }else{
-            NSLog(@"成功请求，数据大小是： %ld",data.length);
+            NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
         }
     }];
 }
 
 - (void)sendAsynch_post
 {
-    NSURL *url = [NSURL URLWithString:@"http://192.168.187.74:8000/usrLossDistribution"];
+    NSURL *url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query"];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     [req setHTTPMethod:@"POST"];
-    NSString *params = @{@"dst_ip":@"23.236.126.69",
-                         @"ucloud_top":@"5",
-                         @"usr_country":@"巴西",
-                         @"time_period":@"timestamp_period_1553616000~1553702399",
-                         @"app_id":@"com.minitech.miniworld,com.playmini.miniworld"
-                         };
-    NSString *dataJson = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:params options:0 error:nil] encoding:NSUTF8StringEncoding];
-    NSData *dataParam = [dataJson dataUsingEncoding:NSUTF8StringEncoding];
+    NSString  *params = @"city=上海&key=5be112d55b4fe1fc620b4a662904b4d8";
+    NSData *dataParam = [params dataUsingEncoding:NSUTF8StringEncoding];
     [req setHTTPBody:dataParam];
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         if (connectionError) {
-            NSLog(@"请求出错了...");
+            NSLog(@"网络请求出错,error info: %@",connectionError.description);
         }else{
             NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"res: %@",resStr);
+            NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
         }
     }];
 }
 
 - (void)delegate_get
 {
-    NSURL * url = [NSURL URLWithString:@"http://www.baidu.com"];
+    NSURL * url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query?city=%E4%B8%8A%E6%B5%B7&key=5be112d55b4fe1fc620b4a662904b4d8"];
     //1.创建请求对象
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
@@ -228,17 +223,11 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
 
 - (void)delegate_post
 {
-    NSURL *url = [NSURL URLWithString:@"http://192.168.187.74:8000/usrLossDistribution"];
+    NSURL *url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query"];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     [req setHTTPMethod:@"POST"];
-    NSString *params = @{@"dst_ip":@"23.236.126.69",
-                         @"ucloud_top":@"5",
-                         @"usr_country":@"巴西",
-                         @"time_period":@"timestamp_period_1553616000~1553702399",
-                         @"app_id":@"com.minitech.miniworld,com.playmini.miniworld"
-                         };
-    NSString *dataJson = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:params options:0 error:nil] encoding:NSUTF8StringEncoding];
-    NSData *dataParam = [dataJson dataUsingEncoding:NSUTF8StringEncoding];
+    NSString  *params = @"city=上海&key=5be112d55b4fe1fc620b4a662904b4d8";
+    NSData *dataParam = [params dataUsingEncoding:NSUTF8StringEncoding];
     [req setHTTPBody:dataParam];
     
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:req delegate:self startImmediately:YES];
@@ -254,6 +243,58 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
 //            NSLog(@"res: %@",resStr);
 //        }
 //    }];
+}
+
+
+
+#pragma mark -NSURLConnectionDelegate
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    
+}
+
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge API_DEPRECATED("Use -connection:willSendRequestForAuthenticationChallenge: instead.", macos(10.2,10.10), ios(2.0,8.0), watchos(2.0,2.0), tvos(9.0,9.0))
+{
+    
+}
+- (void)connection:(NSURLConnection *)connection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge API_DEPRECATED("Use -connection:willSendRequestForAuthenticationChallenge: instead.", macos(10.2,10.10), ios(2.0,8.0), watchos(2.0,2.0), tvos(9.0,9.0))
+{
+    
+}
+
+
+#pragma mark - NSURLConnectionDataDelegate
+- (nullable NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(nullable NSURLResponse *)response
+{
+    return request;
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
+}
+
+- (void)connection:(NSURLConnection *)connection   didSendBodyData:(NSInteger)bytesWritten
+                                                 totalBytesWritten:(NSInteger)totalBytesWritten
+                                         totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
+{
+    
+}
+
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    
 }
 
 @end

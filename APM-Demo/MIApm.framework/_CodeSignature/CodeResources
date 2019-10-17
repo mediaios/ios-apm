@@ -6,19 +6,23 @@
 	<dict>
 		<key>Headers/MIApm.h</key>
 		<data>
-		m/p15JvZfJlDCpPgg8IaJbutPxw=
+		6Td/wuISpxiOfKnncRHagqDm5as=
 		</data>
 		<key>Headers/MIApmClient.h</key>
 		<data>
-		yiHsPBGZKPYPES3dBMagfoaBakU=
+		2mTgJ5JllHNd01lvS8/bjCcKzAc=
 		</data>
 		<key>Headers/MIRequestMonitorRes.h</key>
 		<data>
-		1xq+Vc95edM5iejWlo5I7BjFv/E=
+		P89lblj676gFYfi211BCgRlNIwA=
+		</data>
+		<key>Headers/MIWebViewRequestMonitorRes.h</key>
+		<data>
+		KUqQN5SmR7QSin0NMrVP6FR43MU=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		l418aRBiC65OmOU1aVnL7vQmZ/E=
+		7r6/+CuVGFr2J+4dXucLIwJCRcI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -31,33 +35,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			m/p15JvZfJlDCpPgg8IaJbutPxw=
+			6Td/wuISpxiOfKnncRHagqDm5as=
 			</data>
 			<key>hash2</key>
 			<data>
-			kzs6MLAgzPAN2gq15JHTnjnnO8VoI45+Wrr2jJzxif0=
+			1s/mmhXJvbYnCGvRHmTnHAl/3tCBWyjhhA8j0z7dAP8=
 			</data>
 		</dict>
 		<key>Headers/MIApmClient.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			yiHsPBGZKPYPES3dBMagfoaBakU=
+			2mTgJ5JllHNd01lvS8/bjCcKzAc=
 			</data>
 			<key>hash2</key>
 			<data>
-			ZyWJauFA7K9vDw/+aIvdhPGUZjhN8l6xS+ap+VIuyqQ=
+			FSYToeb+jqZ+2Z7E+omZ404mXyuuMq5Zh8ifawNETow=
 			</data>
 		</dict>
 		<key>Headers/MIRequestMonitorRes.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			1xq+Vc95edM5iejWlo5I7BjFv/E=
+			P89lblj676gFYfi211BCgRlNIwA=
 			</data>
 			<key>hash2</key>
 			<data>
-			RyieGVwkbW/S2+pBnBSPwWPZ18AjaYhCN0o76CGfg2c=
+			/IwWw3OfBUV2kIIAn98EUiWBS0PMlJF/L1MavKe5WCY=
+			</data>
+		</dict>
+		<key>Headers/MIWebViewRequestMonitorRes.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			KUqQN5SmR7QSin0NMrVP6FR43MU=
+			</data>
+			<key>hash2</key>
+			<data>
+			tiPxKqFV3T95NeeQYrEbWN76uJj+HIKqcjUcwm/TFhY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -74,7 +89,7 @@
 	</dict>
 	<key>rules</key>
 	<dict>
-		<key>^</key>
+		<key>^.*</key>
 		<true/>
 		<key>^.*\.lproj/</key>
 		<dict>
@@ -105,24 +120,12 @@
 			<key>weight</key>
 			<real>11</real>
 		</dict>
-		<key>^</key>
-		<dict>
-			<key>weight</key>
-			<real>20</real>
-		</dict>
 		<key>^(.*/)?\.DS_Store$</key>
 		<dict>
 			<key>omit</key>
 			<true/>
 			<key>weight</key>
 			<real>2000</real>
-		</dict>
-		<key>^(Frameworks|SharedFrameworks|PlugIns|Plug-ins|XPCServices|Helpers|MacOS|Library/(Automator|Spotlight|LoginItems))/</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^.*</key>
 		<true/>
@@ -158,13 +161,6 @@
 			<true/>
 			<key>weight</key>
 			<real>20</real>
-		</dict>
-		<key>^[^/]+$</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^embedded\.provisionprofile$</key>
 		<dict>

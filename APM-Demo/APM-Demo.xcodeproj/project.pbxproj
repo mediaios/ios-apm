@@ -20,6 +20,17 @@
 		AA21FD31225EE50B006416B9 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AA21FD30225EE50B006416B9 /* test.jpg */; };
 		AA21FD8B225F3611006416B9 /* MIApm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA21FD8A225F3611006416B9 /* MIApm.framework */; };
 		AA21FD90225F5516006416B9 /* MIWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD8E225F5512006416B9 /* MIWebVC.m */; };
+		AA8043F723583EC400238405 /* tingyunApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8043F623583EC300238405 /* tingyunApp.framework */; };
+		AA8043FA23583F2200238405 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8043F923583F2200238405 /* CoreTelephony.framework */; };
+		AA8043FC23583F2E00238405 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8043FB23583F2E00238405 /* Security.framework */; };
+		AA8043FE23583F3600238405 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8043FD23583F3600238405 /* SystemConfiguration.framework */; };
+		AA80440023583F3D00238405 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8043FF23583F3D00238405 /* libz.tbd */; };
+		AA80440223583F4300238405 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA80440123583F4300238405 /* WebKit.framework */; };
+		AA80440423583F4A00238405 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AA80440323583F4A00238405 /* libc++.tbd */; };
+		AA804406235842C200238405 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA804405235842C200238405 /* CoreGraphics.framework */; };
+		AA804408235842CA00238405 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA804407235842CA00238405 /* QuartzCore.framework */; };
+		AA80440A235842D100238405 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA804409235842D100238405 /* CFNetwork.framework */; };
+		AA80440C235842DB00238405 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AA80440B235842DB00238405 /* libresolv.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +75,17 @@
 		AA21FD8A225F3611006416B9 /* MIApm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MIApm.framework; sourceTree = "<group>"; };
 		AA21FD8E225F5512006416B9 /* MIWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIWebVC.m; sourceTree = "<group>"; };
 		AA21FD8F225F5516006416B9 /* MIWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIWebVC.h; sourceTree = "<group>"; };
+		AA8043F623583EC300238405 /* tingyunApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tingyunApp.framework; sourceTree = "<group>"; };
+		AA8043F923583F2200238405 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		AA8043FB23583F2E00238405 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		AA8043FD23583F3600238405 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AA8043FF23583F3D00238405 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		AA80440123583F4300238405 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		AA80440323583F4A00238405 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		AA804405235842C200238405 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AA804407235842CA00238405 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AA804409235842D100238405 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		AA80440B235842DB00238405 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +93,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA80440023583F3D00238405 /* libz.tbd in Frameworks */,
+				AA80440C235842DB00238405 /* libresolv.tbd in Frameworks */,
+				AA80440A235842D100238405 /* CFNetwork.framework in Frameworks */,
+				AA804408235842CA00238405 /* QuartzCore.framework in Frameworks */,
+				AA804406235842C200238405 /* CoreGraphics.framework in Frameworks */,
+				AA80440423583F4A00238405 /* libc++.tbd in Frameworks */,
+				AA80440223583F4300238405 /* WebKit.framework in Frameworks */,
+				AA8043FE23583F3600238405 /* SystemConfiguration.framework in Frameworks */,
+				AA8043FC23583F2E00238405 /* Security.framework in Frameworks */,
+				AA8043FA23583F2200238405 /* CoreTelephony.framework in Frameworks */,
 				AA21FD8B225F3611006416B9 /* MIApm.framework in Frameworks */,
+				AA8043F723583EC400238405 /* tingyunApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,12 +128,14 @@
 		AA0F5CE82254B74E00473CED = {
 			isa = PBXGroup;
 			children = (
+				AA8043F623583EC300238405 /* tingyunApp.framework */,
 				AA21FD8A225F3611006416B9 /* MIApm.framework */,
 				AA21FD2F225EE4FF006416B9 /* images */,
 				AA0F5CF32254B74E00473CED /* APM-Demo */,
 				AA0F5D0C2254B75000473CED /* APM-DemoTests */,
 				AA0F5D172254B75000473CED /* APM-DemoUITests */,
 				AA0F5CF22254B74E00473CED /* Products */,
+				AA8043F823583F2200238405 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +195,23 @@
 				AA21FD30225EE50B006416B9 /* test.jpg */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		AA8043F823583F2200238405 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA80440B235842DB00238405 /* libresolv.tbd */,
+				AA804409235842D100238405 /* CFNetwork.framework */,
+				AA804407235842CA00238405 /* QuartzCore.framework */,
+				AA804405235842C200238405 /* CoreGraphics.framework */,
+				AA80440323583F4A00238405 /* libc++.tbd */,
+				AA80440123583F4300238405 /* WebKit.framework */,
+				AA8043FF23583F3D00238405 /* libz.tbd */,
+				AA8043FD23583F3600238405 /* SystemConfiguration.framework */,
+				AA8043FB23583F2E00238405 /* Security.framework */,
+				AA8043F923583F2200238405 /* CoreTelephony.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

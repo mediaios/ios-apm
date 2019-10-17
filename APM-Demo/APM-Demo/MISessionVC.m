@@ -2,8 +2,8 @@
 //  MISessionVC.m
 //  APM-Demo
 //
-//  Created by ethan on 2019/4/9.
-//  Copyright © 2019 ucloud. All rights reserved.
+//  Created by mediaios on 2019/4/9.
+//  Copyright © 2019 mediaios. All rights reserved.
 //
 
 #import "MISessionVC.h"
@@ -73,7 +73,7 @@
 }
 
 - (IBAction)btnClickDownload:(id)sender {
-    NSURL *url = [NSURL URLWithString:@"http://localhost/~ethan/file_operate/uploads/test.jpg"];
+    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/mediaios/OpenGL-iOS/master/images/20190916_opengl_10.png"];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     [req setHTTPMethod:@"GET"];
     
@@ -142,34 +142,30 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
     return bodyData;
 }
 
-
-
-
 - (void)dataTask_post
 {
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURL *url = [NSURL URLWithString:@"http://192.168.187.74:8000/usrLossDistribution"];
+    NSURL *url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query"];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     [req setHTTPMethod:@"POST"];
-    NSString *params = @{@"dst_ip":@"23.236.126.69",
-                         @"ucloud_top":@"5",
-                         @"usr_country":@"巴西",
-                         @"time_period":@"timestamp_period_1553616000~1553702399",
-                         @"app_id":@"com.minitech.miniworld,com.playmini.miniworld"
-                         };
-    NSString *dataJson = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:params options:0 error:nil] encoding:NSUTF8StringEncoding];
-    NSData *dataParam = [dataJson dataUsingEncoding:NSUTF8StringEncoding];
+    NSString  *params = @"city=上海&key=5be112d55b4fe1fc620b4a662904b4d8";
+    NSData *dataParam = [params dataUsingEncoding:NSUTF8StringEncoding];
     [req setHTTPBody:dataParam];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:req completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"出错了,error info: %@",error.description);
+            return;
+        }
         //8.解析数据
-        NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        NSString * string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"res: %@ \n, length: %lu",string,data.length);
     }];
     [dataTask resume];
 }
 
 - (void)dataTask_get
 {
-    NSMutableURLRequest *req  = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://net-trace.ucloud.cn:8098/v1/ipip"]];
+    NSMutableURLRequest *req  = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query?city=%E4%B8%8A%E6%B5%B7&key=5be112d55b4fe1fc620b4a662904b4d8"]];
     [req setHTTPMethod:@"GET"];
     
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -177,10 +173,11 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionTask *task = [session dataTaskWithRequest:req  completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
-            NSLog(@"出错了");
+            NSLog(@"出错了,error info: %@",error.description);
             return;
         }
         NSString * string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"res: %@ \n, length: %lu",string,data.length);
     }];
     
     [task resume];
@@ -188,7 +185,7 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
 
 - (void)delegate_get
 {
-    NSURL *url = [NSURL URLWithString:@"https://net-trace.ucloud.cn:8098/v1/ipip"];
+    NSURL *url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query?city=%E4%B8%8A%E6%B5%B7&key=5be112d55b4fe1fc620b4a662904b4d8"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[NSOperationQueue mainQueue]];
     
@@ -202,33 +199,29 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
 - (void)delegate_post
 {
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-    NSURL *url = [NSURL URLWithString:@"http://192.168.187.74:8000/usrLossDistribution"];
+    NSURL *url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query"];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     [req setHTTPMethod:@"POST"];
-    NSString *params = @{@"dst_ip":@"23.236.126.69",
-                         @"ucloud_top":@"5",
-                         @"usr_country":@"巴西",
-                         @"time_period":@"timestamp_period_1553616000~1553702399",
-                         @"app_id":@"com.minitech.miniworld,com.playmini.miniworld"
-                         };
-    NSString *dataJson = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:params options:0 error:nil] encoding:NSUTF8StringEncoding];
-    NSData *dataParam = [dataJson dataUsingEncoding:NSUTF8StringEncoding];
+    NSString  *params = @"city=上海&key=5be112d55b4fe1fc620b4a662904b4d8";
+    NSData *dataParam = [params dataUsingEncoding:NSUTF8StringEncoding];
     [req setHTTPBody:dataParam];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:req completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //8.解析数据
-        NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    }];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:req];
+    
+//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:req completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        //8.解析数据
+//        NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+//    }];
     [dataTask resume];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark -NSURLSessionDelegate
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+didReceiveData:(NSData *)data
+{
+    NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
 }
-*/
 
 @end
