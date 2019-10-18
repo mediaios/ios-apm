@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA079E6A2359931D00E6FAB2 /* fishhook.h in Headers */ = {isa = PBXBuildFile; fileRef = AA079E682359931D00E6FAB2 /* fishhook.h */; };
+		AA079E6B2359931D00E6FAB2 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = AA079E692359931D00E6FAB2 /* fishhook.c */; };
+		AA079E6E23599BF500E6FAB2 /* MIHookCFNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = AA079E6C23599BF500E6FAB2 /* MIHookCFNetwork.h */; };
+		AA079E6F23599BF500E6FAB2 /* MIHookCFNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = AA079E6D23599BF500E6FAB2 /* MIHookCFNetwork.m */; };
+		AA079E722359B3A000E6FAB2 /* MIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = AA079E702359B3A000E6FAB2 /* MIInputStream.h */; };
+		AA079E732359B3A000E6FAB2 /* MIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = AA079E712359B3A000E6FAB2 /* MIInputStream.m */; };
+		AA079E762359D25100E6FAB2 /* MINSStreamDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = AA079E742359D25100E6FAB2 /* MINSStreamDelegate.h */; };
+		AA079E772359D25100E6FAB2 /* MINSStreamDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA079E752359D25100E6FAB2 /* MINSStreamDelegate.m */; };
+		AA079E7A2359D84800E6FAB2 /* MICFNetworkProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = AA079E782359D84800E6FAB2 /* MICFNetworkProxy.h */; };
+		AA079E7B2359D84800E6FAB2 /* MICFNetworkProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = AA079E792359D84800E6FAB2 /* MICFNetworkProxy.m */; };
 		AA21FD56225F3103006416B9 /* MIApm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA21FD4C225F3103006416B9 /* MIApm.framework */; };
 		AA21FD5B225F3103006416B9 /* MIApmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD5A225F3103006416B9 /* MIApmTests.m */; };
 		AA21FD5D225F3103006416B9 /* MIApm.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD4F225F3103006416B9 /* MIApm.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,6 +53,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA079E682359931D00E6FAB2 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
+		AA079E692359931D00E6FAB2 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
+		AA079E6C23599BF500E6FAB2 /* MIHookCFNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIHookCFNetwork.h; sourceTree = "<group>"; };
+		AA079E6D23599BF500E6FAB2 /* MIHookCFNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIHookCFNetwork.m; sourceTree = "<group>"; };
+		AA079E702359B3A000E6FAB2 /* MIInputStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIInputStream.h; sourceTree = "<group>"; };
+		AA079E712359B3A000E6FAB2 /* MIInputStream.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIInputStream.m; sourceTree = "<group>"; };
+		AA079E742359D25100E6FAB2 /* MINSStreamDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MINSStreamDelegate.h; sourceTree = "<group>"; };
+		AA079E752359D25100E6FAB2 /* MINSStreamDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MINSStreamDelegate.m; sourceTree = "<group>"; };
+		AA079E782359D84800E6FAB2 /* MICFNetworkProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MICFNetworkProxy.h; sourceTree = "<group>"; };
+		AA079E792359D84800E6FAB2 /* MICFNetworkProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MICFNetworkProxy.m; sourceTree = "<group>"; };
 		AA21FD4C225F3103006416B9 /* MIApm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MIApm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA21FD4F225F3103006416B9 /* MIApm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIApm.h; sourceTree = "<group>"; };
 		AA21FD50225F3103006416B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +110,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA079E65235992C900E6FAB2 /* http */ = {
+			isa = PBXGroup;
+			children = (
+				AA21FD6F225F3209006416B9 /* NSURLConnection+MI.h */,
+				AA21FD6A225F3209006416B9 /* NSURLConnection+MI.m */,
+				AA21FD70225F3209006416B9 /* NSURLSession+MI.h */,
+				AA21FD6B225F3209006416B9 /* NSURLSession+MI.m */,
+				AA079E6C23599BF500E6FAB2 /* MIHookCFNetwork.h */,
+				AA079E6D23599BF500E6FAB2 /* MIHookCFNetwork.m */,
+				AA079E742359D25100E6FAB2 /* MINSStreamDelegate.h */,
+				AA079E752359D25100E6FAB2 /* MINSStreamDelegate.m */,
+				AA079E702359B3A000E6FAB2 /* MIInputStream.h */,
+				AA079E712359B3A000E6FAB2 /* MIInputStream.m */,
+				AA079E782359D84800E6FAB2 /* MICFNetworkProxy.h */,
+				AA079E792359D84800E6FAB2 /* MICFNetworkProxy.m */,
+				AA21FD6C225F3209006416B9 /* MIObjectDelegate.h */,
+				AA21FD68225F3209006416B9 /* MIObjectDelegate.m */,
+			);
+			path = http;
+			sourceTree = "<group>";
+		};
+		AA079E66235992DD00E6FAB2 /* web */ = {
+			isa = PBXGroup;
+			children = (
+				AA21FD9522606D16006416B9 /* UIWebView+MI.h */,
+				AA21FD9622606D16006416B9 /* UIWebView+MI.m */,
+			);
+			path = web;
+			sourceTree = "<group>";
+		};
+		AA079E672359930500E6FAB2 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				AA079E692359931D00E6FAB2 /* fishhook.c */,
+				AA079E682359931D00E6FAB2 /* fishhook.h */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
 		AA21FD42225F3103006416B9 = {
 			isa = PBXGroup;
 			children = (
@@ -133,18 +192,13 @@
 		AA21FD66225F31CF006416B9 /* aop */ = {
 			isa = PBXGroup;
 			children = (
+				AA079E672359930500E6FAB2 /* libs */,
+				AA079E66235992DD00E6FAB2 /* web */,
+				AA079E65235992C900E6FAB2 /* http */,
 				AA21FD69225F3209006416B9 /* MIHook.h */,
 				AA21FD6E225F3209006416B9 /* MIHook.m */,
-				AA21FD6C225F3209006416B9 /* MIObjectDelegate.h */,
-				AA21FD68225F3209006416B9 /* MIObjectDelegate.m */,
 				AA21FD6D225F3209006416B9 /* MIProxy.h */,
 				AA21FD67225F3209006416B9 /* MIProxy.m */,
-				AA21FD6F225F3209006416B9 /* NSURLConnection+MI.h */,
-				AA21FD6A225F3209006416B9 /* NSURLConnection+MI.m */,
-				AA21FD9522606D16006416B9 /* UIWebView+MI.h */,
-				AA21FD9622606D16006416B9 /* UIWebView+MI.m */,
-				AA21FD70225F3209006416B9 /* NSURLSession+MI.h */,
-				AA21FD6B225F3209006416B9 /* NSURLSession+MI.m */,
 			);
 			path = aop;
 			sourceTree = "<group>";
@@ -188,14 +242,19 @@
 				AA21FD80225F324A006416B9 /* MIRequestMonitorRes.h in Headers */,
 				AA21FD76225F3209006416B9 /* MIObjectDelegate.h in Headers */,
 				AA21FD93226066DA006416B9 /* MIWebViewRequestMonitorRes.h in Headers */,
+				AA079E7A2359D84800E6FAB2 /* MICFNetworkProxy.h in Headers */,
 				AA21FD88225F32BA006416B9 /* MIApmClient.h in Headers */,
 				AA21FD79225F3209006416B9 /* NSURLConnection+MI.h in Headers */,
+				AA079E722359B3A000E6FAB2 /* MIInputStream.h in Headers */,
 				AA21FD7A225F3209006416B9 /* NSURLSession+MI.h in Headers */,
+				AA079E6E23599BF500E6FAB2 /* MIHookCFNetwork.h in Headers */,
 				AA21FD9722606D16006416B9 /* UIWebView+MI.h in Headers */,
 				AA21FD5D225F3103006416B9 /* MIApm.h in Headers */,
 				AA21FD73225F3209006416B9 /* MIHook.h in Headers */,
 				AA21FD77225F3209006416B9 /* MIProxy.h in Headers */,
+				AA079E762359D25100E6FAB2 /* MINSStreamDelegate.h in Headers */,
 				AA21FD83225F3267006416B9 /* MIApmHelper.h in Headers */,
+				AA079E6A2359931D00E6FAB2 /* fishhook.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,9 +358,14 @@
 				AA21FD7F225F324A006416B9 /* MIRequestMonitorRes.m in Sources */,
 				AA21FD75225F3209006416B9 /* NSURLSession+MI.m in Sources */,
 				AA21FD89225F32BA006416B9 /* MIApmClient.m in Sources */,
+				AA079E6B2359931D00E6FAB2 /* fishhook.c in Sources */,
+				AA079E732359B3A000E6FAB2 /* MIInputStream.m in Sources */,
 				AA21FD72225F3209006416B9 /* MIObjectDelegate.m in Sources */,
+				AA079E6F23599BF500E6FAB2 /* MIHookCFNetwork.m in Sources */,
+				AA079E7B2359D84800E6FAB2 /* MICFNetworkProxy.m in Sources */,
 				AA21FD9822606D16006416B9 /* UIWebView+MI.m in Sources */,
 				AA21FD94226066DA006416B9 /* MIWebViewRequestMonitorRes.m in Sources */,
+				AA079E772359D25100E6FAB2 /* MINSStreamDelegate.m in Sources */,
 				AA21FD84225F3267006416B9 /* MIApmHelper.m in Sources */,
 				AA21FD78225F3209006416B9 /* MIHook.m in Sources */,
 				AA21FD74225F3209006416B9 /* NSURLConnection+MI.m in Sources */,

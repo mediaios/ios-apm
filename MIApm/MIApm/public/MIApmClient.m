@@ -9,6 +9,7 @@
 #import "MIApmClient.h"
 #import "NSURLConnection+MI.h"
 #import "NSURLSession+MI.h"
+#import "MIHookCFNetwork.h"
 #import "UIWebView+MI.h"
 
 @implementation MIApmClient
@@ -18,6 +19,7 @@
     if (self = [super init]) {
         [NSURLConnection hook];
         [NSURLSession hook];
+        [MIHookCFNetwork hook];
         [UIWebView hook];
     }
     return self;
