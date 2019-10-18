@@ -13,7 +13,7 @@
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
-        [NBSAppAgent startWithAppID:@"b6b772d29266484eb2415efc5bf8dca7"];
+//        [NBSAppAgent startWithAppID:@"b6b772d29266484eb2415efc5bf8dca7"];
         [MIApmClient apmClient];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }

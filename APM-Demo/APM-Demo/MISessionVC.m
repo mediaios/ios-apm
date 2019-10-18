@@ -7,9 +7,10 @@
 //
 
 #import "MISessionVC.h"
-
-@interface MISessionVC ()<NSURLSessionDelegate>
+#import <MIApm/MIApm.h>
+@interface MISessionVC ()<NSURLSessionDelegate,MIApmClientDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UITextView *debugView;
 
 @end
 
@@ -18,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [MIApmClient apmClient].delegate = self;
 }
 
 - (IBAction)btnClickDataTask:(id)sender {
@@ -153,12 +156,14 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
     [req setHTTPBody:dataParam];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:req completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
-            NSLog(@"出错了,error info: %@",error.description);
+            NSString *errorInfo = [NSString stringWithFormat:@"网络请求出错,error info:%@",error.description];
+            [self showDebugInfo:errorInfo];
             return;
         }
         //8.解析数据
-        NSString * string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"res: %@ \n, length: %lu",string,data.length);
+        NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"res: %@",resStr);
+        [self showDebugInfo:resStr];
     }];
     [dataTask resume];
 }
@@ -174,10 +179,13 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
     NSURLSessionTask *task = [session dataTaskWithRequest:req  completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
             NSLog(@"出错了,error info: %@",error.description);
+            NSString *errorInfo = [NSString stringWithFormat:@"网络请求出错,error info:%@",error.description];
+            [self showDebugInfo:errorInfo];
             return;
         }
-        NSString * string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"res: %@ \n, length: %lu",string,data.length);
+        NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+               NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
+        [self showDebugInfo:resStr];
     }];
     
     [task resume];
@@ -221,7 +229,28 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
 didReceiveData:(NSData *)data
 {
     NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [self showDebugInfo:resStr];
     NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
+}
+
+
+#pragma mark - MIApmClientDelegate
+- (void)apm:(MIApmClient *)apm monitorNetworkRequest:(MIRequestMonitorRes *)netModel
+{
+    [self showDebugInfo:netModel.description];
+}
+
+
+- (void)showDebugInfo:(NSString *)debugInfo
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+         NSMutableString *debug_str = [NSMutableString stringWithString:self.debugView.text];
+         [debug_str appendString:[NSString stringWithFormat:@"\n\n%@",debugInfo]];
+         self.debugView.text = debug_str;
+        
+        [self.debugView scrollRangeToVisible:NSMakeRange(self.debugView.text.length, 1)];
+        self.debugView.layoutManager.allowsNonContiguousLayout = NO;
+    });
 }
 
 @end

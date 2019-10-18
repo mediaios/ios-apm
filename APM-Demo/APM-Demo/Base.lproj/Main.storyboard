@@ -75,6 +75,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="C1I-2N-PpH" kind="push" id="DG8-uN-2xp"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -150,6 +153,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yyE-IJ-olJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-740" y="-843"/>
+        </scene>
+        <!--CFNetwork-->
+        <scene sceneID="V5e-w3-Z2k">
+            <objects>
+                <viewController id="C1I-2N-PpH" customClass="CFNetworkVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BTp-H0-Qhv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEs-PL-Pe3">
+                                <rect key="frame" x="88" y="170" width="223" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="get"/>
+                                <connections>
+                                    <action selector="getmethod:" destination="C1I-2N-PpH" eventType="touchUpInside" id="W6e-sS-Woa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DI2-T2-qUf">
+                                <rect key="frame" x="88" y="318" width="223" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="post"/>
+                                <connections>
+                                    <action selector="postmethod:" destination="C1I-2N-PpH" eventType="touchUpInside" id="FbD-Kk-3MI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="usH-4t-Nrp"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="CFNetwork" id="e8i-da-Iv9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nmY-NK-B9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-396" y="-1478.4107946026988"/>
         </scene>
         <!--NSURLSession-->
         <scene sceneID="UzK-4b-H6v">
@@ -241,23 +278,37 @@
                                     <constraint firstAttribute="height" constant="400" id="vNr-aU-A2c"/>
                                 </constraints>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fcA-NP-7IL">
+                                <rect key="frame" x="20" y="267" width="335" height="400"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="HzH-Bv-5QT"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="e9b-Uo-hKs" firstAttribute="trailing" secondItem="l0X-d8-Ooj" secondAttribute="trailing" constant="20" id="3OT-Ny-0cX"/>
+                            <constraint firstItem="e9b-Uo-hKs" firstAttribute="bottom" secondItem="fcA-NP-7IL" secondAttribute="bottom" id="Bqh-0B-Z5g"/>
+                            <constraint firstItem="e9b-Uo-hKs" firstAttribute="trailing" secondItem="fcA-NP-7IL" secondAttribute="trailing" constant="20" id="D44-bn-eza"/>
                             <constraint firstItem="l0X-d8-Ooj" firstAttribute="top" secondItem="e9b-Uo-hKs" secondAttribute="top" id="ciL-lK-QDh"/>
+                            <constraint firstItem="fcA-NP-7IL" firstAttribute="leading" secondItem="e9b-Uo-hKs" secondAttribute="leading" constant="20" id="rWA-Ed-6KB"/>
                             <constraint firstItem="l0X-d8-Ooj" firstAttribute="leading" secondItem="e9b-Uo-hKs" secondAttribute="leading" constant="20" id="zlB-oy-AJ3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e9b-Uo-hKs"/>
                     </view>
                     <navigationItem key="navigationItem" title="NSURLSession" id="e6B-cq-gBM"/>
                     <connections>
+                        <outlet property="debugView" destination="fcA-NP-7IL" id="dnp-ak-GT4"/>
                         <outlet property="imageView" destination="x33-K5-xmv" id="Rrd-50-Kiv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thD-jh-5N9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="393" y="-609"/>
+            <point key="canvasLocation" x="392.80000000000001" y="-609.44527736131943"/>
         </scene>
         <!--WebVC-->
         <scene sceneID="xH7-pN-RZx">
@@ -396,7 +447,7 @@
                                     <constraint firstItem="ORg-tS-5Mo" firstAttribute="top" secondItem="TOQ-n7-8GE" secondAttribute="bottom" constant="15" id="vde-ik-537"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w8v-eT-HGk">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w8v-eT-HGk">
                                 <rect key="frame" x="20" y="267" width="335" height="400"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>

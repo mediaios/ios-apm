@@ -31,6 +31,7 @@
 		AA804408235842CA00238405 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA804407235842CA00238405 /* QuartzCore.framework */; };
 		AA80440A235842D100238405 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA804409235842D100238405 /* CFNetwork.framework */; };
 		AA80440C235842DB00238405 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AA80440B235842DB00238405 /* libresolv.tbd */; };
+		AA80440F23595C5600238405 /* CFNetworkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA80440E23595C5600238405 /* CFNetworkVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,8 @@
 		AA804407235842CA00238405 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AA804409235842D100238405 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		AA80440B235842DB00238405 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		AA80440D23595C5600238405 /* CFNetworkVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFNetworkVC.h; sourceTree = "<group>"; };
+		AA80440E23595C5600238405 /* CFNetworkVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CFNetworkVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 				AA21FD16225C6900006416B9 /* MIConnectionVC.m */,
 				AA21FD1B225C9D34006416B9 /* MISessionVC.h */,
 				AA21FD1C225C9D34006416B9 /* MISessionVC.m */,
+				AA80440D23595C5600238405 /* CFNetworkVC.h */,
+				AA80440E23595C5600238405 /* CFNetworkVC.m */,
 				AA0F5CF72254B74E00473CED /* ViewController.h */,
 				AA0F5CF82254B74E00473CED /* ViewController.m */,
 				AA21FD8F225F5516006416B9 /* MIWebVC.h */,
@@ -347,6 +352,7 @@
 			files = (
 				AA21FD1D225C9D34006416B9 /* MISessionVC.m in Sources */,
 				AA21FD90225F5516006416B9 /* MIWebVC.m in Sources */,
+				AA80440F23595C5600238405 /* CFNetworkVC.m in Sources */,
 				AA0F5CF92254B74E00473CED /* ViewController.m in Sources */,
 				AA0F5D042254B75000473CED /* main.m in Sources */,
 				AA21FD17225C6900006416B9 /* MIConnectionVC.m in Sources */,
