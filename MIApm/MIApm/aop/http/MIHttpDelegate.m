@@ -1,22 +1,22 @@
 //
-//  MIObjectDelegate.m
+//  MIHttpDelegate.m
 //  MIApm
 //
 //  Created by mediaios on 2019/4/4.
 //  Copyright © 2019 mediaios. All rights reserved.
 //
 
-#import "MIObjectDelegate.h"
+#import "MIHttpDelegate.h"
 #import "MIApmHelper.h"
-#import "MIRequestMonitorRes.h"
+#import "MIHttpModel.h"
 #import "MIApmClient.h"
 
-@interface MIObjectDelegate()
+@interface MIHttpDelegate()
 @property (nonatomic,strong) NSMutableArray *selList;
 @end
 
 
-@implementation MIObjectDelegate
+@implementation MIHttpDelegate
 
 - (NSMutableArray *)selList
 {
@@ -55,7 +55,7 @@
 {
     CFAbsoluteTime end_tim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
     NSUInteger totalTim = end_tim - begin_tim;
-    MIRequestMonitorRes *netModel = [MIRequestMonitorRes instanceWith:url_str
+    MIHttpModel *netModel = [MIHttpModel instanceWith:url_str
                                                             reqMethod:req_method
                                                                reqTim:req_tim
                                                              totalTim:totalTim statusCode:statusCode];
@@ -78,7 +78,6 @@ static NSString *url_str = nil;
 static NSString *req_method = nil;
 - (nullable NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(nullable NSURLResponse *)response
 {
-
     req_tim = [MIApmHelper currentTimestamp];
     begin_tim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
     url_str = request.URL.absoluteString;
@@ -89,7 +88,6 @@ static NSString *req_method = nil;
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     statusCode = ((NSHTTPURLResponse *)response).statusCode;
-
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -108,7 +106,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
     CFAbsoluteTime end_tim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
     NSUInteger totalTim = end_tim - begin_tim;
-    MIRequestMonitorRes *netModel = [MIRequestMonitorRes instanceWith:url_str
+    MIHttpModel *netModel = [MIHttpModel instanceWith:url_str
                                                             reqMethod:req_method
                                                                reqTim:req_tim
                                                              totalTim:totalTim statusCode:statusCode];
@@ -157,7 +155,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
         req_method = metric.request.HTTPMethod;
         NSUInteger req_tim = [MIApmHelper currentTimestamp];
         NSInteger statusCode  = ((NSHTTPURLResponse *)metric.response).statusCode;
-        MIRequestMonitorRes *netModel = [MIRequestMonitorRes instanceWith:url_str
+        MIHttpModel *netModel = [MIHttpModel instanceWith:url_str
                                                                 reqMethod:req_method
                                                                    reqTim:req_tim
                                                             clientWastTim:clientwasttiming
@@ -222,8 +220,5 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response
 totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
 //    NSLog(@"%s----",__func__);
 }
-
-
-
 
 @end

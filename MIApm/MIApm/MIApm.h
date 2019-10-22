@@ -16,6 +16,6 @@ FOUNDATION_EXPORT const unsigned char MIApmVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <MIApm/PublicHeader.h>
 #import <MIApm/MIApmClient.h>
-#import <MIApm/MIRequestMonitorRes.h>
-#import <MIApm/MIWebViewRequestMonitorRes.h>
+#import <MIApm/MIHttpModel.h>
+#import <MIApm/MIWebModel.h>
 

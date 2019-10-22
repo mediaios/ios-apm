@@ -1,14 +1,14 @@
 //
-//  MIRequestMonitorRes.m
+//  MIHttpModel.m
 //  MIApm
 //
 //  Created by mediaios on 2019/4/10.
 //  Copyright © 2019 mediaios. All rights reserved.
 //
 
-#import "MIRequestMonitorRes.h"
+#import "MIHttpModel.h"
 
-@implementation MIRequestMonitorRes
+@implementation MIHttpModel
 
 - (instancetype)initWith:(NSString *)reqDst
                reqMethod:(NSString *)reqMethod

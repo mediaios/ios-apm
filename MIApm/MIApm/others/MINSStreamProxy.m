@@ -1,28 +1,27 @@
 //
-//  MIInputStream.m
+//  MIOriginalStream.m
 //  MIApm
 //
 //  Created by mediaios on 2019/10/18.
 //  Copyright © 2019 mediaios. All rights reserved.
 //
 
+#import "MINSStreamProxy.h"
 #import "MIInputStream.h"
-#import "MINSStreamDelegate.h"
 
-@interface MIInputStream()
+@interface MINSStreamProxy()
 {
-    id _object;
-    MINSStreamDelegate *_objDelegate;
-    
+    MIInputStream *_stream;
 }
-@property (nonatomic,strong) NSInputStream *stream;
+
 @end
 
-@implementation MIInputStream
+@implementation MINSStreamProxy
 
 - (instancetype)initWithStream:(id)stream
 {
     if (self = [super init]) {
+        NSLog(@"%s",__func__);
         _stream = stream;
     }
     return self;
@@ -30,19 +29,14 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
 {
+    NSLog(@"%s",__func__);
     return [_stream methodSignatureForSelector:aSelector];
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation
 {
+    NSLog(@"%s",__func__);
     [anInvocation invokeWithTarget:_stream];
-}
-
-- (NSInteger)read:(uint8_t *)buffer maxLength:(NSUInteger)len
-{
-    NSInteger readSize = [_stream read:buffer maxLength:len];
-    // 记录 readSize
-    return readSize;
 }
 
 

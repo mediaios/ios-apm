@@ -1,14 +1,14 @@
 //
-//  MIWebViewRequestMonitorRes.m
+//  MIWebModel.m
 //  MIApm
 //
 //  Created by mediaios on 2019/4/12.
 //  Copyright © 2019 mediaios. All rights reserved.
 //
 
-#import "MIWebViewRequestMonitorRes.h"
+#import "MIWebModel.h"
 
-@implementation MIWebViewRequestMonitorRes
+@implementation MIWebModel
 
 - (instancetype)initWithReqDst:(NSString *)reqDst
                         reqTim:(NSUInteger)reqTim

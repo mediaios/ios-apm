@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MIRequestMonitorRes.h"
-#import "MIWebViewRequestMonitorRes.h"
+#import "MIHttpModel.h"
+#import "MIWebModel.h"
 
 @class MIApmClient;
 @protocol MIApmClientDelegate <NSObject>
@@ -21,7 +21,7 @@
  @param apm `MIApmClient`实例
  @param netModel 网络请求监控结果
  */
-- (void)apm:(MIApmClient *)apm monitorNetworkRequest:(MIRequestMonitorRes *)netModel;
+- (void)apm:(MIApmClient *)apm monitorNetworkRequest:(MIHttpModel *)netModel;
 
 
 /**
@@ -30,7 +30,7 @@
  @param apm `MIApmClient`实例
  @param webViewMonitorRes `UIWebView`监控结果
  */
-- (void)apm:(MIApmClient *)apm monitorUIWebView:(MIWebViewRequestMonitorRes *)webViewMonitorRes;
+- (void)apm:(MIApmClient *)apm monitorUIWebView:(MIWebModel *)webViewMonitorRes;
 
 @end
 

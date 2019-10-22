@@ -1,5 +1,5 @@
 //
-//  MIInputStream.h
+//  MIOriginalStream.h
 //  MIApm
 //
 //  Created by mediaios on 2019/10/18.
@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MIInputStream : NSInputStream
+@interface MINSStreamProxy : NSObject
 
 - (instancetype)initWithStream:(id)stream;
+
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  MICFNetworkProxy.h
+//  MINSStreamDelegate.h
 //  MIApm
 //
 //  Created by mediaios on 2019/10/18.
@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MINSStreamDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MICFNetworkProxy : NSProxy
+@interface MINSStreamDelegate : NSObject<NSStreamDelegate>
 
-+ (id)proxyForObject:(id)obj delegate:(MINSStreamDelegate *)delgate;
+
 
 @end
 

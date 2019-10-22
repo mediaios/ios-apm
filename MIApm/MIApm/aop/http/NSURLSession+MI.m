@@ -8,7 +8,7 @@
 
 #import "NSURLSession+MI.h"
 #import "MIHook.h"
-#import "MIObjectDelegate.h"
+#import "MIHttpDelegate.h"
 #import <objc/runtime.h>
 #import "MIProxy.h"
 
@@ -34,7 +34,7 @@
 #pragma mark -swizzed method
 + (NSURLSession *)mi_sessionWithConfiguration:(NSURLSessionConfiguration *)configuration delegate:(nullable id <NSURLSessionDelegate>)delegate delegateQueue:(nullable NSOperationQueue *)queue
 {
-    MIObjectDelegate *objDelegate = [[MIObjectDelegate alloc] init];
+    MIHttpDelegate *objDelegate = [[MIHttpDelegate alloc] init];
     if (delegate) {
         [[self class] registerDelegateMethod:@"URLSession:task:didFinishCollectingMetrics:" oriDelegate:delegate assistDelegate:objDelegate flag:"v@:@@@"];
         [[self class] registerDelegateMethod:@"URLSession:task:didCompleteWithError:" oriDelegate:delegate assistDelegate:objDelegate flag:"v@:@@@"];
@@ -99,15 +99,15 @@
 
 
 //代理方法分类处理
-+ (void)registerDelegateMethod:(NSString *)method oriDelegate:(id<NSURLSessionDelegate>)oriDel assistDelegate:(MIObjectDelegate *)assiDel flag:(const char *)flag {
++ (void)registerDelegateMethod:(NSString *)method oriDelegate:(id<NSURLSessionDelegate>)oriDel assistDelegate:(MIHttpDelegate *)assiDel flag:(const char *)flag {
     if ([oriDel respondsToSelector:NSSelectorFromString(method)]) {
-        IMP imp1 = class_getMethodImplementation([MIObjectDelegate class], NSSelectorFromString(method));
+        IMP imp1 = class_getMethodImplementation([MIHttpDelegate class], NSSelectorFromString(method));
         IMP imp2 = class_getMethodImplementation([oriDel class], NSSelectorFromString(method));
         if (imp1 != imp2) {
             [assiDel registerSel:method];
         }
     } else {
-        class_addMethod([oriDel class], NSSelectorFromString(method), class_getMethodImplementation([MIObjectDelegate class], NSSelectorFromString(method)), flag);
+        class_addMethod([oriDel class], NSSelectorFromString(method), class_getMethodImplementation([MIHttpDelegate class], NSSelectorFromString(method)), flag);
     }
 }
 @end

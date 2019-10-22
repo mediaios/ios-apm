@@ -1,5 +1,5 @@
 //
-//  MIObjectDelegate.h
+//  MIHttpDelegate.h
 //  MIApm
 //
 //  Created by mediaios on 2019/4/4.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MIObjectDelegate : NSObject<NSURLSessionDelegate,NSURLConnectionDelegate,UIWebViewDelegate>
+@interface MIHttpDelegate : NSObject<NSURLSessionDelegate,NSURLConnectionDelegate>
 
 
 - (void)invoke:(NSInvocation *)invocation;

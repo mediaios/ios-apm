@@ -1,5 +1,5 @@
 //
-//  MIRequestMonitorRes.h
+//  MIHttpModel.h
 //  MIApm
 //
 //  Created by mediaios on 2019/4/10.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MIRequestMonitorRes : NSObject
+@interface MIHttpModel : NSObject
 
 /**
  记录产生的时间(单位是秒)

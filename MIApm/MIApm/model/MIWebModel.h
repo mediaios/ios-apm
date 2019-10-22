@@ -1,5 +1,5 @@
 //
-//  MIWebViewRequestMonitorRes.h
+//  MIWebModel.h
 //  MIApm
 //
 //  Created by mediaios on 2019/4/12.
@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger,MIWebViewStatus)
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface MIWebViewRequestMonitorRes : NSObject
+@interface MIWebModel : NSObject
 
 /**
  记录产生的时间(单位是秒)

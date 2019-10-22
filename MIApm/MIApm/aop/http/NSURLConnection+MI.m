@@ -9,10 +9,10 @@
 #import "NSURLConnection+MI.h"
 #import "MIApmHelper.h"
 #import "MIHook.h"
-#import "MIObjectDelegate.h"
+#import "MIHttpDelegate.h"
 #import "MIProxy.h"
 #import <objc/runtime.h>
-#import "MIRequestMonitorRes.h"
+#import "MIHttpModel.h"
 #import "MIApmClient.h"
 
 typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError);
@@ -50,7 +50,7 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
                         reqMethod:req_method
                            reqTim:req_tim
                          beginTim:begintime];
-    return [[self class] mi_sendSynchronousRequest:request returningResponse:response error:error];
+    return data;
 }
 
 + (void)mi_sendAsynchronousRequest:(NSURLRequest*)request queue:(NSOperationQueue*)queue completionHandler:(void (^)(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError)) handler
@@ -97,30 +97,9 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
     [self mi_cancel];
 }
 
-+ (void)monitorResponse:(NSHTTPURLResponse *)httpResponse
-                   data:(NSData *)data
-                  error:(NSError *)error
-                 reqDst:(NSString *)reqDst
-              reqMethod:(NSString *)reqMethod
-                 reqTim:(NSUInteger)reqTim
-               beginTim:(NSUInteger)beginTim
-{
-    CFAbsoluteTime endtime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
-    NSUInteger totalTim = endtime - beginTim;
-    NSInteger statusCode = httpResponse.statusCode;
-    MIRequestMonitorRes *netModel = [MIRequestMonitorRes instanceWith:reqDst
-                                                            reqMethod:reqMethod
-                                                               reqTim:reqTim
-                                                             totalTim:totalTim
-                                                           statusCode:statusCode];
-//    NSLog(@"%@",netModel);
-    [[MIApmClient apmClient] miMonitorRes:netModel];
-}
-
-
 - (id)processDelegate:(id)delegate
 {
-    MIObjectDelegate *objectDelegate = [[MIObjectDelegate alloc] init];
+    MIHttpDelegate *objectDelegate = [[MIHttpDelegate alloc] init];
     if (delegate) {
         [self registerDelegateMethod:@"connection:didFailWithError:" oriDelegate:delegate assistDelegate:objectDelegate flag:"v@:@@"];
         [self registerDelegateMethod:@"connection:didReceiveResponse:" oriDelegate:delegate assistDelegate:objectDelegate flag:"v@:@@"];
@@ -144,23 +123,42 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
 
 - (void)registerDelegateMethod:(NSString *)method
                    oriDelegate:(id)oriDel
-                assistDelegate:(MIObjectDelegate *)assiDel
+                assistDelegate:(MIHttpDelegate *)assiDel
                           flag:(const char *)flag
 {
     if ([oriDel respondsToSelector:NSSelectorFromString(method)]) {
-        IMP imp1 = class_getMethodImplementation([MIObjectDelegate class], NSSelectorFromString(method));
+        IMP imp1 = class_getMethodImplementation([MIHttpDelegate class], NSSelectorFromString(method));
         IMP imp2 = class_getMethodImplementation([oriDel class], NSSelectorFromString(method));
         if (imp1 != imp2) {
             [assiDel registerSel:method];
         }
     }else{
-        class_addMethod([oriDel class], NSSelectorFromString(method), class_getMethodImplementation([MIObjectDelegate class], NSSelectorFromString(method)), flag);
+        class_addMethod([oriDel class], NSSelectorFromString(method), class_getMethodImplementation([MIHttpDelegate class], NSSelectorFromString(method)), flag);
     }
+}
+
++ (void)monitorResponse:(NSHTTPURLResponse *)httpResponse
+                   data:(NSData *)data
+                  error:(NSError *)error
+                 reqDst:(NSString *)reqDst
+              reqMethod:(NSString *)reqMethod
+                 reqTim:(NSUInteger)reqTim
+               beginTim:(NSUInteger)beginTim
+{
+    CFAbsoluteTime endtime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
+    NSUInteger totalTim = endtime - beginTim;
+    NSInteger statusCode = httpResponse.statusCode;
+    MIHttpModel *netModel = [MIHttpModel instanceWith:reqDst
+                                                            reqMethod:reqMethod
+                                                               reqTim:reqTim
+                                                             totalTim:totalTim
+                                                           statusCode:statusCode];
+    [[MIApmClient apmClient] miMonitorRes:netModel];
 }
 
 - (void)registerDownloadDelegateMethod:(NSString *)method
                            oriDelegate:(id)oriDel
-                        assistDelegate:(MIObjectDelegate *)assiDel
+                        assistDelegate:(MIHttpDelegate *)assiDel
 {
     if([oriDel respondsToSelector:NSSelectorFromString(method)]){
         [assiDel registerSel:method];

@@ -10,9 +10,8 @@
 #import "MIHook.h"
 #import <objc/runtime.h>
 #import "MIProxy.h"
-#import "MIObjectDelegate.h"
 #import "MIApmHelper.h"
-#import "MIWebViewRequestMonitorRes.h"
+#import "MIWebModel.h"
 #import "MIApmClient.h"
 
 static NSString *reqDst;
@@ -23,7 +22,7 @@ static void constructWebViewMonitorRestuls(MIWebViewStatus webViewStatus)
 {
     CFAbsoluteTime endTim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
     NSInteger totalTim = endTim - beginTim;
-    MIWebViewRequestMonitorRes *webMonitorRes = [MIWebViewRequestMonitorRes instanceWithReqDst:reqDst
+    MIWebModel *webMonitorRes = [MIWebModel instanceWithReqDst:reqDst
                                                                                         reqTim:web_reqTim
                                                                                       totalTim:totalTim
                                                                                  webViewStatus:webViewStatus];
@@ -91,8 +90,6 @@ static void constructWebViewMonitorRestuls(MIWebViewStatus webViewStatus)
 
     [self mi_goForward];
 }
-
-
 
 
 - (void)mi_setDelegate:(id<UIWebViewDelegate>)delegate
