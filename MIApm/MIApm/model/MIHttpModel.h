@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MIHttpInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -86,6 +87,8 @@ NS_ASSUME_NONNULL_BEGIN
                       tcpTim:(NSUInteger)tcpTim
               firstPacketTim:(NSUInteger)firstPacketTim
                   statusCode:(NSInteger)statusCode;
+
++ (instancetype)instanceWithHttpModel:(MIHttpInfo *)httpInfo;
 
 @end
 

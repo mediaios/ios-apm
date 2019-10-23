@@ -88,6 +88,41 @@
                        statusCode:statusCode];
 }
 
++ (instancetype)instanceWithHttpModel:(MIHttpInfo *)httpInfo
+{
+    NSString *reqUrl = httpInfo.request.URL.absoluteString;
+    NSUInteger reqDate = httpInfo.reqDate;
+    NSString *httpMethod = httpInfo.request.HTTPMethod;
+    NSUInteger totalTim =  httpInfo.endTim - httpInfo.beginTim;
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)httpInfo.response;
+    NSInteger statusCode = httpResponse.statusCode;
+    NSUInteger clientTime = 0;
+    NSUInteger dnsTime = 0;
+    NSUInteger sslTime = 0;
+    NSUInteger tcpTime = 0;
+    NSUInteger fpTime = 0;
+    MIHttpMetrics *httpMetrics = httpInfo.httpMertics;
+    if (httpMetrics) {
+        clientTime = httpMetrics.clientTim;
+        totalTim = httpMetrics.totalTim;
+        dnsTime = httpMetrics.dnsTim;
+        sslTime = httpMetrics.sslTim;
+        tcpTime = httpMetrics.tcpTim;
+        fpTime = httpMetrics.firstPacketTim;
+    }
+    return [[self alloc] initWith:reqUrl
+                        reqMethod:httpMethod
+                           reqTim:reqDate
+                    clientWastTim:clientTime
+                         totalTim:totalTim
+                           dnsTim:dnsTime
+                           sslTim:sslTime
+                           tcpTim:tcpTime
+                   firstPacketTim:fpTime
+                       statusCode:statusCode];
+    
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"reqTime: %ld, reqDst:%@, reqMethod:%@, clientWastTim:%ld, totalTim:%ld, dnsTim:%ld, sslTim:%ld, tcpTim:%ld, firstPacketTim:%ld, statusCode:%ld",self.reqTim,self.reqDst,self.reqMethod,self.clientWastTim,self.totalTim,self.dnsTim,self.sslTim,self.tcpTim,self.firstPacketTim,self.statusCode];

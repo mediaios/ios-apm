@@ -10,11 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class MIObjectDelegate;
+@class MIHttpDelegate;
 
 @interface MIProxy : NSProxy
 
-+ (id)proxyForObject:(id)obj delegate:(MIObjectDelegate *)delgate;
++ (id)proxyForObject:(id)obj delegate:(MIHttpDelegate *)delgate;
 
 @end
 
