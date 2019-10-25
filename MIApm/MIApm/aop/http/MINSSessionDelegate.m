@@ -10,17 +10,12 @@
 #import "MIApmHelper.h"
 #import "MIHttpModel.h"
 #import "MIApmClient.h"
-
+#import "MIHook.h"
+#import <objc/runtime.h>
+#import "MIProxy.h"
 @interface MINSSessionDelegate()
 @property (nonatomic,strong) NSMutableArray *selList;
-@property (nonatomic,assign) NSUInteger reqDate;
-@property (nonatomic,assign) CFAbsoluteTime beginTim;
-@property (nonatomic,assign) CFAbsoluteTime endTim;
-@property (nonatomic,strong) NSURLRequest *miRequest;
-@property (nonatomic,strong) NSHTTPURLResponse *miResponse;
-@property (nonatomic,strong) NSError *miError;
-@property (nonatomic,assign) NSUInteger sendSize;
-@property (nonatomic,assign) NSUInteger receiveSize;
+@property (nonatomic,strong) NSURLSessionTaskMetrics *gMatrics;
 @end
 
 @implementation MINSSessionDelegate
@@ -59,37 +54,38 @@
 
 - (void)resetPropertys
 {
-    _reqDate = 0;
-    _beginTim = 0;
-    _endTim = 0;
-    _miRequest = nil;
-    _miResponse = nil;
-    _miError = nil;
-    _sendSize = 0;
-    _receiveSize = 0;
+    _gMatrics = nil;
 }
 
-#pragma mark-NSURLSessionDelegate
+static BOOL _isMISendData = NO;
+
+#pragma mark-NSURLSessionTaskDelegate
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didFinishCollectingMetrics:(NSURLSessionTaskMetrics *)metrics  API_AVAILABLE(ios(10.0)){
-    NSLog(@"%s",__func__);
-        if (metrics)
-            [MIApmHelper monitorHttpWithSessionTaskMetrics:metrics error:_miError];
+    if (metrics){
+        _isMISendData = NO;
+        _gMatrics = metrics;
+    }
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
 didCompleteWithError:(nullable NSError *)error {
-    _miError = error;
+    NSLog(@"%s",__func__);
+    if (@available(iOS 10.0, *)) {
+        [MIApmHelper monitorHttpWithSessionTaskMetrics:_gMatrics error:error];
+        _isMISendData = YES;
+    } else {
+        // Fallback on earlier versions
+    }
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
     didReceiveData:(NSData *)data {
-//    NSLog(@"%s----",__func__);
-    _receiveSize = data.length;
+    NSLog(@"%s----",__func__);
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
 didFinishDownloadingToURL:(NSURL *)location {
-//    NSLog(@"%s----",__func__);
+    NSLog(@"%s----",__func__);
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
@@ -112,7 +108,6 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response
     totalBytesSent:(int64_t)totalBytesSent
 totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
 //    NSLog(@"%s----",__func__);
-    _sendSize = totalBytesSent;
 }
 
 @end

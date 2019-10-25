@@ -99,7 +99,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"reqTime: %ld, reqDst:%@, reqMethod:%@, clientWastTim:%ld, totalTim:%ld, dnsTim:%ld, sslTim:%ld, tcpTim:%ld, firstPacketTim:%ld, statusCode:%ld",self.reqTim,self.reqDst,self.reqMethod,self.clientWastTim,self.totalTim,self.dnsTim,self.sslTim,self.tcpTim,self.firstPacketTim,self.statusCode];
+    return [NSString stringWithFormat:@"reqTime: %ld, reqDst:%@, reqMethod:%@, clientWastTim:%ld, totalTim:%ld, dnsTim:%ld, sslTim:%ld, tcpTim:%ld, firstPacketTim:%ld, statusCode:%ld, errorInfo:%@",self.reqTim,self.reqDst,self.reqMethod,self.clientWastTim,self.totalTim,self.dnsTim,self.sslTim,self.tcpTim,self.firstPacketTim,self.statusCode,self.error.description];
 }
 
 @end

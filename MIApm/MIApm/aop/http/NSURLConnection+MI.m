@@ -35,9 +35,6 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
 #pragma mark -swizzed method
 + (nullable NSData *)mi_sendSynchronousRequest:(NSURLRequest *)request returningResponse:(NSURLResponse * _Nullable * _Nullable)response error:(NSError **)error
 {
-    NSMutableURLRequest *mutaReq  = (NSMutableURLRequest *)request;
-    NSString *url_str = mutaReq.URL.absoluteString;
-    NSString *req_method = mutaReq.HTTPMethod;
     NSUInteger req_tim = [MIApmHelper currentTimestamp];
     CFAbsoluteTime begintime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
     // 发送请求
@@ -55,9 +52,6 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
 
 + (void)mi_sendAsynchronousRequest:(NSURLRequest*)request queue:(NSOperationQueue*)queue completionHandler:(void (^)(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError)) handler
 {
-    NSMutableURLRequest *mutaReq = (NSMutableURLRequest *)request;
-    NSString *url_str = mutaReq.URL.absoluteString;
-    NSString *req_method = mutaReq.HTTPMethod;
     NSUInteger req_tim = [MIApmHelper currentTimestamp];
     CFAbsoluteTime begintime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
     CompletionHandler hook_handler = ^(NSURLResponse * _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError){
