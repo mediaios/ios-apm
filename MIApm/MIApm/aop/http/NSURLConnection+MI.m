@@ -9,7 +9,7 @@
 #import "NSURLConnection+MI.h"
 #import "MIApmHelper.h"
 #import "MIHook.h"
-#import "MIHttpDelegate.h"
+#import "MINSConnectionDelegate.h"
 #import "MIProxy.h"
 #import <objc/runtime.h>
 #import "MIHttpModel.h"
@@ -100,7 +100,7 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
 
 - (id)processDelegate:(id)delegate
 {
-    MIHttpDelegate *objectDelegate = [[MIHttpDelegate alloc] init];
+    MINSConnectionDelegate *objectDelegate = [[MINSConnectionDelegate alloc] init];
     if (delegate) {
         [self registerDelegateMethod:@"connection:didFailWithError:" oriDelegate:delegate assistDelegate:objectDelegate flag:"v@:@@"];
         [self registerDelegateMethod:@"connection:didReceiveResponse:" oriDelegate:delegate assistDelegate:objectDelegate flag:"v@:@@"];
@@ -124,23 +124,23 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
 
 - (void)registerDelegateMethod:(NSString *)method
                    oriDelegate:(id)oriDel
-                assistDelegate:(MIHttpDelegate *)assiDel
+                assistDelegate:(MINSConnectionDelegate *)assiDel
                           flag:(const char *)flag
 {
     if ([oriDel respondsToSelector:NSSelectorFromString(method)]) {
-        IMP imp1 = class_getMethodImplementation([MIHttpDelegate class], NSSelectorFromString(method));
+        IMP imp1 = class_getMethodImplementation([MINSConnectionDelegate class], NSSelectorFromString(method));
         IMP imp2 = class_getMethodImplementation([oriDel class], NSSelectorFromString(method));
         if (imp1 != imp2) {
             [assiDel registerSel:method];
         }
     }else{
-        class_addMethod([oriDel class], NSSelectorFromString(method), class_getMethodImplementation([MIHttpDelegate class], NSSelectorFromString(method)), flag);
+        class_addMethod([oriDel class], NSSelectorFromString(method), class_getMethodImplementation([MINSConnectionDelegate class], NSSelectorFromString(method)), flag);
     }
 }
 
 - (void)registerDownloadDelegateMethod:(NSString *)method
                            oriDelegate:(id)oriDel
-                        assistDelegate:(MIHttpDelegate *)assiDel
+                        assistDelegate:(MINSConnectionDelegate *)assiDel
 {
     if([oriDel respondsToSelector:NSSelectorFromString(method)]){
         [assiDel registerSel:method];

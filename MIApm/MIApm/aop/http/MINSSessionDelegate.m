@@ -6,14 +6,13 @@
 //  Copyright © 2019 mediaios. All rights reserved.
 //
 
-#import "MIHttpDelegate.h"
+#import "MINSSessionDelegate.h"
 #import "MIApmHelper.h"
 #import "MIHttpModel.h"
 #import "MIApmClient.h"
 
-@interface MIHttpDelegate()
+@interface MINSSessionDelegate()
 @property (nonatomic,strong) NSMutableArray *selList;
-
 @property (nonatomic,assign) NSUInteger reqDate;
 @property (nonatomic,assign) CFAbsoluteTime beginTim;
 @property (nonatomic,assign) CFAbsoluteTime endTim;
@@ -22,10 +21,9 @@
 @property (nonatomic,strong) NSError *miError;
 @property (nonatomic,assign) NSUInteger sendSize;
 @property (nonatomic,assign) NSUInteger receiveSize;
-
 @end
 
-@implementation MIHttpDelegate
+@implementation MINSSessionDelegate
 
 - (NSMutableArray *)selList
 {
@@ -71,78 +69,9 @@
     _receiveSize = 0;
 }
 
-#pragma mark -NSURLConnectionDelegate
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    _endTim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
-    [MIApmHelper monitorConnectionHttpWithReuest:_miRequest
-                                        response:_miResponse
-                                           error:error
-                                         reqTime:_reqDate
-                                       beginTime:_beginTim
-                                         endTime:_endTim];
-    [self resetPropertys];
-}
-
-#pragma mark -NSURLConnectionDataDelegate
-- (nullable NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(nullable NSURLResponse *)response
-{
-    _reqDate = [MIApmHelper currentTimestamp];
-    _beginTim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
-    _miRequest = request;
-    return request;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    _miResponse = (NSHTTPURLResponse *)response;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    _receiveSize = data.length;
-}
-
-- (void)connection:(NSURLConnection *)connection   didSendBodyData:(NSInteger)bytesWritten
- totalBytesWritten:(NSInteger)totalBytesWritten
-totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
-{
-    _sendSize = totalBytesWritten;
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    _endTim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
-    [MIApmHelper monitorConnectionHttpWithReuest:_miRequest
-                                        response:_miResponse
-                                           error:_miError
-                                         reqTime:_reqDate
-                                       beginTime:_beginTim
-                                         endTime:_endTim];
-    [self resetPropertys];
-}
-
-
-#pragma mark -NSURLConnectionDownloadDelegate
-
-- (void)connection:(NSURLConnection *)connection didWriteData:(long long)bytesWritten totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long) expectedTotalBytes
-{
-//    NSLog(@"%s----",__func__);
-}
-
-- (void)connectionDidResumeDownloading:(NSURLConnection *)connection totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long) expectedTotalBytes
-{
-//    NSLog(@"%s----",__func__);
-}
-
-- (void)connectionDidFinishDownloading:(NSURLConnection *)connection destinationURL:(NSURL *) destinationURL
-{
-//    NSLog(@"%s----",__func__);
-}
-
-
 #pragma mark-NSURLSessionDelegate
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didFinishCollectingMetrics:(NSURLSessionTaskMetrics *)metrics  API_AVAILABLE(ios(10.0)){
+    NSLog(@"%s",__func__);
         if (metrics)
             [MIApmHelper monitorHttpWithSessionTaskMetrics:metrics error:_miError];
 }

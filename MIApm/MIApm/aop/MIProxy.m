@@ -7,12 +7,12 @@
 //
 
 #import "MIProxy.h"
-#import "MIHttpDelegate.h"
+#import "MINSSessionDelegate.h"
 
 @interface MIProxy()
 {
     id _object;
-    MIHttpDelegate *_objDelegate;
+    id _objDelegate;
 }
 
 @end
@@ -20,7 +20,7 @@
 
 @implementation MIProxy
 
-+ (id)proxyForObject:(id)obj delegate:(MIHttpDelegate *)delgate
++ (id)proxyForObject:(id)obj delegate:(id)delgate
 {
     MIProxy *instance  = [MIProxy alloc];
     instance->_object = obj;

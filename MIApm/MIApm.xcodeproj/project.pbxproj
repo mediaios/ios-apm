@@ -13,11 +13,9 @@
 		AA21FD5B225F3103006416B9 /* MIApmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD5A225F3103006416B9 /* MIApmTests.m */; };
 		AA21FD5D225F3103006416B9 /* MIApm.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD4F225F3103006416B9 /* MIApm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA21FD71225F3209006416B9 /* MIProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD67225F3209006416B9 /* MIProxy.m */; };
-		AA21FD72225F3209006416B9 /* MIHttpDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD68225F3209006416B9 /* MIHttpDelegate.m */; };
 		AA21FD73225F3209006416B9 /* MIHook.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD69225F3209006416B9 /* MIHook.h */; };
 		AA21FD74225F3209006416B9 /* NSURLConnection+MI.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD6A225F3209006416B9 /* NSURLConnection+MI.m */; };
 		AA21FD75225F3209006416B9 /* NSURLSession+MI.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD6B225F3209006416B9 /* NSURLSession+MI.m */; };
-		AA21FD76225F3209006416B9 /* MIHttpDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD6C225F3209006416B9 /* MIHttpDelegate.h */; };
 		AA21FD77225F3209006416B9 /* MIProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD6D225F3209006416B9 /* MIProxy.h */; };
 		AA21FD78225F3209006416B9 /* MIHook.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD6E225F3209006416B9 /* MIHook.m */; };
 		AA21FD79225F3209006416B9 /* NSURLConnection+MI.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD6F225F3209006416B9 /* NSURLConnection+MI.h */; };
@@ -32,6 +30,10 @@
 		AA21FD94226066DA006416B9 /* MIWebModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD92226066DA006416B9 /* MIWebModel.m */; };
 		AA21FD9722606D16006416B9 /* UIWebView+MI.h in Headers */ = {isa = PBXBuildFile; fileRef = AA21FD9522606D16006416B9 /* UIWebView+MI.h */; };
 		AA21FD9822606D16006416B9 /* UIWebView+MI.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21FD9622606D16006416B9 /* UIWebView+MI.m */; };
+		AA6CA90A2362CAFD005622A6 /* MINSConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = AA6CA9062362CAFD005622A6 /* MINSConnectionDelegate.h */; };
+		AA6CA90B2362CAFD005622A6 /* MINSSessionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6CA9072362CAFD005622A6 /* MINSSessionDelegate.m */; };
+		AA6CA90C2362CAFD005622A6 /* MINSConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6CA9082362CAFD005622A6 /* MINSConnectionDelegate.m */; };
+		AA6CA90D2362CAFD005622A6 /* MINSSessionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = AA6CA9092362CAFD005622A6 /* MINSSessionDelegate.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,11 +56,9 @@
 		AA21FD5A225F3103006416B9 /* MIApmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIApmTests.m; sourceTree = "<group>"; };
 		AA21FD5C225F3103006416B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA21FD67225F3209006416B9 /* MIProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIProxy.m; sourceTree = "<group>"; };
-		AA21FD68225F3209006416B9 /* MIHttpDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIHttpDelegate.m; sourceTree = "<group>"; };
 		AA21FD69225F3209006416B9 /* MIHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIHook.h; sourceTree = "<group>"; };
 		AA21FD6A225F3209006416B9 /* NSURLConnection+MI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLConnection+MI.m"; sourceTree = "<group>"; };
 		AA21FD6B225F3209006416B9 /* NSURLSession+MI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+MI.m"; sourceTree = "<group>"; };
-		AA21FD6C225F3209006416B9 /* MIHttpDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIHttpDelegate.h; sourceTree = "<group>"; };
 		AA21FD6D225F3209006416B9 /* MIProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIProxy.h; sourceTree = "<group>"; };
 		AA21FD6E225F3209006416B9 /* MIHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIHook.m; sourceTree = "<group>"; };
 		AA21FD6F225F3209006416B9 /* NSURLConnection+MI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLConnection+MI.h"; sourceTree = "<group>"; };
@@ -73,6 +73,10 @@
 		AA21FD92226066DA006416B9 /* MIWebModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIWebModel.m; sourceTree = "<group>"; };
 		AA21FD9522606D16006416B9 /* UIWebView+MI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWebView+MI.h"; sourceTree = "<group>"; };
 		AA21FD9622606D16006416B9 /* UIWebView+MI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+MI.m"; sourceTree = "<group>"; };
+		AA6CA9062362CAFD005622A6 /* MINSConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MINSConnectionDelegate.h; sourceTree = "<group>"; };
+		AA6CA9072362CAFD005622A6 /* MINSSessionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MINSSessionDelegate.m; sourceTree = "<group>"; };
+		AA6CA9082362CAFD005622A6 /* MINSConnectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MINSConnectionDelegate.m; sourceTree = "<group>"; };
+		AA6CA9092362CAFD005622A6 /* MINSSessionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MINSSessionDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +105,10 @@
 				AA21FD6A225F3209006416B9 /* NSURLConnection+MI.m */,
 				AA21FD70225F3209006416B9 /* NSURLSession+MI.h */,
 				AA21FD6B225F3209006416B9 /* NSURLSession+MI.m */,
-				AA21FD6C225F3209006416B9 /* MIHttpDelegate.h */,
-				AA21FD68225F3209006416B9 /* MIHttpDelegate.m */,
+				AA6CA9062362CAFD005622A6 /* MINSConnectionDelegate.h */,
+				AA6CA9082362CAFD005622A6 /* MINSConnectionDelegate.m */,
+				AA6CA9092362CAFD005622A6 /* MINSSessionDelegate.h */,
+				AA6CA9072362CAFD005622A6 /* MINSSessionDelegate.m */,
 			);
 			path = http;
 			sourceTree = "<group>";
@@ -216,15 +222,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA21FD80225F324A006416B9 /* MIHttpModel.h in Headers */,
-				AA21FD76225F3209006416B9 /* MIHttpDelegate.h in Headers */,
 				AA21FD93226066DA006416B9 /* MIWebModel.h in Headers */,
 				AA21FD88225F32BA006416B9 /* MIApmClient.h in Headers */,
 				AA21FD79225F3209006416B9 /* NSURLConnection+MI.h in Headers */,
 				AA21FD7A225F3209006416B9 /* NSURLSession+MI.h in Headers */,
+				AA6CA90A2362CAFD005622A6 /* MINSConnectionDelegate.h in Headers */,
 				AA21FD9722606D16006416B9 /* UIWebView+MI.h in Headers */,
 				AA21FD5D225F3103006416B9 /* MIApm.h in Headers */,
 				AA21FD73225F3209006416B9 /* MIHook.h in Headers */,
 				AA21FD77225F3209006416B9 /* MIProxy.h in Headers */,
+				AA6CA90D2362CAFD005622A6 /* MINSSessionDelegate.h in Headers */,
 				AA21FD83225F3267006416B9 /* MIApmHelper.h in Headers */,
 				AA079E6A2359931D00E6FAB2 /* fishhook.h in Headers */,
 			);
@@ -328,10 +335,11 @@
 			files = (
 				AA21FD71225F3209006416B9 /* MIProxy.m in Sources */,
 				AA21FD7F225F324A006416B9 /* MIHttpModel.m in Sources */,
+				AA6CA90B2362CAFD005622A6 /* MINSSessionDelegate.m in Sources */,
+				AA6CA90C2362CAFD005622A6 /* MINSConnectionDelegate.m in Sources */,
 				AA21FD75225F3209006416B9 /* NSURLSession+MI.m in Sources */,
 				AA21FD89225F32BA006416B9 /* MIApmClient.m in Sources */,
 				AA079E6B2359931D00E6FAB2 /* fishhook.c in Sources */,
-				AA21FD72225F3209006416B9 /* MIHttpDelegate.m in Sources */,
 				AA21FD9822606D16006416B9 /* UIWebView+MI.m in Sources */,
 				AA21FD94226066DA006416B9 /* MIWebModel.m in Sources */,
 				AA21FD84225F3267006416B9 /* MIApmHelper.m in Sources */,

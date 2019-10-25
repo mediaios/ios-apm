@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MIProxy : NSProxy
 
-+ (id)proxyForObject:(id)obj delegate:(MIHttpDelegate *)delgate;
++ (id)proxyForObject:(id)obj delegate:(id)delgate;
 
 @end
 
