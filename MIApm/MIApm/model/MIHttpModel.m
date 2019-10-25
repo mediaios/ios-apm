@@ -15,6 +15,7 @@
                   reqTim:(NSUInteger)reqTim
                 totalTim:(NSUInteger)totalTim
               statusCode:(NSInteger)statusCode
+                   error:(NSError *)error
 {
     if (self = [super init]) {
         _reqDst = reqDst;
@@ -22,6 +23,7 @@
         _reqTim = reqTim;
         _totalTim = totalTim;
         _statusCode = statusCode;
+        _error = error;
     }
     return self;
 }
@@ -35,13 +37,16 @@
                   sslTim:(NSUInteger)sslTim
                   tcpTim:(NSUInteger)tcpTim
           firstPacketTim:(NSUInteger)firstPacketTim
-              statusCode:(NSInteger)statusCode;
+              statusCode:(NSInteger)statusCode
+                   error:(NSError *)error;
 {
     if (self = [self initWith:reqDst
                     reqMethod:reqMethod
                        reqTim:reqTim
                      totalTim:totalTim
-                   statusCode:statusCode]) {
+                   statusCode:statusCode
+                        error:error])
+    {
         _clientWastTim = clientWastTim;
         _dnsTim = dnsTim;
         _sslTim = sslTim;
@@ -52,20 +57,22 @@
     return self;
 }
 
-+ (instancetype)instanceWith:(NSString *)reqDst
++ (instancetype)instanceWithUrlStr:(NSString *)reqDst
                    reqMethod:(NSString *)reqMethod
                       reqTim:(NSUInteger)reqTim
                     totalTim:(NSUInteger)totalTim
                   statusCode:(NSInteger)statusCode
+                       error:(NSError *)error
 {
     return [[self alloc] initWith:reqDst
                         reqMethod:reqMethod
                            reqTim:reqTim
                          totalTim:totalTim
-                       statusCode:statusCode];
+                       statusCode:statusCode
+                            error:error];
 }
 
-+ (instancetype)instanceWith:(NSString *)reqDst
++ (instancetype)instanceWithUrlStr:(NSString *)reqDst
                    reqMethod:(NSString *)reqMethod
                       reqTim:(NSUInteger)reqTim
                clientWastTim:(NSUInteger)clientWastTim
@@ -75,6 +82,7 @@
                       tcpTim:(NSUInteger)tcpTim
               firstPacketTim:(NSUInteger)firstPacketTim
                   statusCode:(NSInteger)statusCode
+                       error:(NSError *)error
 {
     return [[self alloc] initWith:reqDst
                         reqMethod:reqMethod
@@ -85,42 +93,8 @@
                            sslTim:sslTim
                            tcpTim:tcpTim
                    firstPacketTim:firstPacketTim
-                       statusCode:statusCode];
-}
-
-+ (instancetype)instanceWithHttpModel:(MIHttpInfo *)httpInfo
-{
-    NSString *reqUrl = httpInfo.request.URL.absoluteString;
-    NSUInteger reqDate = httpInfo.reqDate;
-    NSString *httpMethod = httpInfo.request.HTTPMethod;
-    NSUInteger totalTim =  httpInfo.endTim - httpInfo.beginTim;
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)httpInfo.response;
-    NSInteger statusCode = httpResponse.statusCode;
-    NSUInteger clientTime = 0;
-    NSUInteger dnsTime = 0;
-    NSUInteger sslTime = 0;
-    NSUInteger tcpTime = 0;
-    NSUInteger fpTime = 0;
-    MIHttpMetrics *httpMetrics = httpInfo.httpMertics;
-    if (httpMetrics) {
-        clientTime = httpMetrics.clientTim;
-        totalTim = httpMetrics.totalTim;
-        dnsTime = httpMetrics.dnsTim;
-        sslTime = httpMetrics.sslTim;
-        tcpTime = httpMetrics.tcpTim;
-        fpTime = httpMetrics.firstPacketTim;
-    }
-    return [[self alloc] initWith:reqUrl
-                        reqMethod:httpMethod
-                           reqTim:reqDate
-                    clientWastTim:clientTime
-                         totalTim:totalTim
-                           dnsTim:dnsTime
-                           sslTim:sslTime
-                           tcpTim:tcpTime
-                   firstPacketTim:fpTime
-                       statusCode:statusCode];
-    
+                       statusCode:statusCode
+                            error:error];
 }
 
 - (NSString *)description

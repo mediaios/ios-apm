@@ -13,7 +13,6 @@
 #import "MIProxy.h"
 #import <objc/runtime.h>
 #import "MIHttpModel.h"
-#import "MIHttpInfo.h"
 #import "MIApmClient.h"
 
 typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError);
@@ -45,8 +44,12 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
     NSData *data  = [[self class] mi_sendSynchronousRequest:request returningResponse:response error:error];
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)*response ;
     CFAbsoluteTime endtime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
-    MIHttpInfo *httpInfo = [MIHttpInfo instanceWithDate:req_tim beginTim:begintime endTim:endtime request:request response:httpResponse error:*error sendSize:0 receiveSize:0 httpMetrics:nil];
-    [[self class] monitorHttpInfo:httpInfo];
+    [MIApmHelper monitorConnectionHttpWithReuest:request
+                                        response:httpResponse
+                                           error:*error
+                                         reqTime:req_tim
+                                       beginTime:begintime
+                                         endTime:endtime];
     return data;
 }
 
@@ -60,8 +63,12 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
     CompletionHandler hook_handler = ^(NSURLResponse * _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError){
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         CFAbsoluteTime endtime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
-        MIHttpInfo *httpInfo = [MIHttpInfo instanceWithDate:req_tim beginTim:begintime endTim:endtime request:request response:httpResponse error:connectionError sendSize:0 receiveSize:0 httpMetrics:nil];
-        [[self class] monitorHttpInfo:httpInfo];
+        [MIApmHelper monitorConnectionHttpWithReuest:request
+                                            response:httpResponse
+                                               error:connectionError
+                                             reqTime:req_tim
+                                           beginTime:begintime
+                                             endTime:endtime];
         if (handler) {
             handler(httpResponse,data,connectionError);
         }
@@ -129,13 +136,6 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
     }else{
         class_addMethod([oriDel class], NSSelectorFromString(method), class_getMethodImplementation([MIHttpDelegate class], NSSelectorFromString(method)), flag);
     }
-}
-
-+ (void)monitorHttpInfo:(MIHttpInfo *)httpInfo
-{
-    MIHttpModel *httpModel = [MIHttpModel instanceWithHttpModel:httpInfo];
-    NSLog(@"qizhang--debug---%@",httpModel);
-    [[MIApmClient apmClient] miMonitorRes:httpModel];
 }
 
 - (void)registerDownloadDelegateMethod:(NSString *)method

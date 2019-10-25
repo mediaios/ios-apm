@@ -17,15 +17,13 @@
 @property (nonatomic,assign) NSUInteger reqDate;
 @property (nonatomic,assign) CFAbsoluteTime beginTim;
 @property (nonatomic,assign) CFAbsoluteTime endTim;
-@property (nonatomic,strong) NSURLRequest *request;
-@property (nonatomic,strong) NSHTTPURLResponse *response;
-@property (nonatomic,strong) NSError *error;
+@property (nonatomic,strong) NSURLRequest *miRequest;
+@property (nonatomic,strong) NSHTTPURLResponse *miResponse;
+@property (nonatomic,strong) NSError *miError;
 @property (nonatomic,assign) NSUInteger sendSize;
 @property (nonatomic,assign) NSUInteger receiveSize;
-@property (nonatomic,strong) MIHttpMetrics *httpMertics;
 
 @end
-
 
 @implementation MIHttpDelegate
 
@@ -66,50 +64,38 @@
     _reqDate = 0;
     _beginTim = 0;
     _endTim = 0;
-    _request = nil;
-    _response = nil;
-    _error = nil;
+    _miRequest = nil;
+    _miResponse = nil;
+    _miError = nil;
     _sendSize = 0;
     _receiveSize = 0;
-    _httpMertics = nil;
 }
 
 #pragma mark -NSURLConnectionDelegate
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     _endTim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
-    _error = error;
-    MIHttpInfo *httpInfo = [MIHttpInfo instanceWithDate:_reqDate
-                                               beginTim:_beginTim
-                                                 endTim:_endTim
-                                                request:_request
-                                               response:_response
-                                                  error:_error
-                                               sendSize:_sendSize
-                                            receiveSize:_receiveSize
-                                            httpMetrics:_httpMertics];
-    MIHttpModel *httpModel = [MIHttpModel instanceWithHttpModel:httpInfo];
-    [[MIApmClient apmClient] miMonitorRes:httpModel];
+    [MIApmHelper monitorConnectionHttpWithReuest:_miRequest
+                                        response:_miResponse
+                                           error:error
+                                         reqTime:_reqDate
+                                       beginTime:_beginTim
+                                         endTime:_endTim];
     [self resetPropertys];
 }
 
 #pragma mark -NSURLConnectionDataDelegate
-static NSInteger req_tim = 0;
-static CFAbsoluteTime begin_tim = 0;
-static NSInteger statusCode = 0;
-static NSString *url_str = nil;
-static NSString *req_method = nil;
 - (nullable NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(nullable NSURLResponse *)response
 {
     _reqDate = [MIApmHelper currentTimestamp];
     _beginTim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
-    _request = request;
+    _miRequest = request;
     return request;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    _response = (NSHTTPURLResponse *)response;
+    _miResponse = (NSHTTPURLResponse *)response;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -127,19 +113,12 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     _endTim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
-
-    MIHttpInfo *httpInfo = [MIHttpInfo instanceWithDate:_reqDate
-                                               beginTim:_beginTim
-                                                 endTim:_endTim
-                                                 request:_request
-                                               response:_response
-                                                  error:_error
-                                               sendSize:_sendSize
-                                            receiveSize:_receiveSize
-                                            httpMetrics:_httpMertics];
-    MIHttpModel *httpModel = [MIHttpModel instanceWithHttpModel:httpInfo];
-    NSLog(@"qizhang--debug---%@",httpModel);
-    [[MIApmClient apmClient] miMonitorRes:httpModel];
+    [MIApmHelper monitorConnectionHttpWithReuest:_miRequest
+                                        response:_miResponse
+                                           error:_miError
+                                         reqTime:_reqDate
+                                       beginTime:_beginTim
+                                         endTime:_endTim];
     [self resetPropertys];
 }
 
@@ -163,32 +142,14 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 
 
 #pragma mark-NSURLSessionDelegate
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didFinishCollectingMetrics:(NSURLSessionTaskMetrics *)metrics {
-    NSURLSessionTaskTransactionMetrics *metric = [metrics.transactionMetrics lastObject];
-    if (metric) {
-        _httpMertics = [MIHttpMetrics instanceHttpMetricWithNSURLSessionTaskMetrics:metrics];
-        _request = metric.request;
-        NSUInteger req_tim = [MIApmHelper currentTimestamp];
-        MIHttpInfo *httpInfo = [MIHttpInfo instanceWithDate:req_tim
-                                                   beginTim:0
-                                                     endTim:0
-                                                    request:_request
-                                                   response:_response
-                                                      error:_error
-                                                   sendSize:_sendSize
-                                                receiveSize:_receiveSize
-                                                httpMetrics:_httpMertics];
-        MIHttpModel *httpModel = [MIHttpModel instanceWithHttpModel:httpInfo];
-        [[MIApmClient apmClient] miMonitorRes:httpModel];
-    }
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didFinishCollectingMetrics:(NSURLSessionTaskMetrics *)metrics  API_AVAILABLE(ios(10.0)){
+        if (metrics)
+            [MIApmHelper monitorHttpWithSessionTaskMetrics:metrics error:_miError];
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
 didCompleteWithError:(nullable NSError *)error {
-
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)task.response;
-    _response = httpResponse;
-    _error = error;
+    _miError = error;
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask

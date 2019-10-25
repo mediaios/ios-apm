@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MIHttpInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -64,20 +63,26 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic,readonly) NSInteger statusCode;
 
+/**
+http错误信息
+*/
+@property (nonatomic,readonly) NSError *error;
+
 
 /**
  实例化网络请求分析结果，针对于`NSURLConnection`(内部使用)
  */
-+ (instancetype)instanceWith:(NSString *)reqDst
++ (instancetype)instanceWithUrlStr:(NSString *)reqDst
                    reqMethod:(NSString *)reqMethod
                       reqTim:(NSUInteger)reqTim
                     totalTim:(NSUInteger)totalTim
-                  statusCode:(NSInteger)statusCode;
+                  statusCode:(NSInteger)statusCode
+                       error:(NSError *)error;
 
 /**
  实例化网络请求分析结果，针对于`NSURLSession`(内部使用)
  */
-+ (instancetype)instanceWith:(NSString *)reqDst
++ (instancetype)instanceWithUrlStr:(NSString *)reqDst
                    reqMethod:(NSString *)reqMethod
                       reqTim:(NSUInteger)reqTim
                clientWastTim:(NSUInteger)clientWastTim
@@ -86,9 +91,9 @@ NS_ASSUME_NONNULL_BEGIN
                       sslTim:(NSUInteger)sslTim
                       tcpTim:(NSUInteger)tcpTim
               firstPacketTim:(NSUInteger)firstPacketTim
-                  statusCode:(NSInteger)statusCode;
+                  statusCode:(NSInteger)statusCode
+                       error:(NSError *)error;
 
-+ (instancetype)instanceWithHttpModel:(MIHttpInfo *)httpInfo;
 
 @end
 
