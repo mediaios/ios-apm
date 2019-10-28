@@ -18,16 +18,16 @@
 + (void)hook
 {
     [MIHook hookClass:@"NSURLSession" sel:@"sessionWithConfiguration:delegate:delegateQueue:" withClass:@"NSURLSession" sel:@"mi_sessionWithConfiguration:delegate:delegateQueue:"];
-    [MIHook hookInstance:@"NSURLSession" sel:@"dataTaskWithRequest:completionHandler:" withClass:@"NSURLSession" sel:@"mi_dataTaskWithRequest:completionHandler:"];
+    [MIHook hookInstanceToOtherClass:@"NSURLSession" sel:@"dataTaskWithRequest:completionHandler:" withClass:@"MINSSessionDelegate" sel:@"mi_dataTaskWithRequest:completionHandler:"];
     
-    [MIHook hookInstance:@"NSURLSession" sel:@"downloadTaskWithRequest:" withClass:@"NSURLSession" sel:@"mi_downloadTaskWithRequest:"];
-    [MIHook hookInstance:@"NSURLSession" sel:@"downloadTaskWithRequest:completionHandler:" withClass:@"NSURLSession" sel:@"mi_downloadTaskWithRequest:completionHandler:"];
+    [MIHook hookInstanceToOtherClass:@"NSURLSession" sel:@"downloadTaskWithRequest:" withClass:@"MINSSessionDelegate" sel:@"mi_downloadTaskWithRequest:"];
+    [MIHook hookInstanceToOtherClass:@"NSURLSession" sel:@"downloadTaskWithRequest:completionHandler:" withClass:@"MINSSessionDelegate" sel:@"mi_downloadTaskWithRequest:completionHandler:"];
     
-    [MIHook hookInstance:@"NSURLSession" sel:@"uploadTaskWithRequest:fromFile:" withClass:@"NSURLSession" sel:@"mi_uploadTaskWithRequest:fromFile:"];
-    [MIHook hookInstance:@"NSURLSession" sel:@"uploadTaskWithRequest:fromData:" withClass:@"NSURLSession" sel:@"mi_uploadTaskWithRequest:fromData:"];
-    [MIHook hookInstance:@"NSURLSession" sel:@"uploadTaskWithStreamedRequest:" withClass:@"NSURLSession" sel:@"mi_uploadTaskWithStreamedRequest:"];
-    [MIHook hookInstance:@"NSURLSession" sel:@"uploadTaskWithRequest:fromFile:completionHandler:" withClass:@"NSURLSession" sel:@"mi_uploadTaskWithRequest:fromFile:completionHandler:"];
-    [MIHook hookInstance:@"NSURLSession" sel:@"uploadTaskWithRequest:fromData:completionHandler:" withClass:@"NSURLSession" sel:@"mi_uploadTaskWithRequest:fromData:completionHandler:"];
+    [MIHook hookInstanceToOtherClass:@"NSURLSession" sel:@"uploadTaskWithRequest:fromFile:" withClass:@"MINSSessionDelegate" sel:@"mi_uploadTaskWithRequest:fromFile:"];
+    [MIHook hookInstanceToOtherClass:@"NSURLSession" sel:@"uploadTaskWithRequest:fromData:" withClass:@"MINSSessionDelegate" sel:@"mi_uploadTaskWithRequest:fromData:"];
+    [MIHook hookInstanceToOtherClass:@"NSURLSession" sel:@"uploadTaskWithStreamedRequest:" withClass:@"MINSSessionDelegate" sel:@"mi_uploadTaskWithStreamedRequest:"];
+    [MIHook hookInstanceToOtherClass:@"NSURLSession" sel:@"uploadTaskWithRequest:fromFile:completionHandler:" withClass:@"MINSSessionDelegate" sel:@"mi_uploadTaskWithRequest:fromFile:completionHandler:"];
+    [MIHook hookInstanceToOtherClass:@"NSURLSession" sel:@"uploadTaskWithRequest:fromData:completionHandler:" withClass:@"MINSSessionDelegate" sel:@"mi_uploadTaskWithRequest:fromData:completionHandler:"];
     
 }
 
@@ -52,48 +52,6 @@
     }
     
     return [self mi_sessionWithConfiguration:configuration delegate:delegate delegateQueue:queue];
-}
-
-- (NSURLSessionDataTask *)mi_dataTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler
-{
-    return [self mi_dataTaskWithRequest:request completionHandler:completionHandler];
-}
-
-// 下载
-- (NSURLSessionDownloadTask *)mi_downloadTaskWithRequest:(NSURLRequest *)request {
-    return [self mi_downloadTaskWithRequest:request];
-}
-
-- (NSURLSessionDownloadTask *)mi_downloadTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler
-{
-    return [self mi_downloadTaskWithRequest:request completionHandler:completionHandler];
-}
-
-
-// 上传
-- (NSURLSessionUploadTask *)mi_uploadTaskWithRequest:(NSURLRequest *)request fromFile:(NSURL *)fileURL {
-   
-    return [self mi_uploadTaskWithRequest:request fromFile:fileURL];
-}
-
-- (NSURLSessionUploadTask *)mi_uploadTaskWithRequest:(NSURLRequest *)request fromData:(NSData *)bodyData {
-   
-    return [self mi_uploadTaskWithRequest:request fromData:bodyData];
-}
-
-- (NSURLSessionUploadTask *)mi_uploadTaskWithStreamedRequest:(NSURLRequest *)request {
-   
-    return [self mi_uploadTaskWithStreamedRequest:request];
-}
-
-- (NSURLSessionUploadTask *)mi_uploadTaskWithRequest:(NSURLRequest *)request fromFile:(NSURL *)fileURL completionHandler:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler {
-   
-    return [self mi_uploadTaskWithRequest:request fromFile:fileURL completionHandler:completionHandler];
-}
-
-- (NSURLSessionUploadTask *)mi_uploadTaskWithRequest:(NSURLRequest *)request fromData:(nullable NSData *)bodyData completionHandler:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler {
-    
-    return [self mi_uploadTaskWithRequest:request fromData:bodyData completionHandler:completionHandler];
 }
 
 //代理方法分类处理

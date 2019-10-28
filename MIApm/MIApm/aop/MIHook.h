@@ -17,6 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
            withClass:(NSString *)newClass
                  sel:(NSString *)newSel;
 
++ (void)hookInstanceToOtherClass:(NSString *)oriClass
+                             sel:(NSString *)oriSel
+                       withClass:(NSString *)newClass
+                             sel:(NSString *)newSel;
+
 + (void)hookClass:(NSString *)oriClass
               sel:(NSString *)oriSel
         withClass:(NSString *)newClass

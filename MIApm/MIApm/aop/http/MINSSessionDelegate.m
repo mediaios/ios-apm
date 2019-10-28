@@ -15,7 +15,6 @@
 #import "MIProxy.h"
 @interface MINSSessionDelegate()
 @property (nonatomic,strong) NSMutableArray *selList;
-@property (nonatomic,strong) NSURLSessionTaskMetrics *gMatrics;
 @end
 
 @implementation MINSSessionDelegate
@@ -52,30 +51,20 @@
     }
 }
 
-- (void)resetPropertys
-{
-    _gMatrics = nil;
-}
+static  NSError *miSessionError = nil;
+static  NSURLSessionTaskMetrics *_gMatrics = nil;
 
-static BOOL _isMISendData = NO;
-
-#pragma mark-NSURLSessionTaskDelegate
+#pragma mark-NSURLSessionDelegate methods
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didFinishCollectingMetrics:(NSURLSessionTaskMetrics *)metrics  API_AVAILABLE(ios(10.0)){
-    if (metrics){
-        _isMISendData = NO;
-        _gMatrics = metrics;
-    }
+    _gMatrics = metrics;
+    NSLog(@"%s",__func__);
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
 didCompleteWithError:(nullable NSError *)error {
-    NSLog(@"%s",__func__);
-    if (@available(iOS 10.0, *)) {
-        [MIApmHelper monitorHttpWithSessionTaskMetrics:_gMatrics error:error];
-        _isMISendData = YES;
-    } else {
-        // Fallback on earlier versions
-    }
+    [MIApmHelper monitorHttpWithSessionTaskMetrics:_gMatrics error:error];
+    _gMatrics = nil;
+    NSLog(@"%s----",__func__);
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
@@ -109,5 +98,60 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response
 totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
 //    NSLog(@"%s----",__func__);
 }
+
+typedef void (^SessionCompletionHandler)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
+#pragma mark - hook NSURLSession methods
+- (NSURLSessionDataTask *)mi_dataTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler
+{
+    NSLog(@"%s----",__func__);
+    SessionCompletionHandler hook_handler = ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error){
+         [MIApmHelper monitorHttpWithSessionTaskMetrics:_gMatrics error:error];
+        _gMatrics = nil;
+        if (completionHandler) {
+            completionHandler(data,response,error);
+        }
+    };
+    return [self mi_dataTaskWithRequest:request completionHandler:hook_handler];
+}
+
+// 下载
+- (NSURLSessionDownloadTask *)mi_downloadTaskWithRequest:(NSURLRequest *)request {
+    NSLog(@"%s----",__func__);
+    return [self mi_downloadTaskWithRequest:request];
+}
+
+- (NSURLSessionDownloadTask *)mi_downloadTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler
+{
+    NSLog(@"%s----",__func__);
+    return [self mi_downloadTaskWithRequest:request completionHandler:completionHandler];
+}
+
+
+// 上传
+- (NSURLSessionUploadTask *)mi_uploadTaskWithRequest:(NSURLRequest *)request fromFile:(NSURL *)fileURL {
+   NSLog(@"%s----",__func__);
+    return [self mi_uploadTaskWithRequest:request fromFile:fileURL];
+}
+
+- (NSURLSessionUploadTask *)mi_uploadTaskWithRequest:(NSURLRequest *)request fromData:(NSData *)bodyData {
+   NSLog(@"%s----",__func__);
+    return [self mi_uploadTaskWithRequest:request fromData:bodyData];
+}
+
+- (NSURLSessionUploadTask *)mi_uploadTaskWithStreamedRequest:(NSURLRequest *)request {
+   NSLog(@"%s----",__func__);
+    return [self mi_uploadTaskWithStreamedRequest:request];
+}
+
+- (NSURLSessionUploadTask *)mi_uploadTaskWithRequest:(NSURLRequest *)request fromFile:(NSURL *)fileURL completionHandler:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler {
+   NSLog(@"%s----",__func__);
+    return [self mi_uploadTaskWithRequest:request fromFile:fileURL completionHandler:completionHandler];
+}
+
+- (NSURLSessionUploadTask *)mi_uploadTaskWithRequest:(NSURLRequest *)request fromData:(nullable NSData *)bodyData completionHandler:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler {
+    NSLog(@"%s----",__func__);
+    return [self mi_uploadTaskWithRequest:request fromData:bodyData completionHandler:completionHandler];
+}
+
 
 @end
