@@ -32,6 +32,9 @@
 		AA80440A235842D100238405 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA804409235842D100238405 /* CFNetwork.framework */; };
 		AA80440C235842DB00238405 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AA80440B235842DB00238405 /* libresolv.tbd */; };
 		AA80440F23595C5600238405 /* CFNetworkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA80440E23595C5600238405 /* CFNetworkVC.m */; };
+		AAA7443A236ACFA5003B0D62 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AA80440B235842DB00238405 /* libresolv.tbd */; };
+		AAA7443B236ACFAC003B0D62 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8043F923583F2200238405 /* CoreTelephony.framework */; };
+		AAA7443C236ACFB4003B0D62 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8043FD23583F3600238405 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +92,7 @@
 		AA80440B235842DB00238405 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		AA80440D23595C5600238405 /* CFNetworkVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFNetworkVC.h; sourceTree = "<group>"; };
 		AA80440E23595C5600238405 /* CFNetworkVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CFNetworkVC.m; sourceTree = "<group>"; };
+		AAA74439236ACF9E003B0D62 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +104,11 @@
 				AA80440C235842DB00238405 /* libresolv.tbd in Frameworks */,
 				AA80440A235842D100238405 /* CFNetwork.framework in Frameworks */,
 				AA804408235842CA00238405 /* QuartzCore.framework in Frameworks */,
+				AAA7443A236ACFA5003B0D62 /* libresolv.tbd in Frameworks */,
+				AAA7443C236ACFB4003B0D62 /* SystemConfiguration.framework in Frameworks */,
 				AA804406235842C200238405 /* CoreGraphics.framework in Frameworks */,
 				AA80440423583F4A00238405 /* libc++.tbd in Frameworks */,
+				AAA7443B236ACFAC003B0D62 /* CoreTelephony.framework in Frameworks */,
 				AA80440223583F4300238405 /* WebKit.framework in Frameworks */,
 				AA8043FE23583F3600238405 /* SystemConfiguration.framework in Frameworks */,
 				AA8043FC23583F2E00238405 /* Security.framework in Frameworks */,
@@ -205,6 +212,7 @@
 		AA8043F823583F2200238405 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAA74439236ACF9E003B0D62 /* libsqlite3.tbd */,
 				AA80440B235842DB00238405 /* libresolv.tbd */,
 				AA804409235842D100238405 /* CFNetwork.framework */,
 				AA804407235842CA00238405 /* QuartzCore.framework */,
@@ -534,12 +542,15 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "APM-Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lz",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.ucloud.APM-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -557,12 +568,15 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "APM-Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lz",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.ucloud.APM-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

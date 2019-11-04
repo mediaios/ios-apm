@@ -278,11 +278,11 @@
                                     <constraint firstAttribute="height" constant="400" id="vNr-aU-A2c"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fcA-NP-7IL">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ehm-ck-dsa">
                                 <rect key="frame" x="20" y="267" width="335" height="400"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="HzH-Bv-5QT"/>
+                                    <constraint firstAttribute="height" constant="400" id="ynb-ny-UAj"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -292,17 +292,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="e9b-Uo-hKs" firstAttribute="trailing" secondItem="l0X-d8-Ooj" secondAttribute="trailing" constant="20" id="3OT-Ny-0cX"/>
-                            <constraint firstItem="e9b-Uo-hKs" firstAttribute="bottom" secondItem="fcA-NP-7IL" secondAttribute="bottom" id="Bqh-0B-Z5g"/>
-                            <constraint firstItem="e9b-Uo-hKs" firstAttribute="trailing" secondItem="fcA-NP-7IL" secondAttribute="trailing" constant="20" id="D44-bn-eza"/>
+                            <constraint firstItem="e9b-Uo-hKs" firstAttribute="trailing" secondItem="ehm-ck-dsa" secondAttribute="trailing" constant="20" id="bfP-ni-ZM5"/>
                             <constraint firstItem="l0X-d8-Ooj" firstAttribute="top" secondItem="e9b-Uo-hKs" secondAttribute="top" id="ciL-lK-QDh"/>
-                            <constraint firstItem="fcA-NP-7IL" firstAttribute="leading" secondItem="e9b-Uo-hKs" secondAttribute="leading" constant="20" id="rWA-Ed-6KB"/>
+                            <constraint firstItem="ehm-ck-dsa" firstAttribute="leading" secondItem="e9b-Uo-hKs" secondAttribute="leading" constant="20" id="jXm-R6-OZY"/>
+                            <constraint firstItem="e9b-Uo-hKs" firstAttribute="bottom" secondItem="ehm-ck-dsa" secondAttribute="bottom" id="pJv-cf-FHk"/>
                             <constraint firstItem="l0X-d8-Ooj" firstAttribute="leading" secondItem="e9b-Uo-hKs" secondAttribute="leading" constant="20" id="zlB-oy-AJ3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e9b-Uo-hKs"/>
                     </view>
                     <navigationItem key="navigationItem" title="NSURLSession" id="e6B-cq-gBM"/>
                     <connections>
-                        <outlet property="debugView" destination="fcA-NP-7IL" id="dnp-ak-GT4"/>
+                        <outlet property="debugView" destination="ehm-ck-dsa" id="NTV-OJ-WxT"/>
                         <outlet property="imageView" destination="x33-K5-xmv" id="Rrd-50-Kiv"/>
                     </connections>
                 </viewController>

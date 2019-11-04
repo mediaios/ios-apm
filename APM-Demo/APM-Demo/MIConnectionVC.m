@@ -322,7 +322,7 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
 }
 
 #pragma mark - MIApmClientDelegate
-- (void)apm:(MIApmClient *)apm monitorNetworkRequest:(MIRequestMonitorRes *)netModel
+- (void)apm:(MIApmClient *)apm monitorNetworkRequest:(MIHttpModel *)netModel
 {
     [self showDebugInfo:netModel.description];
 }

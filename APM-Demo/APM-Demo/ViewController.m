@@ -19,15 +19,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    
     [MIApmClient apmClient].delegate = self;
+    
+    
+
 }
 
-- (void)apm:(MIApmClient *)apm monitorNetworkRequest:(MIRequestMonitorRes *)netModel
+- (void)apm:(MIApmClient *)apm monitorNetworkRequest:(MIHttpModel *)netModel
 {
     NSLog(@"%@",netModel);
 }
 
-- (void)apm:(MIApmClient *)apm monitorUIWebView:(MIWebViewRequestMonitorRes *)webViewMonitorRes
+- (void)apm:(MIApmClient *)apm monitorUIWebView:(MIWebModel *)webViewMonitorRes
 {
     NSLog(@"%@",webViewMonitorRes);
 }

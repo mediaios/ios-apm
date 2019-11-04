@@ -12,9 +12,30 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextView *debugView;
 
+@property (nonatomic,strong) dispatch_queue_t net_queue;
+
+@property (nonatomic,strong) NSURLSession *session;
 @end
 
 @implementation MISessionVC
+
+- (dispatch_queue_t)net_queue
+{
+    if (!_net_queue) {
+        _net_queue = dispatch_queue_create("net_request", DISPATCH_QUEUE_SERIAL);
+    }
+    return _net_queue;
+}
+
+- (NSURLSession *)session
+{
+    if (!_session) {
+        NSURLSessionConfiguration *cfg = [NSURLSessionConfiguration defaultSessionConfiguration];
+        cfg.timeoutIntervalForRequest = 10;
+        _session = [NSURLSession sessionWithConfiguration:cfg delegate:self delegateQueue:[NSOperationQueue currentQueue]];
+    }
+    return _session;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,59 +63,65 @@
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"POST" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self delegate_post];
+
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)btnClickUpload:(id)sender {
-    UIImage *img = [UIImage imageNamed:@"test.jpg"];
-    NSURL *url = [NSURL URLWithString:@"http://192.168.187.74/~ethan/file_operate/upload.php"];
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
-    
-    //设置Method
-    urlRequest.HTTPMethod = @"POST";
-    
-    //4.设置请求头
-    //在请求头中添加content-type字段
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; charset=utf-8;boundary=%@",boundry];
-    [urlRequest setValue:contentType forHTTPHeaderField:@"Content-Type"];
-    
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    
-    //NSURLSession
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[[NSOperationQueue alloc]init]];
-    
-    //定义上传操作
-    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:urlRequest fromData:[self getBodydataWithImage:img] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"响应结果:%@", response);
-        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"返回数据:\n%@",str);
-    }];
-    
-    [uploadTask resume];
+    dispatch_async(self.net_queue, ^{
+        UIImage *img = [UIImage imageNamed:@"test.jpg"];
+        NSURL *url = [NSURL URLWithString:@"http://192.168.187.74/~ethan/file_operate/upload.php"];
+        NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+
+        //设置Method
+        urlRequest.HTTPMethod = @"POST";
+
+        //4.设置请求头
+        //在请求头中添加content-type字段
+        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; charset=utf-8;boundary=%@",boundry];
+        [urlRequest setValue:contentType forHTTPHeaderField:@"Content-Type"];
+
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        config.timeoutIntervalForRequest = 10;
+        //NSURLSession
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue currentQueue]];
+
+        //定义上传操作
+        NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:urlRequest fromData:[self getBodydataWithImage:img] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+           NSLog(@"响应结果:%@,  error:%@", response,error.description);
+           NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+           NSLog(@"返回数据:\n%@",str);
+        }];
+
+        [uploadTask resume];
+    });
 }
 
 - (IBAction)btnClickDownload:(id)sender {
-    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/mediaios/OpenGL-iOS/master/images/20190916_opengl_10.png"];
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-    [req setHTTPMethod:@"GET"];
     
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    config.timeoutIntervalForRequest = 10;
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionTask *task = [session dataTaskWithRequest:req  completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"出错了");
-            return;
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.imageView.image = [UIImage imageWithData:data];
-        });
-        
-    }];
-    
-    [task resume];
+    dispatch_async(self.net_queue, ^{
+        NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/mediaios/OpenGL-iOS/master/images/20190916_opengl_10.png"];
+        NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+        [req setHTTPMethod:@"GET"];
+
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        config.timeoutIntervalForRequest = 10;
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionTask *task = [session dataTaskWithRequest:req  completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+           if (error) {
+               NSLog(@"出错了");
+               return;
+           }
+           dispatch_async(dispatch_get_main_queue(), ^{
+               self.imageView.image = [UIImage imageWithData:data];
+           });
+           
+        }];
+
+        [task resume];
+    });
 }
 
 
@@ -170,61 +197,79 @@ static NSString *boundry = @"----------V2ymHFg03ehbqgZCaKO6jy";//设置边界
 
 - (void)dataTask_get
 {
-    NSMutableURLRequest *req  = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query?city=%E4%B8%8A%E6%B5%B7&key=5be112d55b4fe1fc620b4a662904b4d8"]];
-    [req setHTTPMethod:@"GET"];
+    dispatch_async(self.net_queue, ^{
+        NSMutableURLRequest *req  = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query?city=%E4%B8%8A%E6%B5%B7&key=5be112d55b4fe1fc620b4a662904b4d8"]];
+        [req setHTTPMethod:@"GET"];
+        
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        config.timeoutIntervalForRequest = 10;
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionTask *task = [session dataTaskWithRequest:req  completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (error) {
+                NSLog(@"出错了,error info: %@",error.description);
+                NSString *errorInfo = [NSString stringWithFormat:@"网络请求出错,error info:%@",error.description];
+                [self showDebugInfo:errorInfo];
+                return;
+            }
+            NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                   NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
+            [self showDebugInfo:resStr];
+        }];
+        
+        [task resume];
+    });
     
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    config.timeoutIntervalForRequest = 10;
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionTask *task = [session dataTaskWithRequest:req  completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"出错了,error info: %@",error.description);
-            NSString *errorInfo = [NSString stringWithFormat:@"网络请求出错,error info:%@",error.description];
-            [self showDebugInfo:errorInfo];
-            return;
-        }
-        NSString *resStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-               NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
-        [self showDebugInfo:resStr];
-    }];
-    
-    [task resume];
+
 }
 
 - (void)delegate_get
 {
-    NSURL *url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query?city=%E4%B8%8A%E6%B5%B7&key=5be112d55b4fe1fc620b4a662904b4d8"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    dispatch_async(self.net_queue, ^{
+        NSURL *url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query?city=%E4%B8%8A%E6%B5%B7&key=5be112d55b4fe1fc620b4a662904b4d8"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+
+        //4.根据会话对象创建一个Task(发送请求）
+        NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:request];
+        
+        //5.执行任务
+        [dataTask resume];
+    });
     
-    //4.根据会话对象创建一个Task(发送请求）
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request];
-    
-    //5.执行任务
-    [dataTask resume];
 }
 
 - (void)delegate_post
 {
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-    NSURL *url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query"];
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-    [req setHTTPMethod:@"POST"];
-    NSString  *params = @"city=上海&key=5be112d55b4fe1fc620b4a662904b4d8";
-    NSData *dataParam = [params dataUsingEncoding:NSUTF8StringEncoding];
-    [req setHTTPBody:dataParam];
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:req];
-    
-//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:req completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        //8.解析数据
-//        NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-//    }];
-    [dataTask resume];
+    dispatch_async(self.net_queue, ^{
+        NSURL *url = [NSURL URLWithString:@"http://apis.juhe.cn/simpleWeather/query"];
+        NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+        [req setHTTPMethod:@"POST"];
+        NSString  *params = @"city=上海&key=5be112d55b4fe1fc620b4a662904b4d8";
+        NSData *dataParam = [params dataUsingEncoding:NSUTF8StringEncoding];
+        [req setHTTPBody:dataParam];
+        NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:req];
+        [dataTask resume];
+    });
+   
+   
 }
 
-
 #pragma mark -NSURLSessionDelegate
+
+- (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(nullable NSError *)error
+{
+    NSLog(@"%s",__func__);
+}
+
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
+                                             completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler
+{
+    NSLog(@"%s",__func__);
+}
+
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session API_AVAILABLE(ios(7.0), watchos(2.0), tvos(9.0)) API_UNAVAILABLE(macos){
+    NSLog(@"%s",__func__);
+}
+
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
 didReceiveData:(NSData *)data
 {
@@ -233,13 +278,11 @@ didReceiveData:(NSData *)data
     NSLog(@"res: %@\n,数据大小是：%lu",resStr,data.length);
 }
 
-
 #pragma mark - MIApmClientDelegate
-- (void)apm:(MIApmClient *)apm monitorNetworkRequest:(MIRequestMonitorRes *)netModel
+- (void)apm:(MIApmClient *)apm monitorNetworkRequest:(MIHttpModel *)netModel
 {
     [self showDebugInfo:netModel.description];
 }
-
 
 - (void)showDebugInfo:(NSString *)debugInfo
 {
