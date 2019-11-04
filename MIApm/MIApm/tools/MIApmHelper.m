@@ -34,7 +34,24 @@
                            totalTim:totalTime
                          statusCode:response.statusCode
                               error:error];
-    NSLog(@"qizhang--debug---%@",httpModel);
+    [[MIApmClient apmClient] miMonitorRes:httpModel];
+}
+
++ (void)monitorSessionHttpWithRequest:(NSURLRequest *)request
+                             response:(NSHTTPURLResponse *)response
+                                error:(NSError *)error
+                              reqTime:(NSUInteger)reqTim
+                            beginTime:(CFAbsoluteTime)beginTim
+                              endTime:(CFAbsoluteTime)endTim
+{
+    CFAbsoluteTime totalTime = endTim - beginTim;
+    NSString *reqDst = request.URL.absoluteString;
+    MIHttpModel *httpModel = [MIHttpModel instanceWithUrlStr:reqDst
+                          reqMethod:request.HTTPMethod
+                             reqTim:reqTim
+                           totalTim:totalTime
+                         statusCode:response.statusCode
+                              error:error];
     [[MIApmClient apmClient] miMonitorRes:httpModel];
 }
 

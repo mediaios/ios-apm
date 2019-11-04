@@ -83,7 +83,6 @@ typedef void (^CompletionHandler)(NSURLResponse* _Nullable response, NSData* _Nu
 
 - (void)mi_start
 {
-    NSLog(@"qizhang--debug-----%s",__func__);
     [self mi_start];
 }
 

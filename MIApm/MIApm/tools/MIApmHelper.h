@@ -21,6 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
                     beginTime:(CFAbsoluteTime)beginTim
                       endTime:(CFAbsoluteTime)endTim;
 
++ (void)monitorSessionHttpWithRequest:(NSURLRequest *)request
+                             response:(NSHTTPURLResponse *)response
+                                error:(NSError *)error
+                              reqTime:(NSUInteger)reqTim
+                            beginTime:(CFAbsoluteTime)beginTim
+                              endTime:(CFAbsoluteTime)endTim;
+
 + (void)monitorHttpWithSessionTaskMetrics:(NSURLSessionTaskMetrics *)metrics
                                     error:(NSError *)error API_AVAILABLE(ios(10.0));
 @end

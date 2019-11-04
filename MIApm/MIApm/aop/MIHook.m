@@ -61,12 +61,6 @@
                                           method_getTypeEncoding(swizzMethod));
     if (did_add_method) {
         class_replaceMethod(origin_class,
-                            oldSel,
-                            method_getImplementation(oldMethod),
-                            method_getTypeEncoding(oldMethod));
-    }
-    if (did_add_method) {
-        class_replaceMethod(origin_class,
                             swizzSel,
                             method_getImplementation(oldMethod),
                             method_getTypeEncoding(oldMethod));

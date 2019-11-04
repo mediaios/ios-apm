@@ -151,7 +151,6 @@ static void constructWebViewMonitorRestuls(MIWebViewStatus webViewStatus)
 - (BOOL)mi_webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     reqDst = request.URL.absoluteString;
-    NSLog(@"start url: %@",reqDst);
     web_reqTim = [MIApmHelper currentTimestamp];
     beginTim = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
 

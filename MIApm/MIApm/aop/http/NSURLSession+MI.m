@@ -19,7 +19,6 @@
 {
     [MIHook hookClass:@"NSURLSession" sel:@"sessionWithConfiguration:delegate:delegateQueue:" withClass:@"NSURLSession" sel:@"mi_sessionWithConfiguration:delegate:delegateQueue:"];
     [MIHook hookInstanceToOtherClass:@"NSURLSession" sel:@"dataTaskWithRequest:completionHandler:" withClass:@"MINSSessionDelegate" sel:@"mi_dataTaskWithRequest:completionHandler:"];
-    
     [MIHook hookInstanceToOtherClass:@"NSURLSession" sel:@"downloadTaskWithRequest:" withClass:@"MINSSessionDelegate" sel:@"mi_downloadTaskWithRequest:"];
     [MIHook hookInstanceToOtherClass:@"NSURLSession" sel:@"downloadTaskWithRequest:completionHandler:" withClass:@"MINSSessionDelegate" sel:@"mi_downloadTaskWithRequest:completionHandler:"];
     
@@ -36,7 +35,10 @@
 {
     MINSSessionDelegate *objDelegate = [[MINSSessionDelegate alloc] init];
     if (delegate) {
-        [[self class] registerDelegateMethod:@"URLSession:task:didFinishCollectingMetrics:" oriDelegate:delegate assistDelegate:objDelegate flag:"v@:@@@"];
+        
+        if (@available(iOS 10.0, *)) {
+            [[self class] registerDelegateMethod:@"URLSession:task:didFinishCollectingMetrics:" oriDelegate:delegate assistDelegate:objDelegate flag:"v@:@@@"];
+        }
         [[self class] registerDelegateMethod:@"URLSession:task:didCompleteWithError:" oriDelegate:delegate assistDelegate:objDelegate flag:"v@:@@@"];
         [[self class] registerDelegateMethod:@"URLSession:dataTask:didReceiveData:" oriDelegate:delegate assistDelegate:objDelegate flag:"v@:@@@"];
         
