@@ -118,20 +118,20 @@ static  NSURLSessionTaskMetrics *_gMatrics = nil;
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
 didCompleteWithError:(nullable NSError *)error {
     if (@available(iOS 10.0,*)) {
+        [MIApmHelper monitorHttpWithSessionTaskMetrics:_gMatrics error:error];
+        _gMatrics = nil;
+    }else{
         NSHTTPURLResponse *httpResponse =  (NSHTTPURLResponse *)task.response;
         NSURLRequest *request = task.currentRequest;
         CFAbsoluteTime endtime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
         [MIApmHelper monitorSessionHttpWithRequest:request
-                                        response:httpResponse
-                                           error:error
-                                         reqTime:mi_req_time
-                                       beginTime:mi_startTime
-                                         endTime:endtime];
+                                          response:httpResponse
+                                             error:error
+                                           reqTime:mi_req_time
+                                         beginTime:mi_startTime
+                                           endTime:endtime];
         mi_req_time = 0;
         mi_startTime = 0;
-    }else{
-        [MIApmHelper monitorHttpWithSessionTaskMetrics:_gMatrics error:error];
-        _gMatrics = nil;
     }
 }
 
@@ -192,22 +192,28 @@ typedef void (^SessionCompletionHandler)(NSData * _Nullable data, NSURLResponse 
             _gMatrics = nil;
           
         }else{
-            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response ;
-                      CFAbsoluteTime endtime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
-                       [MIApmHelper monitorSessionHttpWithRequest:request
-                                                         response:httpResponse
-                                                            error:error
-                                                          reqTime:mi_req_time
-                                                        beginTime:mi_startTime
-                                                          endTime:endtime];
-           mi_req_time = 0;
-           mi_startTime = 0;
+            if (completionHandler) {
+                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response ;
+                CFAbsoluteTime endtime = (CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970)*1000;
+                [MIApmHelper monitorSessionHttpWithRequest:request
+                                                  response:httpResponse
+                                                     error:error
+                                                   reqTime:mi_req_time
+                                                 beginTime:mi_startTime
+                                                   endTime:endtime];
+                mi_req_time = 0;
+                mi_startTime = 0;
+            }
         }
         if (completionHandler) {
             completionHandler(data,response,error);
         }
     };
-    return [self mi_dataTaskWithRequest:request completionHandler:hook_handler];
+    
+    if (completionHandler) {
+        return [self mi_dataTaskWithRequest:request completionHandler:hook_handler];
+    }
+    return  [self mi_dataTaskWithRequest:request completionHandler:nil];
 }
 
 // 下载
